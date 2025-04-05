@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8p3g7w81vtm2"]
+
+[ext_resource type="Script" uid="uid://cy0qbf4ndlv4s" path="res://scripts/title_screen.gd" id="1_fgkus"]
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource("1_fgkus")
+
+[node name="Play" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
