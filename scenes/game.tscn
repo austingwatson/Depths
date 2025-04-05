@@ -7,7 +7,6 @@
 [node name="Game" type="Node"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]

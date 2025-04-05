@@ -6,6 +6,11 @@ signal dead
 
 @export var max_health: int
 @export var health: int
+@export var shape: Shape2D
+
+
+func _ready() -> void:
+	$CollisionShape2D.shape = shape
 
 
 func take_damage(damage: int) -> void:
