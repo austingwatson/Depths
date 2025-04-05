@@ -15,6 +15,16 @@ run/main_scene="uid://b8p3g7w81vtm2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/textures/icon.svg"
 
+[autoload]
+
+ProjectileManager="*res://scenes/global/projectile_manager.tscn"
+
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/shadowed_variable_base_class=0
+gdscript/warnings/shadowed_global_identifier=0
+
 [display]
 
 window/size/viewport_width=480

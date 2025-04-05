@@ -4,7 +4,12 @@ extends Area2D
 signal hit
 
 @export var damage: int
+@export var shape: Shape2D
 @onready var collision_shape := $CollisionShape2D
+
+
+func _ready() -> void:
+	collision_shape.shape = shape
 
 
 func enable() -> void:
@@ -16,6 +21,6 @@ func disable() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HitBox:
-		area.take_damage(area.damage)
+	if area is HurtBox:
+		area.take_damage(damage)
 		hit.emit()

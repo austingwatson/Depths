@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx7o0wwwkfa4t"]
+
+[ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
+[ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_o4jdw"]
+[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_oaaup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxt06"]
+radius = 4.0
+
+[node name="Torpedo" type="Node2D"]
+script = ExtResource("1_v7qta")
+
+[node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_o4jdw")]
+entity = NodePath("..")
+max_speed = 500.0
+acceleration = 100.0
+deceleration = 500.0
+rotation_speed = 100.0
+
+[node name="HitBox" parent="." instance=ExtResource("2_oaaup")]
+shape = SubResource("CircleShape2D_xxt06")
+
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

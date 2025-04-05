@@ -28,3 +28,5 @@ health = 10
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("5_f6cxi")
 texture_scale = 0.5
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
