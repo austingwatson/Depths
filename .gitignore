@@ -3,3 +3,5 @@
 /android/
 
 .editorconfig
+export/
+export_presets.cfg

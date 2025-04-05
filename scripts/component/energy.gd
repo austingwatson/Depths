@@ -14,7 +14,7 @@ func _ready() -> void:
 	start_charge.wait_time = start_charge_time
 
 
-func has_energy(needed: float) -> bool:
+func has_energy(_needed: float) -> bool:
 	return true
 	#return needed <= energy
 	
