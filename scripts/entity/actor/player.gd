@@ -1,9 +1,16 @@
 class_name Player
-extends CharacterBody2D
+extends Node2D
 
-@onready var character_movement := $CharacterMovement
+@onready var movement := $Movement
+var rotate_down := false
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	character_movement.set_direction(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
-	look_at(get_global_mouse_position())
+func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("rotate"):
+		movement.turn(get_global_mouse_position(), delta)
+		
+	var direction := Vector2.RIGHT.rotated(rotation)
+	if Input.is_action_pressed("thrust"):
+		movement.move(direction, delta)
+	else:
+		movement.stop(direction, delta)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://daxpl8wgwrd7w"]
+
+[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="1_cxbke"]
+[ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmqt7"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(1, 17, 30, 14)
+
+[node name="HunterFish" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_fmqt7")
+
+[node name="HitBox" parent="." instance=ExtResource("1_cxbke")]

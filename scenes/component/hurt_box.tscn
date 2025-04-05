@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0foxywnu3rrx"]
+[gd_scene load_steps=3 format=3 uid="uid://b0rymrbfbbdhr"]
 
-[ext_resource type="Script" uid="uid://d2ldiagqpdtns" path="res://scripts/component/hurt_box.gd" id="1_2cddn"]
+[ext_resource type="Script" uid="uid://blljpccu8rpvl" path="res://scripts/component/hurt_box.gd" id="1_w60fk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7snd3"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nel52"]
 resource_local_to_scene = true
 radius = 8.0
 
 [node name="HurtBox" type="Area2D"]
+input_pickable = false
 monitoring = false
-script = ExtResource("1_2cddn")
+script = ExtResource("1_w60fk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_7snd3")
+shape = SubResource("CircleShape2D_nel52")

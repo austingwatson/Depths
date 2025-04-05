@@ -1,20 +1,21 @@
 class_name HitBox
 extends Area2D
 
-signal hurt(max_health: int, health: int)
-signal dead
+signal hit
 
-@export var max_health: int
-@export var health: int
+@export var damage: int
+@onready var collision_shape := $CollisionShape2D
 
 
-func damage(damage: int) -> void:
-	health -= damage
-	hurt.emit(max_health, health)
-	if health <= 0:
-		dead.emit()
+func enable() -> void:
+	collision_shape.set_deferred("disabled", false)
+	
+
+func disable() -> void:
+	collision_shape.set_deferred("disabled", true)
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HurtBox:
-		damage(area.damage)
+	if area is HitBox:
+		area.take_damage(area.damage)
+		hit.emit()
