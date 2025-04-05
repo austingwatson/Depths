@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmy0i8hd43tcj"]
+
+[ext_resource type="Script" uid="uid://brah0qdbbn63k" path="res://scripts/component/energy.gd" id="1_xe087"]
+
+[node name="Energy" type="Node"]
+script = ExtResource("1_xe087")
+
+[node name="StartCharge" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="StartCharge" to="." method="_on_start_charge_timeout"]

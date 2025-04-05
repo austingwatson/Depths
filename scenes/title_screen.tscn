@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8p3g7w81vtm2"]
+[gd_scene load_steps=8 format=3 uid="uid://b8p3g7w81vtm2"]
 
 [ext_resource type="Script" uid="uid://cy0qbf4ndlv4s" path="res://scripts/title_screen.gd" id="1_fgkus"]
 [ext_resource type="Texture2D" uid="uid://ptihoidbwul1" path="res://assets/textures/level/Enceladus_planet.png" id="2_s4lrb"]
-[ext_resource type="FontFile" uid="uid://dbwh2vnpvxyt" path="res://assets/textures/ui/m5x7.ttf" id="2_sa3yf"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="3_mgrm8"]
+[ext_resource type="FontFile" uid="uid://dbwh2vnpvxyt" path="res://assets/textures/ui/m5x7.ttf" id="4_dc4i4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(0, 320, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(96, 320, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(48, 320, 48, 32)
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource("1_fgkus")
@@ -11,19 +24,36 @@ script = ExtResource("1_fgkus")
 texture = ExtResource("2_s4lrb")
 centered = false
 
-[node name="Play" type="Button" parent="."]
+[node name="Menu" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -15.5
-offset_right = 20.5
-offset_bottom = 15.5
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_sa3yf")
-text = "Play"
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[node name="Play" type="TextureButton" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_e54dn")
+texture_pressed = SubResource("AtlasTexture_3yumr")
+texture_hover = SubResource("AtlasTexture_cs5ya")
+
+[node name="Label" type="Label" parent="Menu/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_dc4i4")
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Menu/Play" to="." method="_on_play_pressed"]
