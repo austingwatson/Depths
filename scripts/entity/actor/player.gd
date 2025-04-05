@@ -1,10 +1,13 @@
 class_name Player
 extends Node2D
 
+@export var forward_texture: Texture2D
+@export var left_texture: Texture2D
+@export var right_texture: Texture2D
 @export var weapon_energy: int
 @onready var movement := $Movement
 @onready var energy := $Energy
-var rotate_down := false
+@onready var sprite := $Sprite2D
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -16,7 +19,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("rotate"):
-		movement.turn(get_global_mouse_position(), delta)
+		var dir: float = movement.turn(get_global_mouse_position(), delta)
+		print(dir)
+		if dir < 0.0:
+			sprite.texture = left_texture
+		elif dir > 0.0:
+			sprite.texture = right_texture
+	else:
+		sprite.texture = forward_texture
 	
 	var direction := Vector2.RIGHT.rotated(rotation)
 	if Input.is_action_pressed("thrust"):

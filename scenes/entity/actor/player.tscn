@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=15 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -6,13 +6,34 @@
 [ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="3_v1h6o"]
 [ext_resource type="PackedScene" uid="uid://dmy0i8hd43tcj" path="res://scenes/component/energy.tscn" id="3_v7w8l"]
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="5_f6cxi"]
+[ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="6_18kca"]
 [ext_resource type="Texture2D" uid="uid://brrmjvq8w3jmh" path="res://assets/textures/effects/ies_lights_pack_3d_model2.png" id="6_owhjy"]
+[ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_8l8co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
+atlas = ExtResource("3_v1h6o")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eybgf"]
+atlas = ExtResource("3_v1h6o")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b81v7"]
+atlas = ExtResource("3_v1h6o")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18kca"]
+atlas = ExtResource("3_v1h6o")
+region = Rect2(0, 0, 32, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6cxi"]
 radius = 8.0
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_in1sw")
+forward_texture = SubResource("AtlasTexture_8l8co")
+left_texture = SubResource("AtlasTexture_eybgf")
+right_texture = SubResource("AtlasTexture_b81v7")
 weapon_energy = 1
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_f6cxi")]
@@ -28,7 +49,7 @@ energy = 10.0
 start_charge_time = 2.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_v1h6o")
+texture = SubResource("AtlasTexture_18kca")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_8pk7n")]
 collision_layer = 2
@@ -38,13 +59,18 @@ health = 10
 shape = SubResource("CircleShape2D_f6cxi")
 
 [node name="RadiusLight" type="PointLight2D" parent="."]
-texture = ExtResource("5_f6cxi")
+texture = ExtResource("6_18kca")
 texture_scale = 0.5
+
+[node name="Test" type="Sprite2D" parent="RadiusLight"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_f6cxi")
 
 [node name="ForwardLight" type="PointLight2D" parent="."]
 position = Vector2(89, 0)
 rotation = -1.5708
-texture = ExtResource("6_owhjy")
+texture = ExtResource("8_8l8co")
 texture_scale = 0.5
 
 [node name="Test" type="Sprite2D" parent="ForwardLight"]

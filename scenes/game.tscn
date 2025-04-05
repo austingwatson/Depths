@@ -1,14 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=4 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bw4vq0sx2pd5s" path="res://scenes/entity/actor/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/floater.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+color = Color(0.00784314, 0.00784314, 0.0509804, 1)
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]
 
@@ -16,7 +15,4 @@ color = Color(0, 0, 0, 1)
 position = Vector2(199, 121)
 
 [node name="HunterFish" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(83, 64)
-
-[node name="Floater" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(322, 68)
+position = Vector2(59, 49)

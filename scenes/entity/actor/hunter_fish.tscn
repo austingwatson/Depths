@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=9 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_vbyxb"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_vbyxb"]
+[ext_resource type="Texture2D" uid="uid://hyyf28m6abmq" path="res://assets/textures/entity/hunter_fish_normals.png" id="4_mrtdc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fmqt7"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(1, 17, 30, 14)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mrtdc"]
+light_mode = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fjt5v"]
+diffuse_texture = ExtResource("1_p6sfq")
+normal_texture = ExtResource("4_mrtdc")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_snnp5"]
 
@@ -18,7 +22,10 @@ script = ExtResource("1_snnp5")
 entity = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_fmqt7")
+material = SubResource("CanvasItemMaterial_mrtdc")
+texture = SubResource("CanvasTexture_fjt5v")
+vframes = 2
+frame = 1
 
 [node name="HurtBox" parent="." instance=ExtResource("3_vbyxb")]
 collision_layer = 4

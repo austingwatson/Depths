@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckn07253t3ahu"]
+
+[ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
+[ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
+[ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_oxdx7"]
+[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="4_qwgpp"]
+
+[node name="Urchin" type="Node2D"]
+script = ExtResource("1_rrpem")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aw6ot")
+hframes = 2
+vframes = 2
+
+[node name="HurtBox" parent="." instance=ExtResource("3_oxdx7")]
+max_health = 1
+health = 1
+
+[node name="HitBox" parent="." instance=ExtResource("4_qwgpp")]

@@ -9,8 +9,5 @@ enum State {
 }
 
 
-
-
-
 func _on_hurt_box_dead() -> void:
 	queue_free()
