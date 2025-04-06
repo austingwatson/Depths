@@ -25,5 +25,4 @@ func stop(direction: Vector2, delta: float) -> void:
 func turn(target: Vector2, delta: float) -> float:
 	var target_angle := (target - entity.global_position).angle()
 	entity.rotation = fposmod(lerp_angle(entity.rotation, target_angle, rotation_speed * delta) + PI, TAU) - PI
-	print(target_angle, ", ", entity.rotation)
 	return entity.rotation - target_angle

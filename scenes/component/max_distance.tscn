@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://x2wdvhrvr26y"]
+
+[ext_resource type="Script" uid="uid://buvf7wtuhouy8" path="res://scripts/component/max_distance.gd" id="1_qlykv"]
+
+[node name="MaxDistance" type="Node"]
+script = ExtResource("1_qlykv")

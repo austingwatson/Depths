@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=8 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_o4jdw"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_oaaup"]
+[ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="4_vdd5x"]
+[ext_resource type="PackedScene" uid="uid://x2wdvhrvr26y" path="res://scenes/component/max_distance.tscn" id="5_tvse7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvse7"]
+atlas = ExtResource("4_vdd5x")
+region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxt06"]
 radius = 4.0
@@ -17,7 +23,15 @@ acceleration = 100.0
 deceleration = 500.0
 rotation_speed = 100.0
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_tvse7")
+
 [node name="HitBox" parent="." instance=ExtResource("2_oaaup")]
 shape = SubResource("CircleShape2D_xxt06")
 
+[node name="MaxDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("5_tvse7")]
+entity = NodePath("..")
+distance = 2500.0
+
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
+[connection signal="reached" from="MaxDistance" to="." method="_on_max_distance_reached"]
