@@ -29,6 +29,7 @@ const rotation_threshold := 0.1
 @onready var shock_cooldown := $SkillCooldowns/ShockCooldown
 var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
+var initial_drop := true
 var weapon := Weapon.TORPEDO
 
 
@@ -71,9 +72,9 @@ func _physics_process(delta: float) -> void:
 	var direction := Vector2.RIGHT.rotated(rotation)
 	
 	if Input.is_action_just_pressed("test_weapon"):
-		$Laser.is_casting = true
+		$Laser.is_casting = not $Laser.is_casting
 	
-	if no_power:
+	if no_power or initial_drop:
 		movement.stop(direction, delta)
 		return
 	
@@ -101,6 +102,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		movement.stop(direction, delta)
 		thrusting.paused = true
+	
+	if global_position.y <= 20:
+		global_position.y = 20
 		
 	if Input.is_action_pressed("shoot"):
 		match weapon:

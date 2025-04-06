@@ -5,4 +5,4 @@
 [node name="BulletManager" type="Node"]
 script = ExtResource("1_sn157")
 friendly_layer = 2
-friendly_mask = 12
+friendly_mask = 13

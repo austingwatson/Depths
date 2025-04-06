@@ -41,7 +41,9 @@ func _physics_process(delta: float) -> void:
 			movement.turn(player.global_position, delta)
 		State.ATTACK:
 			pass
-		
+	
+	if global_position.y <= 20:
+		global_position.y = 20
 
 
 func _on_hurt_box_dead() -> void:
