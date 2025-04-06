@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccps2yc6mkjkn"
-path="res://.godot/imported/test_light.png-d4fd266a005f05e931ed35972ebfa498.ctex"
+uid="uid://dr685vtdv7r1p"
+path="res://.godot/imported/urchin_normals.png-570812966d5f151d244ae4e789a78533.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/effects/test_light.png"
-dest_files=["res://.godot/imported/test_light.png-d4fd266a005f05e931ed35972ebfa498.ctex"]
+source_file="res://assets/textures/entity/urchin_normals.png"
+dest_files=["res://.godot/imported/urchin_normals.png-570812966d5f151d244ae4e789a78533.ctex"]
 
 [params]
 

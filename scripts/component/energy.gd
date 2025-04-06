@@ -2,28 +2,38 @@ class_name Energy
 extends Node
 
 signal energy_changed(max_energy: float, energy: float)
+signal no_energy
+signal charging
 
+@export var infinite_energy := false
 @export var max_energy: float
 @export var energy: float
-@export var start_charge_time: float
-@export var charge_time: Array[float]
-@onready var start_charge := $StartCharge
+@export var passive_refill: float
+@onready var refill := $Refill
+@onready var power_off := $PowerOff
+var stop_refill := false
 
-
-func _ready() -> void:
-	start_charge.wait_time = start_charge_time
-
-
-func has_energy(_needed: float) -> bool:
-	return true
-	#return needed <= energy
-	
 
 func use_energy(amount: float) -> void:
-	energy -= amount
-	energy_changed.emit(max_energy, energy)
-	start_charge.start()
+	if infinite_energy:
+		return
 	
+	energy -= amount
+	if energy <= 0.0:
+		energy = 0.0
+		refill.stop()
+		power_off.start()
+		no_energy.emit()
+	energy_changed.emit(max_energy, energy)
 
-func _on_start_charge_timeout() -> void:
-	pass # Replace with function body.
+
+func _on_refill_timeout() -> void:
+	var old_energy := energy
+	energy = min(energy + passive_refill, max_energy)
+	if energy != old_energy:
+		energy_changed.emit(max_energy, energy)
+
+
+func _on_power_off_timeout() -> void:
+	refill.start()
+	charging.emit()
