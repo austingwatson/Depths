@@ -49,4 +49,8 @@ theme_override_colors/font_color = Color(0.960784, 0.964706, 0.988235, 1)
 theme_override_font_sizes/font_size = 32
 text = "Launch"
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]

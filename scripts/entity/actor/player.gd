@@ -1,12 +1,16 @@
 class_name Player
 extends Node2D
 
+enum Weapon {
+	TORPEDO,
+	LASER,
+	SHOCK,
+}
+
 const rotation_threshold := 0.1
 @export var forward_texture: Texture2D
 @export var left_texture: Texture2D
 @export var right_texture: Texture2D
-@export var weapon_energy: float
-@export var thrust_energy: float
 @onready var movement := $Movement
 @onready var energy := $Energy
 @onready var sprite := $Sprite2D
@@ -19,7 +23,13 @@ const rotation_threshold := 0.1
 @onready var camera := $Camera2D
 @onready var hurt_box := $HurtBox
 @onready var sonar := $Sonar
+@onready var sonar_cooldown := $SkillCooldowns/SonarCooldown
+@onready var torpedo_cooldown := $SkillCooldowns/TorpedoCooldown
+@onready var laser_cooldown := $SkillCooldowns/LaserCooldown
+@onready var shock_cooldown := $SkillCooldowns/ShockCooldown
+var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
+var weapon := Weapon.TORPEDO
 
 
 func _ready() -> void:
@@ -28,18 +38,33 @@ func _ready() -> void:
 	var hurt_box := $HurtBox
 	GlobalSignals.on_player_health_changed(hurt_box.max_health, hurt_box.health)
 	GlobalSignals.heal_player.connect(_on_heal_player)
-
-
-func _unhandled_input(_event: InputEvent) -> void:
-	if no_power:
-		return
 	
-	if Input.is_action_just_pressed("shoot"):
-		var direction := Vector2.RIGHT.rotated(rotation)
-		ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, 1)
-		energy.use_energy(weapon_energy)
-	elif Input.is_action_just_pressed("sonar"):
-		sonar.start_sonar()
+	movement.max_speed = player_stats.max_speed
+	movement.acceleration = player_stats.acceleration
+	movement.deceleration = player_stats.deceleration
+	movement.rotation_speed = player_stats.rotation_speed
+	
+	energy.max_energy = player_stats.max_energy
+	energy.energy = player_stats.max_energy
+	energy.passive_refill = player_stats.passive_refill
+	
+	hurt_box.max_health = player_stats.max_health
+	hurt_box.health = player_stats.max_health
+	
+	sonar.max_radius = player_stats.max_radius
+	sonar.duration = player_stats.duration
+	
+	sonar_cooldown.cooldown = player_stats.sonar_cooldown
+	sonar_cooldown.timer.wait_time = player_stats.sonar_cooldown
+	
+	torpedo_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.torpedo_cooldown
+	torpedo_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.torpedo_cooldown
+	
+	laser_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.laser_cooldown
+	laser_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.laser_cooldown
+	
+	shock_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.shock_cooldown
+	shock_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.shock_cooldown
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +98,27 @@ func _physics_process(delta: float) -> void:
 	else:
 		movement.stop(direction, delta)
 		thrusting.paused = true
+		
+	if Input.is_action_pressed("shoot"):
+		match weapon:
+			Weapon.TORPEDO:
+				if not torpedo_cooldown.on_cooldown:
+					torpedo_cooldown.use()
+					ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, player_stats.torpedo_damage + player_stats.damage)
+					energy.use_energy(player_stats.torpedo_energy)
+			Weapon.LASER:
+				if not laser_cooldown.on_cooldown:
+					laser_cooldown.use()
+					# use laser here
+					energy.use_energy(player_stats.laser_energy)
+			Weapon.SHOCK:
+				if not shock_cooldown.on_cooldown:
+					shock_cooldown.use()
+					# use shock here
+					energy.use_energy(player_stats.shock_energy)
+	if Input.is_action_pressed("sonar") and not sonar_cooldown.on_cooldown:
+		sonar_cooldown.use()
+		sonar.start_sonar()
 
 
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:
@@ -104,7 +150,7 @@ func _on_energy_charging() -> void:
 
 
 func _on_thrusting_timeout() -> void:
-	energy.use_energy(thrust_energy)
+	energy.use_energy(player_stats.thrust_energy)
 
 
 func _on_flicker_timeout() -> void:
@@ -117,3 +163,8 @@ func _on_heal_player(heal: int) -> void:
 
 func _on_hurt_box_healed(max_health: int, health: int) -> void:
 	GlobalSignals.on_player_health_changed(max_health, health)
+
+
+func _on_hurt_box_dead() -> void:
+	EntityManager.clear()
+	get_tree().change_scene_to_file("res://scenes/basecamp.tscn")

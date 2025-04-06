@@ -19,12 +19,14 @@ config/icon="res://assets/textures/icon.svg"
 
 ProjectileManager="*res://scenes/global/projectile_manager.tscn"
 GlobalSignals="*res://scenes/global/global_signals.tscn"
+EntityManager="*res://scenes/global/entity_manager.tscn"
 
 [debug]
 
 gdscript/warnings/shadowed_variable=0
 gdscript/warnings/shadowed_variable_base_class=0
 gdscript/warnings/shadowed_global_identifier=0
+gdscript/warnings/narrowing_conversion=0
 
 [display]
 
@@ -61,6 +63,16 @@ shoot={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(162, 9),"global_position":Vector2(171, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+change_weapon_up={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(237, 10),"global_position":Vector2(246, 58),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+change_weapon_down={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(208, 10),"global_position":Vector2(217, 58),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -68,6 +80,7 @@ shoot={
 2d_physics/layer_2="Friendly"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Neutral"
+2d_physics/layer_5="Research"
 
 [rendering]
 

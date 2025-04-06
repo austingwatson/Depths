@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://x3on4c0j2ttk"]
+
+[ext_resource type="Script" uid="uid://b4uldlq5pn2gq" path="res://scripts/global/entity_manager.gd" id="1_b4yoo"]
+
+[node name="EntityManager" type="Node"]
+script = ExtResource("1_b4yoo")
+
+[node name="NonYSort" type="Node" parent="."]
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true

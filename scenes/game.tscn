@@ -1,10 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=11 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://bw4vq0sx2pd5s" path="res://scenes/entity/actor/player.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bcobtgraohaxm" path="res://scenes/entity/spawner.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="4_lbhrr"]
+
+[sub_resource type="Curve" id="Curve_iywne"]
+_limits = [0.0, 25.0, 0.0, 10000.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 25), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p57ef"]
+_limits = [0.0, 50.0, 0.0, 10000.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_u5sy4"]
+_limits = [1.0, 10.0, 0.0, 10000.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3
@@ -13,6 +29,28 @@ glow_intensity = 1.0
 glow_hdr_threshold = 1.5
 
 [node name="Game" type="Node"]
+script = ExtResource("1_yqjtg")
+
+[node name="HunterFishSpawner" parent="." instance=ExtResource("2_lbhrr")]
+enemy_scene = ExtResource("3_lnu2h")
+lower_spawn_curve = SubResource("Curve_iywne")
+upper_spawn_curve = SubResource("Curve_p57ef")
+timer_curve = SubResource("Curve_u5sy4")
+margin = 25.0
+
+[node name="UrchinSpawner" parent="." instance=ExtResource("2_lbhrr")]
+enemy_scene = ExtResource("4_lbhrr")
+lower_spawn_curve = SubResource("Curve_iywne")
+upper_spawn_curve = SubResource("Curve_p57ef")
+timer_curve = SubResource("Curve_u5sy4")
+margin = 25.0
+
+[node name="FloaterSpawner" parent="." instance=ExtResource("2_lbhrr")]
+enemy_scene = ExtResource("4_iywne")
+lower_spawn_curve = SubResource("Curve_iywne")
+upper_spawn_curve = SubResource("Curve_p57ef")
+timer_curve = SubResource("Curve_u5sy4")
+margin = 25.0
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]
 
@@ -21,15 +59,3 @@ environment = SubResource("Environment_lbhrr")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.00784314, 0.00784314, 0.0509804, 1)
-
-[node name="Player" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(199, 121)
-
-[node name="HunterFish" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(59, 49)
-
-[node name="Urchin" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(295, 66)
-
-[node name="Floater" parent="." instance=ExtResource("4_iywne")]
-position = Vector2(102, 180)

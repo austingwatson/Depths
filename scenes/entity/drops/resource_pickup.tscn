@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6yylqny5blw1"]
+[gd_scene load_steps=3 format=3 uid="uid://c6yylqny5blw1"]
+
+[ext_resource type="Script" uid="uid://ce6v4pggr6vbl" path="res://scripts/entity/drops/resource_pickup.gd" id="1_t50uq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ofgt"]
 
-[node name="ResourcePickup" type="Node2D"]
+[node name="ResourcePickup" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+monitoring = false
+script = ExtResource("1_t50uq")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ofgt")
+
+[node name="ScanTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="ScanTimer" to="." method="_on_scan_timer_timeout"]
