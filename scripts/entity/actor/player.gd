@@ -17,6 +17,7 @@ const rotation_threshold := 0.1
 @onready var thrusting := $Thrusting
 @onready var flicker := $Flicker
 @onready var camera := $Camera2D
+@onready var hurt_box := $HurtBox
 var no_power := false
 
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 	
 	var hurt_box := $HurtBox
 	GlobalSignals.on_player_health_changed(hurt_box.max_health, hurt_box.health)
+	GlobalSignals.heal_player.connect(_on_heal_player)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -104,3 +106,11 @@ func _on_thrusting_timeout() -> void:
 
 func _on_flicker_timeout() -> void:
 	emergency_light.visible = not emergency_light.visible
+	
+
+func _on_heal_player(heal: int) -> void:
+	hurt_box.heal(heal)
+
+
+func _on_hurt_box_healed(max_health: int, health: int) -> void:
+	GlobalSignals.on_player_health_changed(max_health, health)

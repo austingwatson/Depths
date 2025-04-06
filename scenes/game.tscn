@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bw4vq0sx2pd5s" path="res://scenes/entity/actor/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/floater.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="4_lbhrr"]
 
 [sub_resource type="Environment" id="Environment_lbhrr"]

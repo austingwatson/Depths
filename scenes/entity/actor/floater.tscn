@@ -1,8 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://8oxdyj66sd4m"]
+[gd_scene load_steps=9 format=3 uid="uid://8oxdyj66sd4m"]
 
 [ext_resource type="Texture2D" uid="uid://crpnnm0l8ilj3" path="res://assets/textures/entity/floater_green.png" id="1_4c47e"]
-[ext_resource type="Script" uid="uid://brrrtutax8xnp" path="res://scripts/entity/floater.gd" id="1_ty7i7"]
+[ext_resource type="Script" uid="uid://brrrtutax8xnp" path="res://scripts/entity/actor/floater.gd" id="1_ty7i7"]
+[ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_41qwq"]
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="2_ty7i7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11tjm"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_ty7i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_4c47e"]
 resource_name = "idle"
@@ -33,33 +64,6 @@ tracks/1/keys = {
 "values": [0.0, 1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ty7i7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Light:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0emx"]
 _data = {
 &"RESET": SubResource("Animation_ty7i7"),
@@ -68,6 +72,14 @@ _data = {
 
 [node name="Floater" type="Node2D"]
 script = ExtResource("1_ty7i7")
+heal = 1
+
+[node name="HurtBox" parent="." instance=ExtResource("2_41qwq")]
+collision_layer = 8
+collision_mask = 2
+max_health = 1
+health = 1
+shape = SubResource("CircleShape2D_11tjm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4c47e")
@@ -84,3 +96,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_u0emx")
 }
 speed_scale = 0.5
+
+[connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
