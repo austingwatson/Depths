@@ -13,6 +13,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	movement.move(direction, delta)
+	
+	if global_position.y <= 20:
+		global_position.y = 20
 
 
 func _on_hurt_box_dead() -> void:

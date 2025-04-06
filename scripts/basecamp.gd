@@ -1,14 +1,19 @@
 extends Node
 
-@onready var label := $Label
+@onready var arm := $Arm
+@onready var animation_player := $AnimationPlayer
 var player_stats: PermStats = EntityManager.player_stats
 
 
 func _ready() -> void:
-	label.text = str(player_stats.research)
+	arm.play("default")
 
 
 func _on_launch_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	animation_player.play("launch")
+	arm.stop()
 
-#Hey Austin, I copied your Title screen and injected this. I'll update the art.
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "launch":
+		get_tree().change_scene_to_file("res://scenes/game.tscn")

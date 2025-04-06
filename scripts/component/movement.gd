@@ -8,7 +8,11 @@ extends Node
 @export var deceleration: float
 @export var rotation_speed: float
 var velocity := Vector2.ZERO
-var speed := initial_speed
+var speed: float
+
+
+func _ready() -> void:
+	speed = initial_speed
 
 
 func move(direction: Vector2, delta: float) -> void:
