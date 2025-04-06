@@ -45,6 +45,7 @@ deceleration = 300.0
 rotation_speed = 5.0
 
 [node name="Energy" parent="." instance=ExtResource("3_v7w8l")]
+infinite_energy = true
 max_energy = 100.0
 energy = 100.0
 passive_refill = 1.0
@@ -102,10 +103,6 @@ autostart = true
 
 [node name="Flicker" type="Timer" parent="."]
 wait_time = 0.25
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]
