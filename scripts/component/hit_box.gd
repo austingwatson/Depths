@@ -1,7 +1,7 @@
 class_name HitBox
 extends Area2D
 
-signal hit
+signal hit(global_position: Vector2)
 
 @export var damage: int
 @export var shape: Shape2D
@@ -23,4 +23,4 @@ func disable() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtBox:
 		area.take_damage(damage)
-		hit.emit()
+		hit.emit(area.global_position)

@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	movement.move(direction, delta)
 
 
-func _on_hit_box_hit() -> void:
+func _on_hit_box_hit(_global_position: Vector2) -> void:
 	queue_free()
 
 

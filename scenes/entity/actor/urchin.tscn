@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckn07253t3ahu"]
+[gd_scene load_steps=14 format=3 uid="uid://ckn07253t3ahu"]
 
 [ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
 [ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
+[ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_oxdx7"]
 [ext_resource type="Texture2D" uid="uid://dr685vtdv7r1p" path="res://assets/textures/entity/urchin_normals.png" id="3_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="4_qwgpp"]
@@ -19,21 +20,6 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwgpp"]
 radius = 8.0
 
-[sub_resource type="Animation" id="Animation_oxdx7"]
-resource_name = "angry"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
 [sub_resource type="Animation" id="Animation_qwgpp"]
 length = 0.001
 tracks/0/type = "value"
@@ -49,6 +35,21 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_oxdx7"]
+resource_name = "angry"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8a23f"]
 _data = {
 &"RESET": SubResource("Animation_qwgpp"),
@@ -57,6 +58,12 @@ _data = {
 
 [node name="Urchin" type="Node2D"]
 script = ExtResource("1_rrpem")
+
+[node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_qwgpp")]
+entity = NodePath("..")
+max_speed = 25.0
+acceleration = 5.0
+deceleration = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_oxdx7")
