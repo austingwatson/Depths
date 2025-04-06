@@ -1,7 +1,9 @@
 class_name Spawner
 extends Node2D
 
+@export var disable := false
 @export var enemy_scene: PackedScene
+@export var max_amount: Curve
 @export var lower_spawn_curve: Curve
 @export var upper_spawn_curve: Curve
 @export var timer_curve: Curve
@@ -13,12 +15,16 @@ extends Node2D
 ]
 @export var margin: float
 @onready var spawn_timer := $SpawnTimer
+var current_amount := 0
 var player_y := 0.0
 
 
 func _ready() -> void:
-	GlobalSignals.player_moved.connect(_on_player_moved)
-	spawn_timer.start(timer_curve.sample(player_y))
+	if disable:
+		queue_free()
+	else:
+		GlobalSignals.player_moved.connect(_on_player_moved)
+		spawn_timer.start(timer_curve.sample(player_y))
 
 
 func pick_random_dir():
@@ -61,6 +67,13 @@ func get_random_position() -> Vector2:
 
 func _on_spawn_timer_timeout() -> void:
 	var amount := get_enemy_amount()
+	var max: int = round(max_amount.sample(player_y))
+	while current_amount + amount > max:
+		amount -= 1
+		if amount == 0:
+			break
+	current_amount += amount
+	
 	for i in range(amount):
 		var enemy := enemy_scene.instantiate()
 		enemy.global_position = get_random_position()

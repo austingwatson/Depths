@@ -2,12 +2,13 @@ class_name Movement
 extends Node
 
 @export var entity: Node2D
+@export var initial_speed: float
 @export var max_speed: float
 @export var acceleration: float
 @export var deceleration: float
 @export var rotation_speed: float
 var velocity := Vector2.ZERO
-var speed: float
+var speed := initial_speed
 
 
 func move(direction: Vector2, delta: float) -> void:

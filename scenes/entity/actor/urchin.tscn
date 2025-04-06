@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckn07253t3ahu"]
+[gd_scene load_steps=15 format=3 uid="uid://ckn07253t3ahu"]
 
 [ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
 [ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_oxdx7"]
 [ext_resource type="Texture2D" uid="uid://dr685vtdv7r1p" path="res://assets/textures/entity/urchin_normals.png" id="3_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="4_qwgpp"]
+[ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="7_8a23f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oxdx7"]
 light_mode = 2
@@ -71,9 +72,10 @@ texture = SubResource("CanvasTexture_8a23f")
 hframes = 2
 vframes = 2
 
-[node name="HurtBox" parent="." instance=ExtResource("3_oxdx7")]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_oxdx7")]
 collision_layer = 4
 collision_mask = 2
+entity = NodePath("..")
 max_health = 1
 health = 1
 shape = SubResource("CircleShape2D_oxdx7")
@@ -88,6 +90,10 @@ shape = SubResource("CircleShape2D_qwgpp")
 libraries = {
 &"": SubResource("AnimationLibrary_8a23f")
 }
+
+[node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("7_8a23f")]
+entity = NodePath("..")
+distance = 500.0
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

@@ -6,6 +6,7 @@ signal healed(max_health: int, health: int)
 signal dead
 signal pinged
 
+@export var entity: Node2D
 @export var infinite_health := false
 @export var max_health: int
 @export var health: int

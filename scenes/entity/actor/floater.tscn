@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://8oxdyj66sd4m"]
+[gd_scene load_steps=11 format=3 uid="uid://8oxdyj66sd4m"]
 
 [ext_resource type="Texture2D" uid="uid://crpnnm0l8ilj3" path="res://assets/textures/entity/floater_green.png" id="1_4c47e"]
 [ext_resource type="Script" uid="uid://brrrtutax8xnp" path="res://scripts/entity/actor/floater.gd" id="1_ty7i7"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_11tjm"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_41qwq"]
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="2_ty7i7"]
+[ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="6_dt2mo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11tjm"]
 radius = 8.0
@@ -81,9 +82,10 @@ max_speed = 50.0
 acceleration = 5.0
 deceleration = 500.0
 
-[node name="HurtBox" parent="." instance=ExtResource("2_41qwq")]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_41qwq")]
 collision_layer = 8
 collision_mask = 2
+entity = NodePath("..")
 max_health = 1
 health = 1
 shape = SubResource("CircleShape2D_11tjm")
@@ -103,6 +105,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_u0emx")
 }
 speed_scale = 0.5
+
+[node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("6_dt2mo")]
+entity = NodePath("..")
+distance = 500.0
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]

@@ -72,9 +72,10 @@ cooldown = 1.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_18kca")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_8pk7n")]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_8pk7n")]
 collision_layer = 2
 collision_mask = 12
+entity = NodePath("..")
 max_health = 10
 health = 10
 shape = SubResource("CircleShape2D_f6cxi")
@@ -111,6 +112,10 @@ texture_scale = 0.25
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
+
+[node name="GlobalLight" type="PointLight2D" parent="."]
+texture = ExtResource("5_f6cxi")
+texture_scale = 10.0
 
 [node name="EnergyAmount" type="Line2D" parent="."]
 points = PackedVector2Array(-8, 0, 2, 0)

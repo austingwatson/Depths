@@ -9,6 +9,39 @@ enum State {
 }
 
 @onready var fish_sprite := $FishSprite
+@onready var movement := $Movement
+@onready var idle_timer := $IdleTimer
+var player: Player = null
+var state := State.IDLE
+var direction := Vector2.ZERO
+var rand_target := Vector2.ZERO
+
+
+func _ready() -> void:
+	state = State.MOVE_RAND
+	rand_target = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))
+
+
+func _physics_process(delta: float) -> void:
+	idle_timer.paused = true
+	
+	match state:
+		State.IDLE:
+			movement.stop(direction, delta)
+			idle_timer.paused = false
+		State.MOVE_RAND:
+			direction = global_position.direction_to(rand_target)
+			movement.move(direction, delta)
+			movement.turn(rand_target, delta)
+			if global_position.distance_to(rand_target) <= 10.0:
+				state = State.IDLE
+		State.MOVE_SUB:
+			direction = global_position.direction_to(player.global_position)
+			movement.move(direction, delta)
+			movement.turn(player.global_position, delta)
+		State.ATTACK:
+			pass
+		
 
 
 func _on_hurt_box_dead() -> void:
@@ -17,3 +50,25 @@ func _on_hurt_box_dead() -> void:
 
 func _on_hurt_box_pinged() -> void:
 	fish_sprite.pinged()
+
+
+func _on_detection_detected(entity: Node2D) -> void:
+	if entity is Player and state != State.ATTACK:
+		player = entity
+		state = State.MOVE_SUB
+
+
+func _on_detection_lost(entity: Node2D) -> void:
+	if entity is Player and state != State.ATTACK:
+		player = null
+		state = State.IDLE
+
+
+func _on_attack_detection_detected(entity: Node2D) -> void:
+	if entity is Player:
+		state = State.ATTACK
+
+
+func _on_idle_timer_timeout() -> void:
+	state = State.MOVE_RAND
+	rand_target = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))

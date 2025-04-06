@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=14 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_mrtdc"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_vbyxb"]
 [ext_resource type="Texture2D" uid="uid://hyyf28m6abmq" path="res://assets/textures/entity/hunter_fish_normals.png" id="4_mrtdc"]
+[ext_resource type="PackedScene" uid="uid://djbrnjtvjpjmt" path="res://scenes/component/detection.tscn" id="7_4cvhp"]
+[ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="8_fjt5v"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ce58k"]
 resource_local_to_scene = true
@@ -16,11 +18,20 @@ region = Rect2(32, 16, 32, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_snnp5"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4cvhp"]
+radius = 150.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cvhp"]
+
 [node name="HunterFish" type="Node2D"]
 script = ExtResource("1_snnp5")
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_vbyxb")]
 entity = NodePath("..")
+max_speed = 225.0
+acceleration = 50.0
+deceleration = 300.0
+rotation_speed = 1.0
 
 [node name="FishSprite" parent="." instance=ExtResource("3_mrtdc")]
 texture = SubResource("CanvasTexture_ce58k")
@@ -30,12 +41,37 @@ outline_texture = SubResource("AtlasTexture_ce58k")
 visible_rect = Rect2(-16, -8, 32, 16)
 show_time = 2.5
 
-[node name="HurtBox" parent="." instance=ExtResource("3_vbyxb")]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_vbyxb")]
 collision_layer = 4
 collision_mask = 2
+entity = NodePath("..")
 max_health = 1
 health = 1
 shape = SubResource("CircleShape2D_snnp5")
 
+[node name="Detection" parent="." instance=ExtResource("7_4cvhp")]
+collision_layer = 4
+collision_mask = 2
+shape = SubResource("CircleShape2D_4cvhp")
+
+[node name="AttackDetection" parent="." instance=ExtResource("7_4cvhp")]
+position = Vector2(20, 0)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 2
+shape = SubResource("CapsuleShape2D_4cvhp")
+
+[node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_fjt5v")]
+entity = NodePath("..")
+distance = 500.0
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
+[connection signal="detected" from="Detection" to="." method="_on_detection_detected"]
+[connection signal="lost" from="Detection" to="." method="_on_detection_lost"]
+[connection signal="detected" from="AttackDetection" to="." method="_on_attack_detection_detected"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
