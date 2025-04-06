@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="6_18kca"]
 [ext_resource type="Texture2D" uid="uid://brrmjvq8w3jmh" path="res://assets/textures/effects/ies_lights_pack_3d_model2.png" id="6_owhjy"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_8l8co"]
-[ext_resource type="Script" uid="uid://41fi5af4texf" path="res://scripts/ui/camera_2d.gd" id="10_8l8co"]
+[ext_resource type="Script" uid="uid://41fi5af4texf" path="res://scripts/component/camera_2d.gd" id="10_8l8co"]
 [ext_resource type="PackedScene" uid="uid://dwfmk3hcaog1x" path="res://scenes/component/sonar.tscn" id="11_eybgf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
