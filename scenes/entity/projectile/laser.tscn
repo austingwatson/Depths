@@ -1,16 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://crdm18jlukj0n"]
+[gd_scene load_steps=2 format=3 uid="uid://c0myi78am28kh"]
 
-[ext_resource type="Script" uid="uid://b477sas6o4vbd" path="res://scripts/entity/projectile/laser.gd" id="1_t1e12"]
+[ext_resource type="Script" uid="uid://dekh0t6tc6akx" path="res://scripts/entity/projectile/laser.gd" id="1_t1e12"]
 
-[node name="Laser" type="Node2D"]
+[node name="Laser" type="RayCast2D"]
+target_position = Vector2(1000, 0)
 script = ExtResource("1_t1e12")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 50, 0)
-width = 2.0
+points = PackedVector2Array(0, 0, 1000, 0)
+width = 0.0
+default_color = Color(0.8, 0.192157, 0.211765, 1)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 12
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false

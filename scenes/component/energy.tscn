@@ -5,7 +5,13 @@
 [node name="Energy" type="Node"]
 script = ExtResource("1_xe087")
 
-[node name="StartCharge" type="Timer" parent="."]
+[node name="Refill" type="Timer" parent="."]
+wait_time = 0.05
 autostart = true
 
-[connection signal="timeout" from="StartCharge" to="." method="_on_start_charge_timeout"]
+[node name="PowerOff" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="Refill" to="." method="_on_refill_timeout"]
+[connection signal="timeout" from="PowerOff" to="." method="_on_power_off_timeout"]

@@ -34,7 +34,8 @@ script = ExtResource("1_in1sw")
 forward_texture = SubResource("AtlasTexture_8l8co")
 left_texture = SubResource("AtlasTexture_eybgf")
 right_texture = SubResource("AtlasTexture_b81v7")
-weapon_energy = 1
+weapon_energy = 25.0
+thrust_energy = 2.0
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_f6cxi")]
 entity = NodePath("..")
@@ -44,9 +45,9 @@ deceleration = 300.0
 rotation_speed = 5.0
 
 [node name="Energy" parent="." instance=ExtResource("3_v7w8l")]
-max_energy = 10.0
-energy = 10.0
-start_charge_time = 2.5
+max_energy = 100.0
+energy = 100.0
+passive_refill = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_18kca")
@@ -78,5 +79,33 @@ visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_owhjy")
 
+[node name="EnergyAmount" type="Line2D" parent="."]
+points = PackedVector2Array(-8, 0, 2, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="EmergencyLight" type="PointLight2D" parent="."]
+visible = false
+color = Color(0.8, 0.192157, 0.211765, 1)
+energy = 0.5
+texture = ExtResource("6_18kca")
+texture_scale = 0.25
+
+[node name="Test" type="Sprite2D" parent="EmergencyLight"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_f6cxi")
+
+[node name="Thrusting" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="Flicker" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]
+[connection signal="no_energy" from="Energy" to="." method="_on_energy_no_energy"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Thrusting" to="." method="_on_thrusting_timeout"]
+[connection signal="timeout" from="Flicker" to="." method="_on_flicker_timeout"]

@@ -1,20 +1,40 @@
 class_name Laser
-extends Node2D
+extends RayCast2D
 
-@export var distance: float
 @onready var line := $Line2D
-@onready var ray_cast := $RayCast2D
-
-
+var is_casting: 
+	get:
+		return is_casting
+	set(value):
+		is_casting = value
+		set_physics_process(is_casting)
+		
+		if is_casting:
+			appear()
+		else:
+			disappear()
+		
+	
 func _ready() -> void:
-	line.points[1] = Vector2(distance, 0.0)
-	ray_cast.target_position = Vector2(distance, 0.0)
+	set_physics_process(false)
+		
 
+func _physics_process(_delta: float) -> void:
+	force_raycast_update()
+	
+	var cast_point := Vector2(1000.0, 0.0)
+	if is_colliding():
+		print("is_colliding")
+		cast_point = to_local(get_collision_point())
+		
+	line.points[1] = cast_point
+	
 
-func fire(global_position: Vector2, direction: Vector2) -> void:
-	#rotation = self.global_position.direction_to(direction).angle()
-	#ray_cast.target_position = direction
-	#ray_cast.target_position = direction * distance
-	ray_cast.force_raycast_update()
-	if ray_cast.is_colliding():
-		print(ray_cast.get_collider())
+func appear() -> void:
+	var tween := create_tween()
+	tween.tween_property(line, "width", 10.0, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+
+func disappear() -> void:
+	var tween := create_tween()
+	tween.tween_property(line, "width", 0.0, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
