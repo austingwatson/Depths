@@ -98,3 +98,4 @@ libraries = {
 speed_scale = 0.5
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]

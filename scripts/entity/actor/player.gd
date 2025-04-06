@@ -18,6 +18,7 @@ const rotation_threshold := 0.1
 @onready var flicker := $Flicker
 @onready var camera := $Camera2D
 @onready var hurt_box := $HurtBox
+@onready var sonar := $Sonar
 var no_power := false
 
 
@@ -37,6 +38,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		var direction := Vector2.RIGHT.rotated(rotation)
 		ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, 1)
 		energy.use_energy(weapon_energy)
+	elif Input.is_action_just_pressed("sonar"):
+		sonar.start_sonar()
 
 
 func _physics_process(delta: float) -> void:

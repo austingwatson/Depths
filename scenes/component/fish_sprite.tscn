@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://yr7unnis4qow"]
+
+[ext_resource type="Script" uid="uid://dingorsklv5or" path="res://scripts/component/fish_sprite.gd" id="1_2sono"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2sono"]
+light_mode = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2sono"]
+resource_local_to_scene = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hvfl6"]
+light_mode = 1
+
+[node name="FishSprite" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_2sono")
+texture = SubResource("CanvasTexture_2sono")
+region_enabled = true
+region_rect = Rect2(0, 16, 32, 16)
+script = ExtResource("1_2sono")
+
+[node name="Outline" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_hvfl6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PingedTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="PingedTimer" to="." method="_on_pinged_timer_timeout"]

@@ -4,6 +4,7 @@ extends Area2D
 signal hurt(max_health: int, health: int)
 signal healed(max_health: int, health: int)
 signal dead
+signal pinged
 
 @export var infinite_health := false
 @export var max_health: int
@@ -28,3 +29,7 @@ func take_damage(damage: int) -> void:
 func heal(heal: int) -> void:
 	health = min(health + heal, max_health)
 	healed.emit(max_health, health)
+	
+
+func ping() -> void:
+	pinged.emit()

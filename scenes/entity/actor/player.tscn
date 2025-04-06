@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=17 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://brrmjvq8w3jmh" path="res://assets/textures/effects/ies_lights_pack_3d_model2.png" id="6_owhjy"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_8l8co"]
 [ext_resource type="Script" uid="uid://41fi5af4texf" path="res://scripts/ui/camera_2d.gd" id="10_8l8co"]
+[ext_resource type="PackedScene" uid="uid://dwfmk3hcaog1x" path="res://scenes/component/sonar.tscn" id="11_eybgf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
 atlas = ExtResource("3_v1h6o")
@@ -107,6 +108,10 @@ wait_time = 0.25
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("10_8l8co")
+
+[node name="Sonar" parent="." instance=ExtResource("11_eybgf")]
+max_radius = 1000.0
+duration = 5.0
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]

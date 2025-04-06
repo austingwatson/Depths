@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwfmk3hcaog1x"]
+
+[ext_resource type="Script" uid="uid://cpt7lapl1j3hj" path="res://scripts/component/sonar.gd" id="1_1dghd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_71oby"]
+radius = 0.01
+
+[node name="Sonar" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+monitorable = false
+script = ExtResource("1_1dghd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_71oby")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -11,3 +11,7 @@ func _ready() -> void:
 func _on_hurt_box_dead() -> void:
 	GlobalSignals.on_heal_player(heal)
 	queue_free()
+
+
+func _on_hurt_box_pinged() -> void:
+	pass
