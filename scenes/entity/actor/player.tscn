@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=20 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://41fi5af4texf" path="res://scripts/component/camera_2d.gd" id="10_8l8co"]
 [ext_resource type="PackedScene" uid="uid://dwfmk3hcaog1x" path="res://scenes/component/sonar.tscn" id="11_eybgf"]
 [ext_resource type="PackedScene" uid="uid://cfg0up4nynxx6" path="res://scenes/component/research_beam.tscn" id="13_qxtqe"]
+[ext_resource type="PackedScene" uid="uid://cb1jy3pa1b4tk" path="res://scenes/entity/projectile/laser.tscn" id="14_726y4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
 atlas = ExtResource("3_v1h6o")
@@ -134,6 +135,11 @@ max_radius = 1000.0
 duration = 5.0
 
 [node name="ResearchBeam" parent="." instance=ExtResource("13_qxtqe")]
+
+[node name="Laser" parent="." instance=ExtResource("14_726y4")]
+position = Vector2(19, 0)
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]

@@ -1,15 +1,102 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0myi78am28kh"]
+[gd_scene load_steps=11 format=3 uid="uid://cb1jy3pa1b4tk"]
 
-[ext_resource type="Script" uid="uid://dekh0t6tc6akx" path="res://scripts/entity/projectile/laser.gd" id="1_t1e12"]
+[ext_resource type="Script" uid="uid://dm3k1u5yc0s8j" path="res://scripts/entity/projectile/laser.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngvef"]
+atlas = ExtResource("2")
+region = Rect2(0, 32, 8, 8)
+
+[sub_resource type="Curve" id="Curve_ngvef"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_lconw"]
+offsets = PackedFloat32Array(0.58, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lconw"]
+atlas = ExtResource("2")
+region = Rect2(24, 32, 8, 8)
+
+[sub_resource type="Curve" id="Curve_ku2hi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku2hi"]
+atlas = ExtResource("2")
+region = Rect2(56, 32, 8, 8)
+
+[sub_resource type="Curve" id="Curve_lconw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ku2hi"]
+offsets = PackedFloat32Array(0.58, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Laser" type="RayCast2D"]
-target_position = Vector2(1000, 0)
-script = ExtResource("1_t1e12")
+target_position = Vector2(0, 0)
+collision_mask = 13
+script = ExtResource("1")
+growth_time = 1.0
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 1000, 0)
-width = 0.0
-default_color = Color(0.8, 0.192157, 0.211765, 1)
+[node name="FillLine2D" type="Line2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+points = PackedVector2Array(0, 0, 100, 0)
+default_color = Color(0.941176, 0.411765, 0.188235, 1)
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 8.0
+antialiased = true
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
+[node name="CastingParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+show_behind_parent = true
+emitting = false
+texture = SubResource("AtlasTexture_ngvef")
+lifetime = 0.3
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ngvef")
+color_ramp = SubResource("Gradient_lconw")
+
+[node name="BeamParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+emitting = false
+amount = 50
+texture = SubResource("AtlasTexture_lconw")
+preprocess = 1.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(60, 20)
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_ku2hi")
+
+[node name="CollisionParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+show_behind_parent = true
+emitting = false
+amount = 16
+texture = SubResource("AtlasTexture_ku2hi")
+lifetime = 0.3
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_lconw")
+color_ramp = SubResource("Gradient_ku2hi")

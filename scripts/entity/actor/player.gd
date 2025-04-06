@@ -70,6 +70,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var direction := Vector2.RIGHT.rotated(rotation)
 	
+	if Input.is_action_just_pressed("test_weapon"):
+		$Laser.is_casting = true
+	
 	if no_power:
 		movement.stop(direction, delta)
 		return

@@ -15,9 +15,9 @@ func _ready() -> void:
 	floater.global_position = Vector2(100, 100)
 	EntityManager.add_entity(floater, true)
 	
-	var hunter_fish := preload("res://scenes/entity/actor/hunter_fish.tscn").instantiate()
-	hunter_fish.global_position = Vector2(-100, -100)
-	EntityManager.add_entity(hunter_fish, true)
+	#var hunter_fish := preload("res://scenes/entity/actor/hunter_fish.tscn").instantiate()
+	#hunter_fish.global_position = Vector2(-100, -100)
+	#EntityManager.add_entity(hunter_fish, true)
 	
 	var research_pickup := preload("res://scenes/entity/drops/resource_pickup.tscn").instantiate()
 	research_pickup.global_position = Vector2(-50, -50)
