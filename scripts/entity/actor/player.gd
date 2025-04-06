@@ -16,6 +16,7 @@ const rotation_threshold := 0.1
 @onready var emergency_light := $EmergencyLight
 @onready var thrusting := $Thrusting
 @onready var flicker := $Flicker
+@onready var camera := $Camera2D
 var no_power := false
 
 
@@ -71,6 +72,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:
 	GlobalSignals.on_player_health_changed(max_health, health)
+	camera.apply_shake()
 
 
 func _on_energy_energy_changed(max_energy: float, energy: float) -> void:
