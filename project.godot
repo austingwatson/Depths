@@ -18,6 +18,7 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 ProjectileManager="*res://scenes/global/projectile_manager.tscn"
+GlobalSignals="*res://scenes/global/global_signals.tscn"
 
 [debug]
 

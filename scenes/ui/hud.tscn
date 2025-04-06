@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciuquonjnfqut"]
+[gd_scene load_steps=5 format=3 uid="uid://ciuquonjnfqut"]
 
 [ext_resource type="Script" uid="uid://b6flsdq003wgt" path="res://scripts/ui/hud.gd" id="1_0mwgc"]
 [ext_resource type="FontFile" uid="uid://dbwh2vnpvxyt" path="res://assets/textures/ui/m5x7.ttf" id="2_hqnrr"]
+[ext_resource type="PackedScene" uid="uid://cma2ufjony3xm" path="res://scenes/ui/player_health.tscn" id="3_bo48s"]
+[ext_resource type="PackedScene" uid="uid://mhtanoyy4a82" path="res://scenes/ui/depth_meter.tscn" id="4_8qguk"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_0mwgc")
@@ -11,3 +13,24 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("2_hqnrr")
 text = "FPS: 0"
+
+[node name="PlayerHealth" parent="." instance=ExtResource("3_bo48s")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 53.0
+grow_horizontal = 0
+value = 10.0
+
+[node name="DepthMeter" parent="." instance=ExtResource("4_8qguk")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_top = 13.0
+offset_right = -13.0
+offset_bottom = 61.0
+grow_horizontal = 0

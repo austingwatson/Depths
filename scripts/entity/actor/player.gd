@@ -21,6 +21,9 @@ var no_power := false
 
 func _ready() -> void:
 	thrusting.paused = true
+	
+	var hurt_box := $HurtBox
+	GlobalSignals.on_player_health_changed(hurt_box.max_health, hurt_box.health)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -60,13 +63,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("thrust"):
 		movement.move(direction, delta)
 		thrusting.paused = false
+		GlobalSignals.on_player_moved(global_position)
 	else:
 		movement.stop(direction, delta)
 		thrusting.paused = true
 
 
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:
-	print(health, "/", max_health)
+	GlobalSignals.on_player_health_changed(max_health, health)
 
 
 func _on_energy_energy_changed(max_energy: float, energy: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckn07253t3ahu"]
+[gd_scene load_steps=13 format=3 uid="uid://ckn07253t3ahu"]
 
 [ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
 [ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
@@ -18,6 +18,42 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwgpp"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_oxdx7"]
+resource_name = "angry"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qwgpp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8a23f"]
+_data = {
+&"RESET": SubResource("Animation_qwgpp"),
+&"angry": SubResource("Animation_oxdx7")
+}
 
 [node name="Urchin" type="Node2D"]
 script = ExtResource("1_rrpem")
@@ -41,4 +77,10 @@ collision_mask = 2
 damage = 1
 shape = SubResource("CircleShape2D_qwgpp")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8a23f")
+}
+
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
