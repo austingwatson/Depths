@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8p3g7w81vtm2"]
+[gd_scene load_steps=9 format=3 uid="uid://b8p3g7w81vtm2"]
 
 [ext_resource type="Script" uid="uid://cy0qbf4ndlv4s" path="res://scripts/title_screen.gd" id="1_fgkus"]
 [ext_resource type="Texture2D" uid="uid://ptihoidbwul1" path="res://assets/textures/level/Enceladus_planet.png" id="2_s4lrb"]
@@ -16,6 +16,12 @@ region = Rect2(96, 320, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
 atlas = ExtResource("3_mgrm8")
 region = Rect2(48, 320, 48, 32)
+
+[sub_resource type="Environment" id="Environment_mgrm8"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_hdr_threshold = 1.5
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource("1_fgkus")
@@ -55,5 +61,8 @@ theme_override_fonts/font = ExtResource("4_dc4i4")
 text = "Play"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mgrm8")
 
 [connection signal="pressed" from="Menu/Play" to="." method="_on_play_pressed"]
