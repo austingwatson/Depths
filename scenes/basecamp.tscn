@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=8 format=3 uid="uid://cyrye5ioh3apg"]
 
+[ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scenes/basecamp.gd" id="1_saea2"]
 [ext_resource type="Texture2D" uid="uid://chxesrg0lbc4c" path="res://assets/textures/level/basecamp.png" id="1_v03ml"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_saea2"]
 
@@ -11,8 +12,15 @@ atlas = ExtResource("2_saea2")
 region = Rect2(256, 48, 144, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cltb7"]
+atlas = ExtResource("2_saea2")
+region = Rect2(544, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxq54"]
+atlas = ExtResource("2_saea2")
+region = Rect2(400, 48, 144, 32)
 
 [node name="Basecamp" type="Node"]
+script = ExtResource("1_saea2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_e2wlb")
@@ -24,8 +32,21 @@ offset_top = 236.0
 offset_right = 478.0
 offset_bottom = 276.0
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+[node name="Launch" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_f8b0y")
 texture_pressed = SubResource("AtlasTexture_cltb7")
+texture_hover = SubResource("AtlasTexture_nxq54")
 flip_h = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Launch"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 1.0
+offset_right = 174.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.960784, 0.964706, 0.988235, 1)
+theme_override_font_sizes/font_size = 32
+text = "Launch"
+
+[connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
