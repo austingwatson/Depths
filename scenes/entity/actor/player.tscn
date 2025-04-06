@@ -82,7 +82,7 @@ texture = ExtResource("6_owhjy")
 [node name="EnergyAmount" type="Line2D" parent="."]
 points = PackedVector2Array(-8, 0, 2, 0)
 width = 2.0
-default_color = Color(0, 0, 0, 1)
+default_color = Color(0.501961, 0.929412, 0.901961, 1)
 
 [node name="EmergencyLight" type="PointLight2D" parent="."]
 visible = false
@@ -102,6 +102,10 @@ autostart = true
 
 [node name="Flicker" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]

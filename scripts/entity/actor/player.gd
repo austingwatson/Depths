@@ -70,7 +70,8 @@ func _on_hurt_box_hurt(max_health: int, health: int) -> void:
 
 
 func _on_energy_energy_changed(max_energy: float, energy: float) -> void:
-	print(energy, "/", max_energy)
+	var new_length := 10.0 * (energy / max_energy) - 8.0
+	energy_amount.points[1] = Vector2(new_length, 0.0)
 
 
 func _on_energy_no_energy() -> void:
