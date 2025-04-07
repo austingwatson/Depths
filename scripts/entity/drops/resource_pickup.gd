@@ -6,6 +6,7 @@ extends Area2D
 @onready var scan_timer := $ScanTimer
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var movement := $Movement
+@onready var research_pickup_sound := $ResearchPickup
 var scanned := false
 var direction := Vector2.ZERO
 
@@ -22,10 +23,12 @@ func _physics_process(delta: float) -> void:
 func start_scan() -> void:
 	if not scanned:
 		scan_timer.start()
+		research_pickup_sound.play()
 	
 
 func end_scan() -> void:
 	scan_timer.stop()
+	research_pickup_sound.stop()
 
 
 func _on_scan_timer_timeout() -> void:

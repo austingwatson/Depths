@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1_wld0n")
 research = 10
+max_depth = 0
 max_speed = 200.0
 acceleration = 100.0
 deceleration = 300.0
 rotation_speed = 5.0
-thrust_energy = 0.0
+thrust_energy = 2.0
 max_energy = 100.0
 passive_refill = 1.0
 max_health = 10.0

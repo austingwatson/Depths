@@ -7,6 +7,7 @@ enum Weapon {
 	SHOCK,
 }
 
+const shock_scene := preload("res://scenes/entity/projectile/shock.tscn")
 const rotation_threshold := 0.1
 @export var forward_texture: Texture2D
 @export var left_texture: Texture2D
@@ -27,6 +28,8 @@ const rotation_threshold := 0.1
 @onready var torpedo_cooldown := $SkillCooldowns/TorpedoCooldown
 @onready var shock_cooldown := $SkillCooldowns/ShockCooldown
 @onready var laser := $Laser
+@onready var damaged_sound := $DamagedSound
+@onready var thruster_sound := $ThrusterSound
 var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
 var initial_drop := true
@@ -122,11 +125,15 @@ func _physics_process(delta: float) -> void:
 		sprite.texture = forward_texture
 		energy_amount.position = Vector2(0.0, 0.0)
 	
+	if Input.is_action_just_pressed("thrust"):
+		thruster_sound.play()
+	
 	if Input.is_action_pressed("thrust"):
 		movement.move(direction, delta)
 		thrusting.paused = false
 		GlobalSignals.on_player_moved(global_position)
 	else:
+		thruster_sound.stop()
 		movement.stop(direction, delta)
 		thrusting.paused = true
 	
@@ -145,7 +152,8 @@ func _physics_process(delta: float) -> void:
 			Weapon.SHOCK:
 				if not shock_cooldown.on_cooldown:
 					shock_cooldown.use()
-					# use shock here
+					var shock := shock_scene.instantiate()
+					add_child(shock)
 					energy.use_energy(player_stats.shock_energy)
 	if Input.is_action_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()
@@ -156,6 +164,7 @@ func _physics_process(delta: float) -> void:
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:
 	GlobalSignals.on_player_health_changed(max_health, health)
 	camera.apply_shake()
+	damaged_sound.play()
 
 
 func _on_energy_energy_changed(max_energy: float, energy: float) -> void:

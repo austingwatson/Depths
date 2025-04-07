@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=10 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
+[ext_resource type="AudioStream" uid="uid://dmgogwrt7rxdb" path="res://assets/sounds/shoot_torpedo.wav" id="2_01kix"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_o4jdw"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_oaaup"]
+[ext_resource type="AudioStream" uid="uid://dph0ck0vyn0ar" path="res://assets/sounds/torpedo_explosion.wav" id="3_u3ice"]
 [ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="4_vdd5x"]
 [ext_resource type="PackedScene" uid="uid://x2wdvhrvr26y" path="res://scenes/component/max_distance.tscn" id="5_tvse7"]
 
@@ -15,6 +17,12 @@ radius = 4.0
 
 [node name="Torpedo" type="Node2D"]
 script = ExtResource("1_v7qta")
+
+[node name="ShootTorpedoSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_01kix")
+
+[node name="TorpedoExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u3ice")
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_o4jdw")]
 entity = NodePath("..")
@@ -34,5 +42,6 @@ shape = SubResource("CircleShape2D_xxt06")
 entity = NodePath("..")
 distance = 2500.0
 
+[connection signal="finished" from="TorpedoExplosionSound" to="." method="_on_torpedo_explosion_sound_finished"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
 [connection signal="reached" from="MaxDistance" to="." method="_on_max_distance_reached"]

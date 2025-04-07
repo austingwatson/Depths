@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb1jy3pa1b4tk"]
+[gd_scene load_steps=12 format=3 uid="uid://cb1jy3pa1b4tk"]
 
 [ext_resource type="Script" uid="uid://dm3k1u5yc0s8j" path="res://scripts/entity/projectile/laser.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://dp4yoso03a1ry" path="res://assets/sounds/alt_laser.wav" id="2_lconw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngvef"]
 atlas = ExtResource("2")
@@ -40,6 +41,9 @@ target_position = Vector2(0, 0)
 collision_mask = 33
 script = ExtResource("1")
 growth_time = 1.0
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lconw")
 
 [node name="FillLine2D" type="Line2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)

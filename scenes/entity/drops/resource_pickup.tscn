@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6yylqny5blw1"]
+[gd_scene load_steps=14 format=3 uid="uid://c6yylqny5blw1"]
 
 [ext_resource type="Script" uid="uid://ce6v4pggr6vbl" path="res://scripts/entity/drops/resource_pickup.gd" id="1_t50uq"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="2_15y04"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="2_cr552"]
+[ext_resource type="AudioStream" uid="uid://c0vpn33j18e87" path="res://assets/sounds/research_pickup.wav" id="2_j15wr"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_vcixg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15y04"]
@@ -68,6 +69,9 @@ collision_layer = 16
 collision_mask = 2
 monitoring = false
 script = ExtResource("1_t50uq")
+
+[node name="ResearchPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_j15wr")
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_vcixg")]
 entity = NodePath("..")
