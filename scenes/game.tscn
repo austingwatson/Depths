@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=19 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://ioy6p73a7v1l" path="res://assets/textures/level/ice_shelf.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dd60ahlecpedw" path="res://assets/textures/level/dark_currents_parallax.png" id="7_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dokvvrp78f7cn" path="res://assets/textures/level/ice_tunnel.png" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cnnmg6jwxpv4p" path="res://scenes/entity/ice_shelf.tscn" id="9_0tnpc"]
 
@@ -39,6 +40,9 @@ point_count = 2
 _limits = [0.0, 10.0, 0.0, 10000.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
+light_mode = 1
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3
@@ -96,8 +100,18 @@ texture = ExtResource("6_u5sy4")
 centered = false
 offset = Vector2(0, -187)
 
+[node name="ShallowCurrents" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ShallowCurrents"]
+texture = ExtResource("7_vtaks")
+centered = false
+
 [node name="IceTunnel" type="Sprite2D" parent="."]
 z_index = -1
+material = SubResource("CanvasItemMaterial_vtaks")
 texture = ExtResource("8_gee14")
 centered = false
 offset = Vector2(-480, -187)

@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://r21ikn6owpl5"]
+
+[ext_resource type="Script" uid="uid://c4moyk1cjit1o" path="res://scripts/ui/shop.gd" id="1_ahsc1"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8v20v"]
+[ext_resource type="PackedScene" uid="uid://bl2twktninjbm" path="res://scenes/ui/upgrade.tscn" id="3_2i61c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v20v"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i61c"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(64, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85p0y"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(176, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdvrj"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(160, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atewb"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(192, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk32u"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(208, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quulj"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(240, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk8hd"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(224, 368, 16, 32)
+
+[node name="Shop" type="CenterContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -112.0
+offset_right = 112.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahsc1")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_8v20v")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="MaxEnergy" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["energy1", "energy2", "energy3"])
+tool_tip_strings = Array[String](["energy1", "energy2", "energy3"])
+icon_texture = SubResource("AtlasTexture_2i61c")
+
+[node name="MaxHealth" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["health1", "health2", "health3"])
+tool_tip_strings = Array[String](["health1", "health2", "health3"])
+icon_texture = SubResource("AtlasTexture_85p0y")
+
+[node name="SonarCooldown" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["cooldown1", "cooldown2", "cooldown3"])
+tool_tip_strings = Array[String](["cooldown1", "cooldown2", "cooldown3"])
+icon_texture = SubResource("AtlasTexture_kdvrj")
+
+[node name="WeaponDamage" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["damage1", "damage2", "damage3"])
+tool_tip_strings = Array[String](["damage1", "damage2", "damage3"])
+icon_texture = SubResource("AtlasTexture_atewb")
+
+[node name="Torpedo" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["homing"])
+tool_tip_strings = Array[String](["homing"])
+icon_texture = SubResource("AtlasTexture_mk32u")
+
+[node name="Laser" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["laser", "laser_cost"])
+tool_tip_strings = Array[String](["laser", "laser_cost"])
+icon_texture = SubResource("AtlasTexture_quulj")
+
+[node name="Shock" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["shock", "shock_range"])
+tool_tip_strings = Array[String](["shock", "shock_range"])
+icon_texture = SubResource("AtlasTexture_xk8hd")
+
+[node name="TestLabel" type="Label" parent="."]
+layout_mode = 2

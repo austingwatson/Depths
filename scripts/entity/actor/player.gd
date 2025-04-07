@@ -66,6 +66,39 @@ func _ready() -> void:
 	
 	shock_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.shock_cooldown
 	shock_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.shock_cooldown
+	
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_released("change_weapon_up"):
+		match weapon:
+			Weapon.TORPEDO:
+				if player_stats.unlocked_weapons[1]:
+					weapon = Weapon.LASER
+				elif player_stats.unlocked_weapons[2]:
+					weapon = Weapon.SHOCK
+			Weapon.LASER:
+				if player_stats.unlocked_weapons[2]:
+					weapon = Weapon.SHOCK
+				else:
+					weapon = Weapon.TORPEDO
+			Weapon.SHOCK:
+				weapon = Weapon.TORPEDO
+	elif Input.is_action_just_released("change_weapon_down"):
+		match weapon:
+			Weapon.TORPEDO:
+				if player_stats.unlocked_weapons[2]:
+					weapon = Weapon.SHOCK
+				elif player_stats.unlocked_weapons[1]:
+					weapon = Weapon.LASER
+			Weapon.LASER:
+				weapon = Weapon.TORPEDO
+			Weapon.SHOCK:
+				if player_stats.unlocked_weapons[1]:
+					weapon = Weapon.LASER
+				else:
+					weapon = Weapon.TORPEDO
+	
+	print(weapon)
 
 
 func _physics_process(delta: float) -> void:

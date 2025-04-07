@@ -1,11 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=26 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
 [ext_resource type="Texture2D" uid="uid://c6jh7urx1kx6w" path="res://assets/textures/level/basecamp_landscape.png" id="2_e2wlb"]
+[ext_resource type="Texture2D" uid="uid://bh7ivwy1m7hpj" path="res://assets/textures/level/sky_scrollable.png" id="2_nxq54"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_saea2"]
 [ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="3_cltb7"]
 [ext_resource type="Texture2D" uid="uid://c856mqgpegm55" path="res://assets/textures/level/repair_arm.png" id="4_nxq54"]
 [ext_resource type="Texture2D" uid="uid://cku7x63j1kd7m" path="res://assets/textures/level/dock_animation.png" id="5_cdnnk"]
+[ext_resource type="PackedScene" uid="uid://r21ikn6owpl5" path="res://scenes/ui/shop.tscn" id="8_cdnnk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3dic"]
 atlas = ExtResource("4_nxq54")
@@ -97,33 +99,6 @@ region = Rect2(544, 48, 144, 32)
 atlas = ExtResource("2_saea2")
 region = Rect2(400, 48, 144, 32)
 
-[sub_resource type="Animation" id="Animation_o8cly"]
-resource_name = "launch"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dock:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sub:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.502331, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 194)]
-}
-
 [sub_resource type="Animation" id="Animation_cltb7"]
 length = 0.001
 tracks/0/type = "value"
@@ -151,6 +126,33 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_o8cly"]
+resource_name = "launch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dock:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sub:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.502331, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 194)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_koy8h"]
 _data = {
 &"RESET": SubResource("Animation_cltb7"),
@@ -159,6 +161,15 @@ _data = {
 
 [node name="Basecamp" type="Node"]
 script = ExtResource("1_saea2")
+sky_speed = 5.0
+
+[node name="Sky" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_nxq54")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 270)
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("2_e2wlb")
@@ -205,6 +216,14 @@ text = "Launch"
 libraries = {
 &"": SubResource("AnimationLibrary_koy8h")
 }
+
+[node name="Shop" parent="." instance=ExtResource("8_cdnnk")]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 224.0
+grow_horizontal = 1
 
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
