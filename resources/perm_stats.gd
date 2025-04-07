@@ -89,13 +89,13 @@ var upgrades := {
 	"damage2": 3,
 	"damage3": 4,
 	
-	"homing": 100.0,
+	"homing": 5.0,
 	
 	"laser": true,
 	"laser_cost": 0.5,
 	
 	"shock": true,
-	"shock_range": 200.0 ,
+	"shock_range": 200.0,
 }
 
 
