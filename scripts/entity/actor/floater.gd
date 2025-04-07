@@ -3,11 +3,11 @@ extends Node2D
 
 @export var heal: int
 @onready var movement := $Movement
+@onready var fish_sprite := $FishSprite
 var direction := Vector2.ZERO
 
 
 func _ready() -> void:
-	$AnimationPlayer.play("idle")
 	direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 	
 
@@ -24,4 +24,4 @@ func _on_hurt_box_dead() -> void:
 
 
 func _on_hurt_box_pinged() -> void:
-	pass
+	fish_sprite.pinged()

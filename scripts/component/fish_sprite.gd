@@ -1,9 +1,9 @@
 class_name FishSprite
-extends Sprite2D
+extends Node2D
 
-@export var diffuse_texture: Texture2D
-@export var normal_texture: Texture2D
-@export var outline_texture: Texture2D
+@export var base_animation: SpriteFrames
+@export var outline_animation: SpriteFrames
+@export var eye_animation: SpriteFrames
 @export var visible_rect: Rect2
 @export var show_time: float
 @onready var outline := $Outline
@@ -12,11 +12,18 @@ var on_screen := false
 
 
 func _ready() -> void:
-	texture.diffuse_texture = diffuse_texture
-	texture.normal_texture = normal_texture
-	outline.texture = outline_texture
 	$VisibleOnScreenNotifier2D.rect = visible_rect
 	pinged_timer.wait_time = show_time
+	$Base.sprite_frames = base_animation
+	$Base.play("default")
+	$Outline.sprite_frames = outline_animation
+	$Outline.play("default")
+	$Eye.sprite_frames = eye_animation
+	$Eye.play("default")
+	
+
+func show_eyes() -> void:
+	$Eye.visible = true
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
@@ -28,7 +35,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	
 
 func pinged() -> void:
-	print("pinged")
 	if on_screen:
 		outline.visible = true
 	else:

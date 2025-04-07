@@ -58,6 +58,7 @@ func _on_detection_detected(entity: Node2D) -> void:
 	if entity is Player and state != State.ATTACK:
 		player = entity
 		state = State.MOVE_SUB
+		fish_sprite.show_eyes()
 
 
 func _on_detection_lost(entity: Node2D) -> void:

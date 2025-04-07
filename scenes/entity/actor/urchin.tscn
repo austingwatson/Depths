@@ -1,61 +1,133 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckn07253t3ahu"]
+[gd_scene load_steps=26 format=3 uid="uid://ckn07253t3ahu"]
 
 [ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
 [ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_oxdx7"]
-[ext_resource type="Texture2D" uid="uid://dr685vtdv7r1p" path="res://assets/textures/entity/urchin_normals.png" id="3_qwgpp"]
+[ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="4_qwgpp"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="7_8a23f"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oxdx7"]
-light_mode = 2
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a23f"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_8a23f"]
-diffuse_texture = ExtResource("2_aw6ot")
-normal_texture = ExtResource("3_qwgpp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdsic"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftwts"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehkkn"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3qq6"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2y608"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a23f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdsic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftwts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehkkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3qq6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqmrf"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e6g8"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrrkq"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqids"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le46f"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijtj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqmrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e6g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrrkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqids")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le46f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pn5m"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q85n1"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7hch"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stgjh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pn5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q85n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7hch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxdx7"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwgpp"]
 radius = 8.0
-
-[sub_resource type="Animation" id="Animation_qwgpp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_oxdx7"]
-resource_name = "angry"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8a23f"]
-_data = {
-&"RESET": SubResource("Animation_qwgpp"),
-&"angry": SubResource("Animation_oxdx7")
-}
 
 [node name="Urchin" type="Node2D"]
 script = ExtResource("1_rrpem")
@@ -66,11 +138,12 @@ max_speed = 25.0
 acceleration = 5.0
 deceleration = 500.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_oxdx7")
-texture = SubResource("CanvasTexture_8a23f")
-hframes = 2
-vframes = 2
+[node name="FishSprite" parent="." instance=ExtResource("3_qwgpp")]
+base_animation = SubResource("SpriteFrames_2y608")
+outline_animation = SubResource("SpriteFrames_ijtj0")
+eye_animation = SubResource("SpriteFrames_stgjh")
+visible_rect = Rect2(-16, -16, 32, 32)
+show_time = 1.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_oxdx7")]
 collision_layer = 36
@@ -86,14 +159,10 @@ collision_mask = 2
 damage = 1
 shape = SubResource("CircleShape2D_qwgpp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8a23f")
-}
-
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("7_8a23f")]
 entity = NodePath("..")
 distance = 500.0
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

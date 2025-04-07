@@ -5,22 +5,25 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2sono"]
 light_mode = 2
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_2sono"]
-resource_local_to_scene = true
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hvfl6"]
 light_mode = 1
 
-[node name="FishSprite" type="Sprite2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_udha5"]
+light_mode = 1
+
+[node name="FishSprite" type="Node2D"]
 material = SubResource("CanvasItemMaterial_2sono")
-texture = SubResource("CanvasTexture_2sono")
-region_enabled = true
-region_rect = Rect2(0, 16, 32, 16)
 script = ExtResource("1_2sono")
 
-[node name="Outline" type="Sprite2D" parent="."]
+[node name="Base" type="AnimatedSprite2D" parent="."]
+
+[node name="Outline" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("CanvasItemMaterial_hvfl6")
+
+[node name="Eye" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_udha5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

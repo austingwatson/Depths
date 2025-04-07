@@ -2,6 +2,7 @@ class_name Urchin
 extends Node2D
 
 @onready var movement := $Movement
+@onready var fish_sprite := $FishSprite
 var direction := Vector2.ZERO
 var angry := false
 
@@ -26,4 +27,8 @@ func _on_hit_box_hit(global_position: Vector2) -> void:
 	
 	if not angry:
 		angry = true
-		$AnimationPlayer.play("angry")
+		fish_sprite.show_eyes()
+
+
+func _on_hurt_box_pinged() -> void:
+	fish_sprite.pinged()
