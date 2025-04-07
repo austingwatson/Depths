@@ -30,6 +30,11 @@ const rotation_threshold := 0.1
 @onready var laser := $Laser
 @onready var damaged_sound := $DamagedSound
 @onready var thruster_sound := $ThrusterSound
+@onready var thruster_particle_1 := $ThrusterTrail
+@onready var thruster_particle_2 := $ThrusterTrail2
+@onready var repair_particles := $RepairParticle
+@onready var research_particles := $ResearchParticle
+@onready var sonar_partciles := $SonarPulseParticles
 var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
 var initial_drop := true
@@ -42,6 +47,7 @@ func _ready() -> void:
 	var hurt_box := $HurtBox
 	GlobalSignals.on_player_health_changed(hurt_box.max_health, hurt_box.health)
 	GlobalSignals.heal_player.connect(_on_heal_player)
+	GlobalSignals.research_added.connect(_on_research_added)
 	
 	movement.max_speed = player_stats.max_speed
 	movement.acceleration = player_stats.acceleration
@@ -127,13 +133,18 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("thrust"):
 		thruster_sound.play()
+		thruster_particle_1.emitting = true
+		thruster_particle_2.emitting = true
+	elif Input.is_action_just_released("thrust"):
+		thruster_sound.stop()
+		thruster_particle_1.emitting = false
+		thruster_particle_2.emitting = false
 	
 	if Input.is_action_pressed("thrust"):
 		movement.move(direction, delta)
 		thrusting.paused = false
 		GlobalSignals.on_player_moved(global_position)
 	else:
-		thruster_sound.stop()
 		movement.stop(direction, delta)
 		thrusting.paused = true
 	
@@ -155,11 +166,12 @@ func _physics_process(delta: float) -> void:
 					var shock := shock_scene.instantiate()
 					add_child(shock)
 					energy.use_energy(player_stats.shock_energy)
-	if Input.is_action_pressed("sonar") and not sonar_cooldown.on_cooldown:
+	if Input.is_action_just_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()
 		sonar.start_sonar()
 		GlobalSignals.on_use_sonar()
-
+		sonar_partciles.emitting = true
+	
 
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:
 	GlobalSignals.on_player_health_changed(max_health, health)
@@ -176,10 +188,12 @@ func _on_energy_no_energy() -> void:
 	no_power = true
 	radius_light.visible = false
 	forward_light.visible = false
-	#emergency_light.visible = true
 	thrusting.paused = true
 	flicker.start()
 	laser.is_casting = false
+	thruster_sound.stop()
+	thruster_particle_1.emitting = false
+	thruster_particle_2.emitting = false
 
 
 func _on_energy_charging() -> void:
@@ -201,6 +215,7 @@ func _on_flicker_timeout() -> void:
 
 func _on_heal_player(heal: int) -> void:
 	hurt_box.heal(heal)
+	repair_particles.emitting = true
 
 
 func _on_hurt_box_healed(max_health: int, health: int) -> void:
@@ -210,3 +225,7 @@ func _on_hurt_box_healed(max_health: int, health: int) -> void:
 func _on_hurt_box_dead() -> void:
 	EntityManager.clear()
 	get_tree().change_scene_to_file("res://scenes/basecamp.tscn")
+	
+
+func _on_research_added() -> void:
+	research_particles.emitting = true

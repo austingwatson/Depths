@@ -13,7 +13,8 @@ script = ExtResource("1_pbm11")
 polygon = PackedVector2Array(0, 0, 4, -6, 61, -29, 61, 29, 4, 6)
 
 [node name="ScanBeam" type="Sprite2D" parent="."]
-modulate = Color(0.984314, 0.682353, 0.141176, 0)
+visible = false
+modulate = Color(0.984314, 0.682353, 0.141176, 1)
 position = Vector2(46, 0)
 rotation = 4.71239
 scale = Vector2(0.2, 0.2)

@@ -2,6 +2,8 @@ class_name Bullet
 extends Node2D
 
 @onready var movement := $Movement
+@onready var torpedo_boom := $TorpedoBoomParticle
+@onready var sprite := $Sprite2D
 var direction := Vector2.ZERO
 
 
@@ -28,9 +30,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_box_hit(_global_position: Vector2) -> void:
+	torpedo_boom.emitting = true
 	$TorpedoExplosionSound.play()
 	$HitBox.disable()
-	visible = false
+	sprite.visible = false
+	set_physics_process(false)
 
 
 func _on_max_distance_reached() -> void:

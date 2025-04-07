@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=37 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://cfg0up4nynxx6" path="res://scenes/component/research_beam.tscn" id="13_qxtqe"]
 [ext_resource type="PackedScene" uid="uid://cb1jy3pa1b4tk" path="res://scenes/entity/projectile/laser.tscn" id="14_726y4"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="16_vrjrw"]
-[ext_resource type="Texture2D" uid="uid://dx2aomunaop8x" path="res://assets/textures/effects/boom.png" id="19_mfv3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
 atlas = ExtResource("3_v1h6o")
@@ -89,76 +88,6 @@ gravity = Vector3(0, 0, 0)
 radial_accel_min = 20.0
 radial_accel_max = 90.0
 alpha_curve = SubResource("CurveTexture_xwbx1")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrjrw"]
-atlas = ExtResource("16_vrjrw")
-region = Rect2(56, 64, 8, 8)
-
-[sub_resource type="Curve" id="Curve_xwbx1"]
-_data = [Vector2(0, 0.861475), 0.0, 0.0, 0, 0, Vector2(0.505837, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_5vqjj"]
-curve = SubResource("Curve_xwbx1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ka65a"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-inherit_velocity_ratio = 1.0
-direction = Vector3(0, 0, 0)
-spread = 42.0
-flatness = 0.4
-initial_velocity_min = 210.18
-initial_velocity_max = 383.07
-angular_velocity_min = -385.63
-angular_velocity_max = 356.34
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -9.15
-radial_accel_max = -5.76
-tangential_accel_min = -2.23517e-06
-tangential_accel_max = -2.23517e-06
-damping_min = 60.678
-damping_max = 73.559
-alpha_curve = SubResource("CurveTexture_5vqjj")
-turbulence_enabled = true
-turbulence_noise_strength = 20.0
-turbulence_noise_scale = 4.564
-turbulence_noise_speed = Vector3(2, 2, 0)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1sbqw"]
-particles_animation = true
-particles_anim_h_frames = 5
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xwbx1"]
-atlas = ExtResource("19_mfv3l")
-region = Rect2(0, 0, 80, 16)
-
-[sub_resource type="Curve" id="Curve_5vqjj"]
-_data = [Vector2(0.2607, 1), 0.0, -0.124479, 0, 0, Vector2(1, 0), -4.66452, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ka65a"]
-curve = SubResource("Curve_5vqjj")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkhew"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 6.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = 12.0
-radial_accel_max = 24.0
-damping_min = 12.0
-damping_max = 12.0
-scale_min = 0.5
-scale_max = 1.5
-alpha_curve = SubResource("CurveTexture_ka65a")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvb70"]
 atlas = ExtResource("16_vrjrw")
@@ -240,10 +169,10 @@ cooldown = 1.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_18kca")
 
-[node name="ThrusterTrail" type="CPUParticles2D" parent="Sprite2D"]
-visible = false
+[node name="ThrusterTrail" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vrjrw")
 position = Vector2(-13, -2)
+emitting = false
 amount = 30
 texture = ExtResource("9_s8o64")
 lifetime = 2.0
@@ -264,10 +193,10 @@ anim_speed_max = 1.0
 anim_speed_curve = SubResource("Curve_s8o64")
 anim_offset_max = 0.3
 
-[node name="ThrusterTrail2" type="CPUParticles2D" parent="Sprite2D"]
-visible = false
+[node name="ThrusterTrail2" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vrjrw")
 position = Vector2(-13, 2)
+emitting = false
 amount = 30
 texture = ExtResource("9_s8o64")
 lifetime = 2.0
@@ -351,8 +280,14 @@ entity = NodePath("..")
 max_radius = 1000.0
 duration = 5.0
 
-[node name="SonarPulseParticles" type="GPUParticles2D" parent="Sonar"]
-visible = false
+[node name="ResearchBeam" parent="." instance=ExtResource("13_qxtqe")]
+
+[node name="Laser" parent="." instance=ExtResource("14_726y4")]
+position = Vector2(19, 0)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="SonarPulseParticles" type="GPUParticles2D" parent="."]
 z_index = -1
 emitting = false
 amount = 32
@@ -362,37 +297,6 @@ one_shot = true
 explosiveness = 1.0
 randomness = 0.2
 process_material = SubResource("ParticleProcessMaterial_5vqjj")
-
-[node name="ResearchBeam" parent="." instance=ExtResource("13_qxtqe")]
-
-[node name="Laser" parent="." instance=ExtResource("14_726y4")]
-position = Vector2(19, 0)
-hit_from_inside = true
-collide_with_areas = true
-
-[node name="ShockBlastParticles" type="GPUParticles2D" parent="."]
-modulate = Color(1.5, 1.5, 1.5, 1)
-position = Vector2(10, 0)
-emitting = false
-amount = 24
-texture = SubResource("AtlasTexture_vrjrw")
-lifetime = 1.5
-one_shot = true
-explosiveness = 0.95
-randomness = 0.1
-trail_lifetime = 0.1
-trail_sections = 6
-process_material = SubResource("ParticleProcessMaterial_ka65a")
-
-[node name="TorpedoBoomParticle" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_1sbqw")
-emitting = false
-amount = 6
-texture = SubResource("AtlasTexture_xwbx1")
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.6
-process_material = SubResource("ParticleProcessMaterial_fkhew")
 
 [node name="RepairParticle" type="GPUParticles2D" parent="."]
 emitting = false
