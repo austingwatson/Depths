@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://1y7ejvrrb6q6"]
+
+[ext_resource type="Script" uid="uid://csah70j7eh368" path="res://scripts/entity/projectile/weapon_icon.gd" id="1_u7ajc"]
+[ext_resource type="Script" uid="uid://cokst3tgct4ll" path="res://scripts/component/movement.gd" id="2_1ha4q"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_f8djm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f8djm"]
+light_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5skk"]
+atlas = ExtResource("2_f8djm")
+region = Rect2(208, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpmwx"]
+atlas = ExtResource("2_f8djm")
+region = Rect2(240, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djjqj"]
+atlas = ExtResource("2_f8djm")
+region = Rect2(224, 368, 16, 32)
+
+[node name="WeaponIcon" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_f8djm")
+script = ExtResource("1_u7ajc")
+torpedo_texture = SubResource("AtlasTexture_p5skk")
+laser_texture = SubResource("AtlasTexture_fpmwx")
+shock_texture = SubResource("AtlasTexture_djjqj")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("2_1ha4q")
+entity = NodePath("..")
+initial_speed = 50.0
+max_speed = 100.0
+acceleration = 25.0
+metadata/_custom_type_script = "uid://cokst3tgct4ll"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
