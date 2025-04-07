@@ -28,10 +28,6 @@ grow_horizontal = 0
 value = 10.0
 
 [node name="SonarCooldown" parent="." instance=ExtResource("6_oj5la")]
-offset_left = 427.0
-offset_top = 54.0
-offset_right = 459.0
-offset_bottom = 86.0
 
 [node name="DepthMeter" parent="." instance=ExtResource("4_8qguk")]
 anchors_preset = 1

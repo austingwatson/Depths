@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dj7af3l3qtcva"]
 
-[ext_resource type="Script" uid="uid://b7ufbd5bbm4kk" path="res://scripts/ui/research_count.gd" id="1_8kwjf"]
+[ext_resource type="Script" path="res://scripts/ui/research_count.gd" id="1_8kwjf"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="1_mi5aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7fjf"]
 atlas = ExtResource("1_mi5aa")
-region = Rect2(288, 96, 64, 16)
+region = Rect2(304, 0, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h512u"]
 atlas = ExtResource("1_mi5aa")
