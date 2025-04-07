@@ -1,23 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://4t4v3xeqcma2"]
+[gd_scene load_steps=9 format=3 uid="uid://4t4v3xeqcma2"]
 
 [ext_resource type="Script" uid="uid://dhniosaannv60" path="res://scripts/entity/projectile/shock.gd" id="1_jmcv3"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_0iv5t"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="3_0iv5t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1xao5"]
-radius = 25.0
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0iv5t"]
+points = PackedVector2Array(0, 0, 100, -75, 100, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xao5"]
+atlas = ExtResource("3_0iv5t")
+region = Rect2(56, 64, 8, 8)
+
+[sub_resource type="Curve" id="Curve_qy4gw"]
+_data = [Vector2(0, 0.861475), 0.0, 0.0, 0, 0, Vector2(0.505837, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5vqjj"]
+curve = SubResource("Curve_qy4gw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sonjk"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 42.0
+flatness = 0.4
+initial_velocity_min = 210.18
+initial_velocity_max = 383.07
+angular_velocity_min = -385.63
+angular_velocity_max = 356.34
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -9.15
+radial_accel_max = -5.76
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+damping_min = 60.678
+damping_max = 73.559
+alpha_curve = SubResource("CurveTexture_5vqjj")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 4.564
+turbulence_noise_speed = Vector3(2, 2, 0)
 
 [node name="Shock" type="Node2D"]
 script = ExtResource("1_jmcv3")
+
+[node name="ShockSound" type="AudioStreamPlayer" parent="."]
 
 [node name="HitBox" parent="." instance=ExtResource("2_0iv5t")]
 collision_layer = 2
 collision_mask = 12
 damage = 1
-shape = SubResource("CircleShape2D_1xao5")
+shape = SubResource("ConvexPolygonShape2D_0iv5t")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="ShockBlastParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(10, 0)
+emitting = false
+amount = 24
+texture = SubResource("AtlasTexture_1xao5")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+randomness = 0.1
+trail_lifetime = 0.1
+trail_sections = 6
+process_material = SubResource("ParticleProcessMaterial_sonjk")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

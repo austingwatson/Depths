@@ -36,8 +36,10 @@ func _on_scan_timer_timeout() -> void:
 	collision_shape.set_deferred("disabled", true)
 	EntityManager.player_stats.add_research(worth)
 	animated_sprite.play("pop")
+	GlobalSignals.on_research_added()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "pop":
+		#GlobalSignals.on_research_added()
 		queue_free()

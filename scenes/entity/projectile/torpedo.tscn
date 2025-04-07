@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=16 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
 [ext_resource type="AudioStream" uid="uid://dmgogwrt7rxdb" path="res://assets/sounds/shoot_torpedo.wav" id="2_01kix"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dph0ck0vyn0ar" path="res://assets/sounds/torpedo_explosion.wav" id="3_u3ice"]
 [ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="4_vdd5x"]
 [ext_resource type="PackedScene" uid="uid://x2wdvhrvr26y" path="res://scenes/component/max_distance.tscn" id="5_tvse7"]
+[ext_resource type="Texture2D" uid="uid://dx2aomunaop8x" path="res://assets/textures/effects/boom.png" id="8_kjd6s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tvse7"]
 atlas = ExtResource("4_vdd5x")
@@ -14,6 +15,38 @@ region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxt06"]
 radius = 4.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vy5ov"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpnhs"]
+atlas = ExtResource("8_kjd6s")
+region = Rect2(0, 0, 80, 16)
+
+[sub_resource type="Curve" id="Curve_pnwd1"]
+_data = [Vector2(0.2607, 1), 0.0, -0.124479, 0, 0, Vector2(1, 0), -4.66452, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ka65a"]
+curve = SubResource("Curve_pnwd1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2320g"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 12.0
+radial_accel_max = 24.0
+damping_min = 12.0
+damping_max = 12.0
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_ka65a")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="Torpedo" type="Node2D"]
 script = ExtResource("1_v7qta")
@@ -41,6 +74,16 @@ shape = SubResource("CircleShape2D_xxt06")
 [node name="MaxDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("5_tvse7")]
 entity = NodePath("..")
 distance = 2500.0
+
+[node name="TorpedoBoomParticle" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vy5ov")
+emitting = false
+amount = 6
+texture = SubResource("AtlasTexture_hpnhs")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_2320g")
 
 [connection signal="finished" from="TorpedoExplosionSound" to="." method="_on_torpedo_explosion_sound_finished"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
