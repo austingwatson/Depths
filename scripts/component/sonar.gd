@@ -9,6 +9,7 @@ extends Area2D
 
 
 func start_sonar() -> void:
+	$SonarPulseSound.play()
 	collision_shape.set_deferred("disabled", false)
 	var tween := create_tween()
 	await tween.tween_property(shape, "radius", max_radius, duration).finished

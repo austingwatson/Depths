@@ -21,6 +21,7 @@ var tween : Tween
 @onready var collision_particles := $CollisionParticles2D
 @onready var beam_particles := $BeamParticles2D
 @onready var timer := $Timer
+@onready var laser_sound := $LaserSound
 
 @onready var line_width: float = fill.width
 var damage := 1
@@ -44,12 +45,14 @@ func set_is_casting(cast: bool) -> void:
 		target_position = Vector2.ZERO
 		fill.points[1] = target_position
 		appear()
+		laser_sound.play()
 	else:
 		# Reset the laser endpoint
 		fill.points[1] = Vector2.ZERO
 		
 		collision_particles.emitting = false
 		disappear()
+		laser_sound.stop()
 
 	set_physics_process(is_casting)
 	beam_particles.emitting = is_casting

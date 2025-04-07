@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=29 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
+[ext_resource type="AudioStream" uid="uid://gsk3ansyxj8c" path="res://assets/sounds/launch_sub.wav" id="2_2vkts"]
 [ext_resource type="Texture2D" uid="uid://c6jh7urx1kx6w" path="res://assets/textures/level/basecamp_landscape.png" id="2_e2wlb"]
 [ext_resource type="Texture2D" uid="uid://bh7ivwy1m7hpj" path="res://assets/textures/level/sky_scrollable.png" id="2_nxq54"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_saea2"]
@@ -154,6 +155,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 194)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaunchSubSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_koy8h"]
 _data = {
@@ -164,6 +179,9 @@ _data = {
 [node name="Basecamp" type="Node"]
 script = ExtResource("1_saea2")
 sky_speed = 5.0
+
+[node name="LaunchSubSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2vkts")
 
 [node name="Sky" type="Sprite2D" parent="."]
 texture_filter = 1
