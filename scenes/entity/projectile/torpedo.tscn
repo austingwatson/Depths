@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=15 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
 [ext_resource type="AudioStream" uid="uid://dmgogwrt7rxdb" path="res://assets/sounds/shoot_torpedo.wav" id="2_01kix"]
@@ -26,27 +26,9 @@ particles_anim_loop = false
 atlas = ExtResource("8_kjd6s")
 region = Rect2(0, 0, 80, 16)
 
-[sub_resource type="Curve" id="Curve_pnwd1"]
-_data = [Vector2(0.2607, 1), 0.0, -0.124479, 0, 0, Vector2(1, 0), -4.66452, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ka65a"]
-curve = SubResource("Curve_pnwd1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2320g"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 6.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = 12.0
-radial_accel_max = 24.0
-damping_min = 12.0
-damping_max = 12.0
-scale_min = 0.5
-scale_max = 1.5
-alpha_curve = SubResource("CurveTexture_ka65a")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
+[sub_resource type="Gradient" id="Gradient_kjd6s"]
+offsets = PackedFloat32Array(0, 0.708487, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kjd6s"]
 radius = 12.0
@@ -78,7 +60,7 @@ shape = SubResource("CircleShape2D_xxt06")
 entity = NodePath("..")
 distance = 2500.0
 
-[node name="TorpedoBoomParticle" type="GPUParticles2D" parent="."]
+[node name="TorpedoBoomParticle" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vy5ov")
 emitting = false
 amount = 6
@@ -86,7 +68,14 @@ texture = SubResource("AtlasTexture_hpnhs")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.6
-process_material = SubResource("ParticleProcessMaterial_2320g")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_kjd6s")
+anim_speed_min = 0.5
+anim_speed_max = 1.5
 
 [node name="Homing" type="Area2D" parent="."]
 collision_layer = 2
@@ -94,12 +83,12 @@ collision_mask = 12
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Homing"]
-polygon = PackedVector2Array(0, 0, 50, -25, 50, 25)
+polygon = PackedVector2Array(0, 0, 10, -25, 59, -25, 59, 25, 8, 25)
 
 [node name="Explosion" parent="." instance=ExtResource("2_oaaup")]
 collision_layer = 2
 collision_mask = 12
-damage = 1
+damage = 2
 shape = SubResource("CircleShape2D_kjd6s")
 
 [connection signal="finished" from="TorpedoExplosionSound" to="." method="_on_torpedo_explosion_sound_finished"]

@@ -1,22 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1afp1kqvkk6j"]
+[gd_scene load_steps=5 format=3 uid="uid://c1afp1kqvkk6j"]
 
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="1_ypyc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_irmoc"]
 atlas = ExtResource("1_ypyc8")
-region = Rect2(0, 352, 16, 16)
+region = Rect2(0, 320, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_no7o1"]
 atlas = ExtResource("1_ypyc8")
-region = Rect2(32, 352, 16, 16)
+region = Rect2(96, 320, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbxp7"]
 atlas = ExtResource("1_ypyc8")
-region = Rect2(16, 352, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f5ejq"]
-atlas = ExtResource("1_ypyc8")
-region = Rect2(96, 352, 16, 16)
+region = Rect2(48, 320, 48, 32)
 
 [node name="OpenShop" type="TextureButton"]
 offset_right = 16.0
@@ -25,8 +21,10 @@ texture_normal = SubResource("AtlasTexture_irmoc")
 texture_pressed = SubResource("AtlasTexture_no7o1")
 texture_hover = SubResource("AtlasTexture_cbxp7")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-texture = SubResource("AtlasTexture_f5ejq")
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 45.0
+offset_bottom = 21.0
+text = "Upgrade"

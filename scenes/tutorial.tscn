@@ -1,9 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://xmsihfsj6imo"]
+[gd_scene load_steps=11 format=3 uid="uid://xmsihfsj6imo"]
 
 [ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_c13y7"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8ho6b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph3nu"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kmhl"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(256, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq4me"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(256, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yjpi"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(544, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbqnl"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(400, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckvwl"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(256, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlqja"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(544, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0epgs"]
+atlas = ExtResource("2_8ho6b")
+region = Rect2(400, 96, 96, 16)
 
 [node name="Tutorial" type="Node"]
 
 [node name="BG" type="Sprite2D" parent="."]
 texture = ExtResource("1_c13y7")
 centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG"]
+offset_left = 19.0
+offset_top = 48.0
+offset_right = 226.0
+offset_bottom = 229.0
+
+[node name="Panel1" type="Sprite2D" parent="BG"]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_ph3nu")
+centered = false
+
+[node name="Uppertext" type="Sprite2D" parent="."]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_4kmhl")
+centered = false
+
+[node name="Label" type="Label" parent="Uppertext"]
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 97.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Overview"
+
+[node name="BodyTextbox" type="Sprite2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 372.0
+offset_top = 218.0
+offset_right = 468.0
+offset_bottom = 258.0
+
+[node name="NextButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_cq4me")
+texture_pressed = SubResource("AtlasTexture_6yjpi")
+texture_hover = SubResource("AtlasTexture_gbqnl")
+
+[node name="Next" type="Label" parent="VBoxContainer/NextButton"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 13.0
+text = "Next"
+
+[node name="BackButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ckvwl")
+texture_pressed = SubResource("AtlasTexture_nlqja")
+texture_hover = SubResource("AtlasTexture_0epgs")
+flip_h = true
+
+[node name="Back" type="Label" parent="VBoxContainer/BackButton"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 86.0
+offset_bottom = 13.0
+text = "Back"

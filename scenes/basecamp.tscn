@@ -239,10 +239,10 @@ libraries = {
 }
 
 [node name="OpenShop" parent="." instance=ExtResource("9_f3dic")]
-offset_left = 1.0
-offset_top = 41.0
-offset_right = 17.0
-offset_bottom = 57.0
+offset_left = 4.0
+offset_top = 44.0
+offset_right = 52.0
+offset_bottom = 76.0
 
 [node name="Shop" parent="." instance=ExtResource("8_cdnnk")]
 visible = false
