@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=34 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -62,69 +62,25 @@ radius = 8.0
 atlas = ExtResource("16_vrjrw")
 region = Rect2(72, 120, 8, 8)
 
-[sub_resource type="Curve" id="Curve_1sbqw"]
-_data = [Vector2(0.0622568, 1), 0.0, 0.0, 0, 0, Vector2(0.509728, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_xwbx1"]
-curve = SubResource("Curve_1sbqw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vqjj"]
-lifetime_randomness = 0.1
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(2, 2, 1)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 5.0
-emission_ring_inner_radius = 3.0
-emission_ring_cone_angle = 90.0
-angle_min = 1.07288e-05
-angle_max = 1.07288e-05
-direction = Vector3(0, 0, 0)
-radial_velocity_min = 20.0
-radial_velocity_max = 120.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = 20.0
-radial_accel_max = 90.0
-alpha_curve = SubResource("CurveTexture_xwbx1")
+[sub_resource type="Gradient" id="Gradient_vrjrw"]
+offsets = PackedFloat32Array(0, 0.542435, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvb70"]
 atlas = ExtResource("16_vrjrw")
 region = Rect2(24, 16, 8, 8)
 
-[sub_resource type="Curve" id="Curve_6ybvf"]
-_data = [Vector2(0, 0), 0.0, 0.444718, 0, 0, Vector2(0.202335, 0.808197), 1.13675, 1.13675, 0, 0, Vector2(0.894942, 0), -3.50873, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_v2vx8"]
-curve = SubResource("Curve_6ybvf")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xe4mu"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 32.0
-emission_ring_inner_radius = 24.0
-emission_ring_cone_angle = 90.0
-angle_min = 1.07288e-05
-angle_max = 720.0
-direction = Vector3(0, 0, 0)
-orbit_velocity_min = -0.0799999
-orbit_velocity_max = 0.0800001
-radial_velocity_min = -24.0
-radial_velocity_max = -16.0
-gravity = Vector3(0, 0, 0)
-linear_accel_min = 8.0
-linear_accel_max = 16.0
-radial_accel_min = -10.0
-radial_accel_max = -8.0
-alpha_curve = SubResource("CurveTexture_v2vx8")
+[sub_resource type="Gradient" id="Gradient_mfv3l"]
+offsets = PackedFloat32Array(0, 0.269373, 0.634686, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtf24"]
 atlas = ExtResource("16_vrjrw")
 region = Rect2(64, 48, 8, 8)
+
+[sub_resource type="Gradient" id="Gradient_xwbx1"]
+offsets = PackedFloat32Array(0, 0.0738007, 0.594096, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="Node2D"]
 z_index = 2
@@ -287,36 +243,57 @@ position = Vector2(19, 0)
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="SonarPulseParticles" type="GPUParticles2D" parent="."]
+[node name="SonarPulseParticles" type="CPUParticles2D" parent="."]
 z_index = -1
 emitting = false
-amount = 32
+amount = 24
 texture = SubResource("AtlasTexture_mfv3l")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_5vqjj")
+emission_shape = 2
+emission_sphere_radius = 3.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+radial_accel_min = 20.0
+radial_accel_max = 90.0
+color_ramp = SubResource("Gradient_vrjrw")
 
-[node name="RepairParticle" type="GPUParticles2D" parent="."]
+[node name="RepairParticle" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 12
 texture = SubResource("AtlasTexture_wvb70")
-lifetime = 0.8
+lifetime = 1.2
 one_shot = true
 explosiveness = 0.8
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_xe4mu")
+emission_shape = 2
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+radial_accel_min = -32.0
+radial_accel_max = -24.0
+angle_max = 360.0
+color_ramp = SubResource("Gradient_mfv3l")
 
-[node name="ResearchParticle" type="GPUParticles2D" parent="."]
+[node name="ResearchParticle" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 6
 texture = SubResource("AtlasTexture_jtf24")
-lifetime = 0.8
 one_shot = true
 explosiveness = 0.8
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_xe4mu")
+emission_shape = 2
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+linear_accel_min = 24.0
+linear_accel_max = 32.0
+radial_accel_min = -24.0
+radial_accel_max = -16.0
+angle_max = 360.0
+color_ramp = SubResource("Gradient_xwbx1")
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]

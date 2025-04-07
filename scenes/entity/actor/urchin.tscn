@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ckn07253t3ahu"]
+[gd_scene load_steps=27 format=3 uid="uid://ckn07253t3ahu"]
 
 [ext_resource type="Script" uid="uid://b38wemow2mtiy" path="res://scripts/entity/actor/urchin.gd" id="1_rrpem"]
 [ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="2_aw6ot"]
@@ -106,17 +106,24 @@ region = Rect2(64, 64, 32, 32)
 atlas = ExtResource("2_aw6ot")
 region = Rect2(96, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y608"]
+atlas = ExtResource("2_aw6ot")
+region = Rect2(128, 64, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_stgjh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0pn5m")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_q85n1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x7hch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y608")
 }],
 "loop": true,
 "name": &"default",

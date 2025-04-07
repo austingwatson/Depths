@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4t4v3xeqcma2"]
+[gd_scene load_steps=7 format=3 uid="uid://4t4v3xeqcma2"]
 
 [ext_resource type="Script" uid="uid://dhniosaannv60" path="res://scripts/entity/projectile/shock.gd" id="1_jmcv3"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_0iv5t"]
@@ -11,39 +11,9 @@ points = PackedVector2Array(0, 0, 100, -75, 100, 75)
 atlas = ExtResource("3_0iv5t")
 region = Rect2(56, 64, 8, 8)
 
-[sub_resource type="Curve" id="Curve_qy4gw"]
-_data = [Vector2(0, 0.861475), 0.0, 0.0, 0, 0, Vector2(0.505837, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_5vqjj"]
-curve = SubResource("Curve_qy4gw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sonjk"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-inherit_velocity_ratio = 1.0
-direction = Vector3(0, 0, 0)
-spread = 42.0
-flatness = 0.4
-initial_velocity_min = 210.18
-initial_velocity_max = 383.07
-angular_velocity_min = -385.63
-angular_velocity_max = 356.34
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -9.15
-radial_accel_max = -5.76
-tangential_accel_min = -2.23517e-06
-tangential_accel_max = -2.23517e-06
-damping_min = 60.678
-damping_max = 73.559
-alpha_curve = SubResource("CurveTexture_5vqjj")
-turbulence_enabled = true
-turbulence_noise_strength = 20.0
-turbulence_noise_scale = 4.564
-turbulence_noise_speed = Vector3(2, 2, 0)
+[sub_resource type="Gradient" id="Gradient_0iv5t"]
+offsets = PackedFloat32Array(0, 0.0590406, 0.420664, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Shock" type="Node2D"]
 script = ExtResource("1_jmcv3")
@@ -61,18 +31,27 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="ShockBlastParticles" type="GPUParticles2D" parent="."]
+[node name="ShockBlastParticles" type="CPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 position = Vector2(10, 0)
 emitting = false
 amount = 24
 texture = SubResource("AtlasTexture_1xao5")
-lifetime = 1.5
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.95
 randomness = 0.1
-trail_lifetime = 0.1
-trail_sections = 6
-process_material = SubResource("ParticleProcessMaterial_sonjk")
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, 0)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+damping_min = 80.0
+damping_max = 160.0
+angle_max = 360.0
+color_ramp = SubResource("Gradient_0iv5t")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
