@@ -1,7 +1,15 @@
 class_name Spawner
 extends Node2D
 
+enum Type {
+	FISH,
+	URCHIN,
+	FLOATER,
+	RESEARCH,
+}
+
 @export var disable := false
+@export var type := Type.FISH
 @export var enemy_scene: PackedScene
 @export var max_amount: Curve
 @export var lower_spawn_curve: Curve
@@ -66,13 +74,22 @@ func get_random_position() -> Vector2:
 
 
 func _on_spawn_timer_timeout() -> void:
+	match type:
+		Type.FISH:
+			current_amount = get_tree().get_node_count_in_group("Fish")
+		Type.URCHIN:
+			current_amount = get_tree().get_node_count_in_group("Urchin")
+		Type.FLOATER:
+			current_amount = get_tree().get_node_count_in_group("Floater")
+		Type.RESEARCH:
+			current_amount = get_tree().get_node_count_in_group("Research")
+	
 	var amount := get_enemy_amount()
 	var max: int = round(max_amount.sample(player_y))
 	while current_amount + amount > max:
 		amount -= 1
 		if amount == 0:
 			break
-	current_amount += amount
 	
 	for i in range(amount):
 		var enemy := enemy_scene.instantiate()

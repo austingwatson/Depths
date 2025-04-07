@@ -57,7 +57,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_11tjm"]
 radius = 8.0
 
-[node name="Floater" type="Node2D"]
+[node name="Floater" type="Node2D" groups=["Floater"]]
 script = ExtResource("1_ty7i7")
 heal = 1
 

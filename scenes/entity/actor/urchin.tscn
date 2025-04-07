@@ -136,7 +136,7 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwgpp"]
 radius = 8.0
 
-[node name="Urchin" type="Node2D"]
+[node name="Urchin" type="Node2D" groups=["Urchin"]]
 script = ExtResource("1_rrpem")
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_qwgpp")]
