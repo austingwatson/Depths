@@ -10,7 +10,7 @@ func on_player_health_changed(max_health: int, health: int) -> void:
 	
 
 func on_player_moved(global_position: Vector2) -> void:
-	player_moved.emit(global_position)
+	player_moved.emit(global_position / 5)
 	
 
 func on_heal_player(heal: int) -> void:

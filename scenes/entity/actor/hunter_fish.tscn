@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=19 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_mrtdc"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_vbyxb"]
 [ext_resource type="PackedScene" uid="uid://djbrnjtvjpjmt" path="res://scenes/component/detection.tscn" id="7_4cvhp"]
+[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="7_fjt5v"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="8_fjt5v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cvhp"]
@@ -60,6 +61,9 @@ radius = 150.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cvhp"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xpfh"]
+radius = 75.0
+
 [node name="HunterFish" type="Node2D"]
 script = ExtResource("1_snnp5")
 
@@ -96,6 +100,12 @@ collision_layer = 4
 collision_mask = 2
 shape = SubResource("CapsuleShape2D_4cvhp")
 
+[node name="HitBox" parent="." instance=ExtResource("7_fjt5v")]
+collision_layer = 4
+collision_mask = 2
+damage = 1
+shape = SubResource("CircleShape2D_0xpfh")
+
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_fjt5v")]
 entity = NodePath("..")
 distance = 500.0
@@ -104,9 +114,15 @@ distance = 500.0
 wait_time = 2.0
 autostart = true
 
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
 [connection signal="detected" from="Detection" to="." method="_on_detection_detected"]
 [connection signal="lost" from="Detection" to="." method="_on_detection_lost"]
 [connection signal="detected" from="AttackDetection" to="." method="_on_attack_detection_detected"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
