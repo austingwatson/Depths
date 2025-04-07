@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=21 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
@@ -39,13 +39,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjt5v"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymxha"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 48, 32, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdfgv"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjt5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymxha")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_512ls")
 }],
