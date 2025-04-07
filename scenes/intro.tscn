@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8svyilqx4yuk"]
+[gd_scene load_steps=18 format=3 uid="uid://b8svyilqx4yuk"]
 
 [ext_resource type="Script" uid="uid://bbbel4cvrw8hg" path="res://scripts/intro.gd" id="1_i2l1n"]
 [ext_resource type="Texture2D" uid="uid://cjnytxbxf7m31" path="res://assets/textures/level/space_background.png" id="2_wfs7u"]
@@ -67,28 +67,36 @@ _data = {
 &"planet_bob": SubResource("Animation_e54dn")
 }
 
-[sub_resource type="Animation" id="Animation_bu1yb"]
-resource_name = "text_scroll"
-length = 14.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/TextPanelBG/IntroText:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4.16667, 7, 9.03333, 12.0333, 14),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.05, 0.45, 0.45, 0.79, 0.79, 0.94, 0.99972]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2l1n"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(256, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfs7u"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(544, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es01l"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(400, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0naf5"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(256, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu1yb"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(544, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1qkj"]
+atlas = ExtResource("4_0naf5")
+region = Rect2(400, 0, 144, 32)
 
 [sub_resource type="Animation" id="Animation_t1qkj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/TextPanelBG/IntroText:visible_ratio")
+tracks/0/path = NodePath("TextScroller/TextPanelBG/IntroText:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,6 +104,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.05]
+}
+
+[sub_resource type="Animation" id="Animation_bu1yb"]
+resource_name = "text_scroll"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextScroller/TextPanelBG/IntroText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.16667, 7, 9.03333, 11, 12.6667, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.45, 0.45, 0.79, 0.79, 0.94, 0.94, 0.99972]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_272cy"]
@@ -128,38 +152,54 @@ centered = false
 offset = Vector2(120, 10)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 17.0
-offset_top = 226.0
-offset_right = 57.0
-offset_bottom = 266.0
+offset_left = 333.0
+offset_top = 197.0
+offset_right = 477.0
+offset_bottom = 290.0
 
 [node name="TutorialButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
+texture_normal = SubResource("AtlasTexture_i2l1n")
+texture_pressed = SubResource("AtlasTexture_wfs7u")
+texture_hover = SubResource("AtlasTexture_es01l")
+flip_h = true
 
-[node name="Label" type="Label" parent="VBoxContainer/TutorialButton"]
+[node name="Tutorial" type="Label" parent="VBoxContainer/TutorialButton"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 13.0
+offset_left = 62.0
+offset_right = 142.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 32
+text = "Tutorial"
+horizontal_alignment = 2
 
 [node name="SkipTutorialButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
+texture_normal = SubResource("AtlasTexture_0naf5")
+texture_pressed = SubResource("AtlasTexture_bu1yb")
+texture_hover = SubResource("AtlasTexture_t1qkj")
+flip_h = true
 
-[node name="Label" type="Label" parent="VBoxContainer/SkipTutorialButton"]
+[node name="Skip Tutorial" type="Label" parent="VBoxContainer/SkipTutorialButton"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 13.0
+offset_left = 65.0
+offset_top = -1.0
+offset_right = 195.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Dive In"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="TextScroller" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_272cy")
 }
 
-[node name="TextPanelBG" type="Sprite2D" parent="AnimationPlayer"]
+[node name="TextPanelBG" type="Sprite2D" parent="TextScroller"]
 position = Vector2(8, 8)
 texture = SubResource("AtlasTexture_37iue")
 centered = false
 
-[node name="IntroText" type="RichTextLabel" parent="AnimationPlayer/TextPanelBG"]
+[node name="IntroText" type="RichTextLabel" parent="TextScroller/TextPanelBG"]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 219.0
@@ -170,7 +210,10 @@ text = "              Enceladus:
    Your expedition is tasked with breaching the moon's crust and exploring the depths below. The seafloor is believed to rest 10,000 meters below the ice. 
 
    Assume the controls of your remote submersible. Dive for the seafloor. 
-Can you sound the Innersea?"
+Can you sound the Innersea? "
 scroll_active = false
 visible_characters = 23
 visible_ratio = 0.05
+
+[connection signal="pressed" from="VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SkipTutorialButton" to="." method="_on_skip_tutorial_button_pressed"]
