@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=30 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
 [ext_resource type="AudioStream" uid="uid://gsk3ansyxj8c" path="res://assets/sounds/launch_sub.wav" id="2_2vkts"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://r21ikn6owpl5" path="res://scenes/ui/shop.tscn" id="8_cdnnk"]
 [ext_resource type="PackedScene" uid="uid://c1afp1kqvkk6j" path="res://scenes/ui/open_shop.tscn" id="9_f3dic"]
 [ext_resource type="PackedScene" uid="uid://dj7af3l3qtcva" path="res://scenes/ui/research_count.tscn" id="10_7hapb"]
+[ext_resource type="PackedScene" uid="uid://cw2rldqj3fo56" path="res://scenes/ui/max_depth.tscn" id="12_bhldm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3dic"]
 atlas = ExtResource("4_nxq54")
@@ -256,6 +257,14 @@ grow_horizontal = 1
 
 [node name="ResearchCount" parent="." instance=ExtResource("10_7hapb")]
 offset_right = 64.0
+
+[node name="MaxDepth" parent="." instance=ExtResource("12_bhldm")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+grow_horizontal = 2
 
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

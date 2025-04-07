@@ -2,6 +2,7 @@ class_name PermStats
 extends Resource
 
 @export var research := 0
+@export var max_depth := 0
 
 @export_category("Movement")
 @export var max_speed := 0.0

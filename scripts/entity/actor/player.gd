@@ -7,6 +7,7 @@ enum Weapon {
 	SHOCK,
 }
 
+const shock_scene := preload("res://scenes/entity/projectile/shock.tscn")
 const rotation_threshold := 0.1
 @export var forward_texture: Texture2D
 @export var left_texture: Texture2D
@@ -151,7 +152,8 @@ func _physics_process(delta: float) -> void:
 			Weapon.SHOCK:
 				if not shock_cooldown.on_cooldown:
 					shock_cooldown.use()
-					# use shock here
+					var shock := shock_scene.instantiate()
+					add_child(shock)
 					energy.use_energy(player_stats.shock_energy)
 	if Input.is_action_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()

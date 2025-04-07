@@ -1,5 +1,7 @@
 extends Node
 
+var player_stats: PermStats = EntityManager.player_stats
+
 
 func _ready() -> void:
 	randomize()
@@ -27,3 +29,9 @@ func _ready() -> void:
 	var research_pickup := preload("res://scenes/entity/drops/resource_pickup.tscn").instantiate()
 	research_pickup.global_position = Vector2(-50, 100)
 	EntityManager.add_entity(research_pickup, true)
+	
+	GlobalSignals.player_moved.connect(on_player_moved)
+	
+
+func on_player_moved(global_position: Vector2) -> void:
+	player_stats.max_depth = round(max(global_position.y, player_stats.max_depth))
