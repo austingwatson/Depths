@@ -10,6 +10,7 @@ var player_stats: PermStats = EntityManager.player_stats
 
 func _ready() -> void:
 	arm.play("default")
+	MusicPlayer.play_song(MusicPlayer.Song.MENU)
 	
 	
 func _physics_process(delta: float) -> void:

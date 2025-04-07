@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://24g4ypy2s4xm"]
+
+[ext_resource type="Script" uid="uid://b5bgfnl2wvv13" path="res://scripts/global/music_player.gd" id="1_tle66"]
+[ext_resource type="AudioStream" uid="uid://bxih0r4a231x8" path="res://assets/sounds/basecampsong.wav" id="2_krh0j"]
+[ext_resource type="AudioStream" uid="uid://cq3fq7jo2v4n7" path="res://assets/sounds/deepsong.wav" id="3_werss"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_tle66")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_krh0j")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_werss")

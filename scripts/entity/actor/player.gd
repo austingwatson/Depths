@@ -213,6 +213,7 @@ func _on_energy_charging() -> void:
 	emergency_light.visible = false
 	thrusting.paused = false
 	flicker.stop()
+	energy.energy = energy.max_energy / 2.0
 
 
 func _on_thrusting_timeout() -> void:

@@ -4,6 +4,7 @@ var player_stats: PermStats = EntityManager.player_stats
 
 
 func _ready() -> void:
+	MusicPlayer.play_song(MusicPlayer.Song.GAME)
 	randomize()
 	
 	var player := preload("res://scenes/entity/actor/player.tscn").instantiate()
