@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=26 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dokvvrp78f7cn" path="res://assets/textures/level/ice_tunnel.png" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cnnmg6jwxpv4p" path="res://scenes/entity/ice_shelf.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://3efyhd6vkgla" path="res://scenes/entity/sea_floor.tscn" id="17_rysoc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
 light_mode = 1
@@ -184,3 +185,6 @@ environment = SubResource("Environment_lbhrr")
 color = Color(0.00784314, 0.00784314, 0.0509804, 1)
 
 [node name="IceShelf" parent="." instance=ExtResource("9_0tnpc")]
+
+[node name="SeaFloor" parent="." instance=ExtResource("17_rysoc")]
+position = Vector2(0, 20000)

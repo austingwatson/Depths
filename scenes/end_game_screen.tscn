@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://smbcyspbbf76"]
+
+[ext_resource type="Script" uid="uid://baxiwaedig7an" path="res://scripts/end_game_screen.gd" id="1_62ohe"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_7y8om"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70b0o"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(0, 368, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y8om"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(128, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubscq"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(48, 64, 96, 48)
+
+[node name="EndGameScreen" type="Node"]
+script = ExtResource("1_62ohe")
+
+[node name="DepthMeter" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_70b0o")
+
+[node name="Label" type="Label" parent="DepthMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0m"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crack" type="TextureRect" parent="DepthMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_7y8om")
+
+[node name="BaseCampButton" type="TextureButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_ubscq")
+
+[node name="Label" type="Label" parent="BaseCampButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Base Camp"
+
+[connection signal="pressed" from="BaseCampButton" to="." method="_on_base_camp_button_pressed"]

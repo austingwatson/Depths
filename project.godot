@@ -20,6 +20,7 @@ config/icon="res://assets/textures/icon.svg"
 ProjectileManager="*res://scenes/global/projectile_manager.tscn"
 GlobalSignals="*res://scenes/global/global_signals.tscn"
 EntityManager="*res://scenes/global/entity_manager.tscn"
+MusicPlayer="*res://scenes/global/music_player.tscn"
 
 [debug]
 

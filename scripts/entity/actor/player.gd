@@ -85,6 +85,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					weapon = Weapon.SHOCK
 					ProjectileManager.add_weapon_icon(global_position, 2)
 			Weapon.LASER:
+				laser.is_casting = false
 				if player_stats.unlocked_weapons[2]:
 					weapon = Weapon.SHOCK
 					ProjectileManager.add_weapon_icon(global_position, 2)
@@ -104,6 +105,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					weapon = Weapon.LASER
 					ProjectileManager.add_weapon_icon(global_position, 1)
 			Weapon.LASER:
+				laser.is_casting = false
 				weapon = Weapon.TORPEDO
 				ProjectileManager.add_weapon_icon(global_position, 0)
 			Weapon.SHOCK:
@@ -120,6 +122,7 @@ func _physics_process(delta: float) -> void:
 	
 	if no_power or initial_drop:
 		movement.stop(direction, delta)
+		GlobalSignals.on_player_moved(global_position)
 		return
 	elif laser.is_casting:
 		energy.use_energy(player_stats.laser_energy)
@@ -157,9 +160,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		movement.stop(direction, delta)
 		thrusting.paused = true
+		GlobalSignals.on_player_moved(global_position)
 	
 	if global_position.y <= 20:
 		global_position.y = 20
+		GlobalSignals.on_player_moved(global_position)
 		
 	if Input.is_action_just_pressed("shoot"):
 		match weapon:
@@ -213,6 +218,7 @@ func _on_energy_charging() -> void:
 	emergency_light.visible = false
 	thrusting.paused = false
 	flicker.stop()
+	energy.energy = energy.max_energy / 2.0
 
 
 func _on_thrusting_timeout() -> void:
@@ -234,7 +240,7 @@ func _on_hurt_box_healed(max_health: int, health: int) -> void:
 
 func _on_hurt_box_dead() -> void:
 	EntityManager.clear()
-	get_tree().change_scene_to_file("res://scenes/basecamp.tscn")
+	get_tree().change_scene_to_file("res://scenes/end_game_screen.tscn")
 	
 
 func _on_research_added() -> void:
