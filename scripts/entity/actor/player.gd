@@ -150,6 +150,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()
 		sonar.start_sonar()
+		GlobalSignals.on_use_sonar()
 
 
 func _on_hurt_box_hurt(max_health: int, health: int) -> void:

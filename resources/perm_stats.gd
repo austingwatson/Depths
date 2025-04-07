@@ -91,7 +91,7 @@ var upgrades := {
 	"homing": 100.0,
 	
 	"laser": true,
-	"laser_cost": 50.0,
+	"laser_cost": 0.5,
 	
 	"shock": true,
 	"shock_range": 200.0 ,

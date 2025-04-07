@@ -1,9 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6yylqny5blw1"]
+[gd_scene load_steps=13 format=3 uid="uid://c6yylqny5blw1"]
 
 [ext_resource type="Script" uid="uid://ce6v4pggr6vbl" path="res://scripts/entity/drops/resource_pickup.gd" id="1_t50uq"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="2_15y04"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="2_cr552"]
+[ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_vcixg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15y04"]
+atlas = ExtResource("2_15y04")
+region = Rect2(8, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcixg"]
+atlas = ExtResource("2_15y04")
+region = Rect2(8, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j15wr"]
+atlas = ExtResource("2_15y04")
+region = Rect2(16, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1itl"]
+atlas = ExtResource("2_15y04")
+region = Rect2(24, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mba6"]
+atlas = ExtResource("2_15y04")
+region = Rect2(72, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db2ku"]
+atlas = ExtResource("2_15y04")
+region = Rect2(56, 48, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogvc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15y04")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcixg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j15wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1itl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mba6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db2ku")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ofgt"]
+radius = 4.0
 
 [node name="ResourcePickup" type="Area2D"]
 collision_layer = 16
@@ -11,15 +69,26 @@ collision_mask = 2
 monitoring = false
 script = ExtResource("1_t50uq")
 
+[node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_vcixg")]
+entity = NodePath("..")
+initial_speed = 100.0
+max_speed = 200.0
+acceleration = 100.0
+deceleration = 300.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ogvc0")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ofgt")
 
 [node name="ScanTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 1.5
 one_shot = true
 
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_cr552")]
 entity = NodePath("..")
 distance = 500.0
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ScanTimer" to="." method="_on_scan_timer_timeout"]
