@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=31 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
@@ -16,10 +16,23 @@
 [ext_resource type="Texture2D" uid="uid://dokvvrp78f7cn" path="res://assets/textures/level/ice_tunnel.png" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cnnmg6jwxpv4p" path="res://scenes/entity/ice_shelf.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://c6yylqny5blw1" path="res://scenes/entity/drops/resource_pickup.tscn" id="12_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://3efyhd6vkgla" path="res://scenes/entity/sea_floor.tscn" id="17_rysoc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
 light_mode = 1
+
+[sub_resource type="Curve" id="Curve_264po"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_1kice"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_5newe"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_37s47"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
 
 [sub_resource type="Curve" id="Curve_gee14"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
@@ -138,6 +151,13 @@ texture = ExtResource("7_dinhu")
 position = Vector2(0, -27)
 energy = 2.0
 texture = ExtResource("8_kvuet")
+
+[node name="ResearchSpawner" parent="." instance=ExtResource("2_lbhrr")]
+enemy_scene = ExtResource("12_ssvqc")
+max_amount = SubResource("Curve_264po")
+lower_spawn_curve = SubResource("Curve_1kice")
+upper_spawn_curve = SubResource("Curve_5newe")
+timer_curve = SubResource("Curve_37s47")
 
 [node name="HunterFishSpawner" parent="." instance=ExtResource("2_lbhrr")]
 enemy_scene = ExtResource("3_lnu2h")
