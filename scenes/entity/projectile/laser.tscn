@@ -37,7 +37,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Laser" type="RayCast2D"]
 target_position = Vector2(0, 0)
-collision_mask = 13
+collision_mask = 33
 script = ExtResource("1")
 growth_time = 1.0
 
@@ -100,3 +100,9 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_lconw")
 color_ramp = SubResource("Gradient_ku2hi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

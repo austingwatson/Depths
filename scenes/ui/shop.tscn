@@ -51,7 +51,6 @@ grow_vertical = 2
 script = ExtResource("1_ahsc1")
 
 [node name="Background" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 texture = SubResource("AtlasTexture_8v20v")
 
@@ -69,7 +68,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="GridContainer" type="GridContainer" parent="Background/MarginContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 40
 columns = 3
 

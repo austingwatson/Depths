@@ -73,7 +73,7 @@ hframes = 2
 vframes = 2
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_oxdx7")]
-collision_layer = 4
+collision_layer = 36
 collision_mask = 2
 entity = NodePath("..")
 max_health = 1

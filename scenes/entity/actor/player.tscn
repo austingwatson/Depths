@@ -64,9 +64,6 @@ cooldown = 5.0
 [node name="TorpedoCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
 cooldown = 1.0
 
-[node name="LaserCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
-cooldown = 1.0
-
 [node name="ShockCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
 cooldown = 1.0
 

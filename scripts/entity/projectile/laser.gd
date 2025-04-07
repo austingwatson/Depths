@@ -20,8 +20,11 @@ var tween : Tween
 @onready var casting_particles := $CastingParticles2D
 @onready var collision_particles := $CollisionParticles2D
 @onready var beam_particles := $BeamParticles2D
+@onready var timer := $Timer
 
 @onready var line_width: float = fill.width
+var damage := 1
+var can_hit := true
 
 
 func _ready() -> void:
@@ -65,6 +68,10 @@ func cast_beam() -> void:
 		cast_point = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = cast_point
+		if get_collider() is HurtBox and can_hit:
+			can_hit = false
+			get_collider().take_damage(damage)
+			timer.start()
 
 	fill.points[1] = cast_point
 	beam_particles.position = cast_point * 0.5
@@ -82,3 +89,7 @@ func disappear() -> void:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(fill, "width", 0, growth_time).from_current()
+
+
+func _on_timer_timeout() -> void:
+	can_hit = true

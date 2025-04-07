@@ -42,6 +42,7 @@ func _on_mouse_exited() -> void:
 func _on_pressed() -> void:
 	var success := player_stats.buy(store_names[current_upgrade])
 	if success:
+		tool_tip.visible = false
 		current_upgrade += 1
 		if current_upgrade >= store_names.size():
 			queue_free()

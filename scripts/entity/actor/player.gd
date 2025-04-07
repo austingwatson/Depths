@@ -25,8 +25,8 @@ const rotation_threshold := 0.1
 @onready var sonar := $Sonar
 @onready var sonar_cooldown := $SkillCooldowns/SonarCooldown
 @onready var torpedo_cooldown := $SkillCooldowns/TorpedoCooldown
-@onready var laser_cooldown := $SkillCooldowns/LaserCooldown
 @onready var shock_cooldown := $SkillCooldowns/ShockCooldown
+@onready var laser := $Laser
 var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
 var initial_drop := true
@@ -61,9 +61,6 @@ func _ready() -> void:
 	torpedo_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.torpedo_cooldown
 	torpedo_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.torpedo_cooldown
 	
-	laser_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.laser_cooldown
-	laser_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.laser_cooldown
-	
 	shock_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.shock_cooldown
 	shock_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.shock_cooldown
 	
@@ -97,19 +94,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 					weapon = Weapon.LASER
 				else:
 					weapon = Weapon.TORPEDO
-	
-	print(weapon)
 
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2.RIGHT.rotated(rotation)
 	
-	if Input.is_action_just_pressed("test_weapon"):
-		$Laser.is_casting = not $Laser.is_casting
-	
 	if no_power or initial_drop:
 		movement.stop(direction, delta)
 		return
+	elif laser.is_casting:
+		energy.use_energy(player_stats.laser_energy)
 	
 	if Input.is_action_pressed("rotate"):
 		var dir: float = movement.turn(get_global_mouse_position(), delta)
@@ -139,7 +133,7 @@ func _physics_process(delta: float) -> void:
 	if global_position.y <= 20:
 		global_position.y = 20
 		
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		match weapon:
 			Weapon.TORPEDO:
 				if not torpedo_cooldown.on_cooldown:
@@ -147,10 +141,7 @@ func _physics_process(delta: float) -> void:
 					ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, player_stats.torpedo_damage + player_stats.damage)
 					energy.use_energy(player_stats.torpedo_energy)
 			Weapon.LASER:
-				if not laser_cooldown.on_cooldown:
-					laser_cooldown.use()
-					# use laser here
-					energy.use_energy(player_stats.laser_energy)
+				laser.is_casting = not laser.is_casting
 			Weapon.SHOCK:
 				if not shock_cooldown.on_cooldown:
 					shock_cooldown.use()
@@ -178,6 +169,7 @@ func _on_energy_no_energy() -> void:
 	#emergency_light.visible = true
 	thrusting.paused = true
 	flicker.start()
+	laser.is_casting = false
 
 
 func _on_energy_charging() -> void:
