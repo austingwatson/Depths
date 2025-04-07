@@ -1,10 +1,38 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8p3g7w81vtm2"]
+[gd_scene load_steps=13 format=3 uid="uid://b8p3g7w81vtm2"]
 
 [ext_resource type="Script" uid="uid://cy0qbf4ndlv4s" path="res://scripts/title_screen.gd" id="1_fgkus"]
 [ext_resource type="Texture2D" uid="uid://cjnytxbxf7m31" path="res://assets/textures/level/space_background.png" id="2_dc4i4"]
 [ext_resource type="Texture2D" uid="uid://ptihoidbwul1" path="res://assets/textures/level/Enceladus_planet.png" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="3_mgrm8"]
 [ext_resource type="FontFile" uid="uid://dbwh2vnpvxyt" path="res://assets/textures/ui/m5x7.ttf" id="4_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://cnbbleel27mnk" path="res://assets/textures/ui/darker_title_text.png" id="4_e54dn"]
+
+[sub_resource type="Animation" id="Animation_3yumr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/EnceladusPlanet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Title:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, -24)]
+}
 
 [sub_resource type="Animation" id="Animation_e54dn"]
 resource_name = "planet_bob"
@@ -22,20 +50,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 8), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_3yumr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/EnceladusPlanet:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Title:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0333338, 5, 10.0333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 20)]
+"values": [Vector2(-150, -24), Vector2(-145, -24), Vector2(-150, -24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cs5ya"]
@@ -46,15 +71,15 @@ _data = {
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
 atlas = ExtResource("3_mgrm8")
-region = Rect2(0, 320, 48, 32)
+region = Rect2(256, 0, 144, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
 atlas = ExtResource("3_mgrm8")
-region = Rect2(96, 320, 48, 32)
+region = Rect2(544, 0, 144, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
 atlas = ExtResource("3_mgrm8")
-region = Rect2(48, 320, 48, 32)
+region = Rect2(400, 0, 144, 32)
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource("1_fgkus")
@@ -73,7 +98,12 @@ autoplay = "planet_bob"
 position = Vector2(0, 20)
 texture = ExtResource("2_s4lrb")
 centered = false
-offset = Vector2(16, 16)
+offset = Vector2(120, 10)
+
+[node name="Title" type="Sprite2D" parent="Space/AnimationPlayer"]
+texture = ExtResource("4_e54dn")
+centered = false
+offset = Vector2(-150, -24)
 
 [node name="Menu" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -81,10 +111,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 16.0
+offset_left = -262.0
+offset_top = 46.0
+offset_right = -70.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -100,10 +130,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -4.0
+offset_right = -20.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.960784, 0.964706, 0.988235, 1)
 theme_override_fonts/font = ExtResource("4_dc4i4")
+theme_override_font_sizes/font_size = 32
 text = "Play"
 horizontal_alignment = 1
 vertical_alignment = 1

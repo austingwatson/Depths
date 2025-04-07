@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cqrbbt35wty6r"
-path="res://.godot/imported/thruster2.wav-b10617b946c5cd480e6eae183c1ac998.sample"
+uid="uid://7gv0peu147eb"
+path="res://.godot/imported/thruster3.wav-4970c0b38d6181f357bca565d39f8d73.sample"
 
 [deps]
 
-source_file="res://assets/sounds/thruster2.wav"
-dest_files=["res://.godot/imported/thruster2.wav-b10617b946c5cd480e6eae183c1ac998.sample"]
+source_file="res://assets/sounds/thruster3.wav"
+dest_files=["res://.godot/imported/thruster3.wav-4970c0b38d6181f357bca565d39f8d73.sample"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=47 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -6,16 +6,19 @@
 [ext_resource type="AudioStream" uid="uid://blgug1mlw6vxs" path="res://assets/sounds/damaged.wav" id="3_psmt1"]
 [ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="3_v1h6o"]
 [ext_resource type="PackedScene" uid="uid://dmy0i8hd43tcj" path="res://scenes/component/energy.tscn" id="3_v7w8l"]
-[ext_resource type="AudioStream" uid="uid://cqrbbt35wty6r" path="res://assets/sounds/thruster2.wav" id="4_ckmxu"]
+[ext_resource type="AudioStream" uid="uid://7gv0peu147eb" path="res://assets/sounds/thruster3.wav" id="4_ckmxu"]
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="5_f6cxi"]
 [ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="6_18kca"]
 [ext_resource type="PackedScene" uid="uid://lcn2s72e03xc" path="res://scenes/component/skill_cooldown.tscn" id="6_b81v7"]
 [ext_resource type="Texture2D" uid="uid://brrmjvq8w3jmh" path="res://assets/textures/effects/ies_lights_pack_3d_model2.png" id="6_owhjy"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_8l8co"]
+[ext_resource type="Texture2D" uid="uid://71baonpavm2t" path="res://assets/textures/effects/thruster_trail_sheet.png" id="9_s8o64"]
 [ext_resource type="Script" uid="uid://41fi5af4texf" path="res://scripts/component/camera_2d.gd" id="10_8l8co"]
 [ext_resource type="PackedScene" uid="uid://dwfmk3hcaog1x" path="res://scenes/component/sonar.tscn" id="11_eybgf"]
 [ext_resource type="PackedScene" uid="uid://cfg0up4nynxx6" path="res://scenes/component/research_beam.tscn" id="13_qxtqe"]
 [ext_resource type="PackedScene" uid="uid://cb1jy3pa1b4tk" path="res://scenes/entity/projectile/laser.tscn" id="14_726y4"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="16_vrjrw"]
+[ext_resource type="Texture2D" uid="uid://dx2aomunaop8x" path="res://assets/textures/effects/boom.png" id="19_mfv3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
 atlas = ExtResource("3_v1h6o")
@@ -33,8 +36,166 @@ region = Rect2(0, 16, 32, 16)
 atlas = ExtResource("3_v1h6o")
 region = Rect2(0, 0, 32, 16)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vrjrw"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_mfv3l"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 30.548), 0.0, -193.932, 0, 0, Vector2(0.037037, 0), 8.23385, 8.23385, 0, 0, Vector2(0.760943, 18.0822), 76.7764, 76.7764, 0, 0, Vector2(1, 100), 513.348, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_1sbqw"]
+offsets = PackedFloat32Array(0, 0.446494, 0.870849)
+colors = PackedColorArray(1, 1, 1, 1, 0.980392, 0.980392, 0.980392, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_s8o64"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.451178, 32.6027), 219.302, 219.302, 0, 0, Vector2(1, 123.425), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6cxi"]
 radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfv3l"]
+atlas = ExtResource("16_vrjrw")
+region = Rect2(72, 120, 8, 8)
+
+[sub_resource type="Curve" id="Curve_1sbqw"]
+_data = [Vector2(0.0622568, 1), 0.0, 0.0, 0, 0, Vector2(0.509728, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xwbx1"]
+curve = SubResource("Curve_1sbqw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vqjj"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 3.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 0, 0)
+radial_velocity_min = 20.0
+radial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 20.0
+radial_accel_max = 90.0
+alpha_curve = SubResource("CurveTexture_xwbx1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrjrw"]
+atlas = ExtResource("16_vrjrw")
+region = Rect2(56, 64, 8, 8)
+
+[sub_resource type="Curve" id="Curve_xwbx1"]
+_data = [Vector2(0, 0.861475), 0.0, 0.0, 0, 0, Vector2(0.505837, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5vqjj"]
+curve = SubResource("Curve_xwbx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ka65a"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 42.0
+flatness = 0.4
+initial_velocity_min = 210.18
+initial_velocity_max = 383.07
+angular_velocity_min = -385.63
+angular_velocity_max = 356.34
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -9.15
+radial_accel_max = -5.76
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+damping_min = 60.678
+damping_max = 73.559
+alpha_curve = SubResource("CurveTexture_5vqjj")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 4.564
+turbulence_noise_speed = Vector3(2, 2, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1sbqw"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwbx1"]
+atlas = ExtResource("19_mfv3l")
+region = Rect2(0, 0, 80, 16)
+
+[sub_resource type="Curve" id="Curve_5vqjj"]
+_data = [Vector2(0.2607, 1), 0.0, -0.124479, 0, 0, Vector2(1, 0), -4.66452, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ka65a"]
+curve = SubResource("Curve_5vqjj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkhew"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 12.0
+radial_accel_max = 24.0
+damping_min = 12.0
+damping_max = 12.0
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_ka65a")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvb70"]
+atlas = ExtResource("16_vrjrw")
+region = Rect2(24, 16, 8, 8)
+
+[sub_resource type="Curve" id="Curve_6ybvf"]
+_data = [Vector2(0, 0), 0.0, 0.444718, 0, 0, Vector2(0.202335, 0.808197), 1.13675, 1.13675, 0, 0, Vector2(0.894942, 0), -3.50873, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v2vx8"]
+curve = SubResource("Curve_6ybvf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xe4mu"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 32.0
+emission_ring_inner_radius = 24.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 720.0
+direction = Vector3(0, 0, 0)
+orbit_velocity_min = -0.0799999
+orbit_velocity_max = 0.0800001
+radial_velocity_min = -24.0
+radial_velocity_max = -16.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 8.0
+linear_accel_max = 16.0
+radial_accel_min = -10.0
+radial_accel_max = -8.0
+alpha_curve = SubResource("CurveTexture_v2vx8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtf24"]
+atlas = ExtResource("16_vrjrw")
+region = Rect2(64, 48, 8, 8)
 
 [node name="Player" type="Node2D"]
 z_index = 2
@@ -71,13 +232,61 @@ passive_refill = 1.0
 cooldown = 5.0
 
 [node name="TorpedoCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
-cooldown = 1.0
+cooldown = 0.5
 
 [node name="ShockCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
 cooldown = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_18kca")
+
+[node name="ThrusterTrail" type="CPUParticles2D" parent="Sprite2D"]
+visible = false
+material = SubResource("CanvasItemMaterial_vrjrw")
+position = Vector2(-13, -2)
+amount = 30
+texture = ExtResource("9_s8o64")
+lifetime = 2.0
+randomness = 0.2
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 20.0
+gravity = Vector2(0, -2)
+linear_accel_min = 14.0
+linear_accel_max = 18.0
+damping_max = 12.0
+damping_curve = SubResource("Curve_mfv3l")
+angle_max = 360.0
+color_ramp = SubResource("Gradient_1sbqw")
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("Curve_s8o64")
+anim_offset_max = 0.3
+
+[node name="ThrusterTrail2" type="CPUParticles2D" parent="Sprite2D"]
+visible = false
+material = SubResource("CanvasItemMaterial_vrjrw")
+position = Vector2(-13, 2)
+amount = 30
+texture = ExtResource("9_s8o64")
+lifetime = 2.0
+randomness = 0.2
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 20.0
+gravity = Vector2(0, -2)
+linear_accel_min = 14.0
+linear_accel_max = 18.0
+damping_max = 12.0
+damping_curve = SubResource("Curve_mfv3l")
+angle_max = 360.0
+color_ramp = SubResource("Gradient_1sbqw")
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("Curve_s8o64")
+anim_offset_max = 0.3
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_8pk7n")]
 collision_layer = 2
@@ -88,9 +297,9 @@ health = 10
 shape = SubResource("CircleShape2D_f6cxi")
 
 [node name="RadiusLight" type="PointLight2D" parent="."]
-energy = 0.8
+energy = 0.6
 texture = ExtResource("6_18kca")
-texture_scale = 0.5
+texture_scale = 0.33
 
 [node name="Test" type="Sprite2D" parent="RadiusLight"]
 visible = false
@@ -142,12 +351,68 @@ entity = NodePath("..")
 max_radius = 1000.0
 duration = 5.0
 
+[node name="SonarPulseParticles" type="GPUParticles2D" parent="Sonar"]
+visible = false
+z_index = -1
+emitting = false
+amount = 32
+texture = SubResource("AtlasTexture_mfv3l")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_5vqjj")
+
 [node name="ResearchBeam" parent="." instance=ExtResource("13_qxtqe")]
 
 [node name="Laser" parent="." instance=ExtResource("14_726y4")]
 position = Vector2(19, 0)
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="ShockBlastParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(10, 0)
+emitting = false
+amount = 24
+texture = SubResource("AtlasTexture_vrjrw")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+randomness = 0.1
+trail_lifetime = 0.1
+trail_sections = 6
+process_material = SubResource("ParticleProcessMaterial_ka65a")
+
+[node name="TorpedoBoomParticle" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_1sbqw")
+emitting = false
+amount = 6
+texture = SubResource("AtlasTexture_xwbx1")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_fkhew")
+
+[node name="RepairParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+texture = SubResource("AtlasTexture_wvb70")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xe4mu")
+
+[node name="ResearchParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 6
+texture = SubResource("AtlasTexture_jtf24")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xe4mu")
 
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]

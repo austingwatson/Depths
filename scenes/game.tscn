@@ -22,18 +22,18 @@ light_mode = 1
 
 [sub_resource type="Curve" id="Curve_gee14"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.000203532, 0, 0, Vector2(355.987, 1), 0.0, 0.0, 0, 0, Vector2(4368.93, 10), 0.0, 0.0, 0, 0, Vector2(10000, 4.88316), -0.00235986, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Curve" id="Curve_iywne"]
 _limits = [0.0, 25.0, 0.0, 10000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 25), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.603786), 0.0, 0.0, 0, 0, Vector2(2297.73, 4.21018), 0.0, 0.0, 0, 0, Vector2(5113.27, 8.87729), 0.0, 0.0, 0, 0, Vector2(10000, 5.69517), -0.000374581, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Curve" id="Curve_p57ef"]
 _limits = [0.0, 50.0, 0.0, 10000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 50), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 2.48042), 0.0, -3.10195e-09, 0, 0, Vector2(2459.55, 22.4217), 0.0, 0.0, 0, 0, Vector2(5113.27, 40.2415), 0.0, 0.0, 0, 0, Vector2(10000, 23.6945), 0.00307139, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Curve" id="Curve_u5sy4"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
@@ -41,14 +41,14 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_0tnpc"]
-_limits = [0.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
-point_count = 2
+_limits = [0.0, 25.0, 0.0, 10000.0]
+_data = [Vector2(0, 3.7859), 0.0, 0.0, 0, 0, Vector2(1715.21, 12.0594), 0.00557428, 0.00557428, 0, 0, Vector2(7184.47, 25), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_vtaks"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 10), 0.0, -0.000141732, 0, 0, Vector2(2459.55, 4.90862), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3

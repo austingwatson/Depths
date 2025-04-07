@@ -63,9 +63,9 @@ heal = 1
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_11tjm")]
 entity = NodePath("..")
-max_speed = 50.0
+max_speed = 20.0
 acceleration = 5.0
-deceleration = 500.0
+deceleration = 100.0
 
 [node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_dt2mo")]
 entity = NodePath("..")
@@ -85,9 +85,11 @@ shape = SubResource("CircleShape2D_11tjm")
 
 [node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
-energy = 0.0
+color = Color(0.722702, 0.999442, 0.675061, 1)
+energy = 0.4
 texture = ExtResource("2_ty7i7")
-texture_scale = 0.25
+offset = Vector2(0, 4)
+texture_scale = 0.15
 
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("6_dt2mo")]
 entity = NodePath("..")
