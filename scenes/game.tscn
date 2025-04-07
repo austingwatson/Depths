@@ -1,16 +1,24 @@
-[gd_scene load_steps=20 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=25 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://12ua2mse0rn8" path="res://assets/textures/level/deep_background.png" id="2_ir15t"]
 [ext_resource type="PackedScene" uid="uid://bcobtgraohaxm" path="res://scenes/entity/spawner.tscn" id="2_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://cihdw6creftsj" path="res://assets/textures/level/ice_background_parallax.png" id="3_ca42v"]
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://cajt7vppy4c1h" path="res://assets/textures/level/ice_middleground_parallax.png" id="4_rysoc"]
 [ext_resource type="Texture2D" uid="uid://ioy6p73a7v1l" path="res://assets/textures/level/ice_shelf.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://yqvus5wdpfom" path="res://assets/textures/level/currents_parallax.png" id="7_ca42v"]
+[ext_resource type="Texture2D" uid="uid://v8q4auewvljj" path="res://assets/textures/effects/ies_lights_model1.png" id="7_dinhu"]
 [ext_resource type="Texture2D" uid="uid://dd60ahlecpedw" path="res://assets/textures/level/dark_currents_parallax.png" id="7_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dokvvrp78f7cn" path="res://assets/textures/level/ice_tunnel.png" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cnnmg6jwxpv4p" path="res://scenes/entity/ice_shelf.tscn" id="9_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="9_kvpfn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
+light_mode = 1
 
 [sub_resource type="Curve" id="Curve_gee14"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
@@ -42,9 +50,6 @@ _limits = [0.0, 10.0, 0.0, 10000.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
-light_mode = 1
-
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3
 glow_enabled = true
@@ -53,6 +58,86 @@ glow_hdr_threshold = 1.5
 
 [node name="Game" type="Node"]
 script = ExtResource("1_yqjtg")
+
+[node name="BackGround" type="Parallax2D" parent="."]
+z_index = -20
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(480, 270)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BackGround"]
+texture = ExtResource("2_ir15t")
+centered = false
+
+[node name="DarkCurrentsBG0" type="Parallax2D" parent="."]
+z_index = -19
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(16, 4)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DarkCurrentsBG0"]
+modulate = Color(1, 1, 1, 0.698039)
+texture = ExtResource("7_vtaks")
+centered = false
+
+[node name="IceShelfBG1" type="Parallax2D" parent="."]
+z_index = -18
+scroll_scale = Vector2(0.2, 0.4)
+repeat_size = Vector2(960, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="IceShelfBG1"]
+texture = ExtResource("3_ca42v")
+centered = false
+offset = Vector2(0, -40)
+
+[node name="IceShelfBG2" type="Parallax2D" parent="."]
+z_index = -17
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(960, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="IceShelfBG2"]
+texture = ExtResource("4_rysoc")
+centered = false
+offset = Vector2(0, -20)
+
+[node name="IceShelfPlayArea" type="Parallax2D" parent="."]
+repeat_size = Vector2(960, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="IceShelfPlayArea"]
+texture = ExtResource("6_u5sy4")
+centered = false
+offset = Vector2(0, -187)
+
+[node name="BrightCurrentsFG1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.5, 1.5)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(64, 6)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BrightCurrentsFG1"]
+modulate = Color(1, 1, 1, 0.133333)
+texture = ExtResource("7_ca42v")
+centered = false
+
+[node name="IceTunnel" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_vtaks")
+texture = ExtResource("8_gee14")
+centered = false
+offset = Vector2(-480, -187)
+
+[node name="TunnelMouthLight" type="PointLight2D" parent="IceTunnel"]
+position = Vector2(0, 170)
+texture = ExtResource("7_dinhu")
+
+[node name="TunnelShaftLight" type="PointLight2D" parent="IceTunnel"]
+position = Vector2(0, -27)
+energy = 2.0
+texture = ExtResource("8_kvuet")
 
 [node name="HunterFishSpawner" parent="." instance=ExtResource("2_lbhrr")]
 enemy_scene = ExtResource("3_lnu2h")
@@ -90,35 +175,6 @@ lower_spawn_curve = SubResource("Curve_iywne")
 upper_spawn_curve = SubResource("Curve_p57ef")
 timer_curve = SubResource("Curve_u5sy4")
 margin = 25.0
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="IceShelf" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(960, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/IceShelf"]
-texture = ExtResource("6_u5sy4")
-centered = false
-offset = Vector2(0, -187)
-
-[node name="ShallowCurrents" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.1, 1)
-motion_mirroring = Vector2(960, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ShallowCurrents"]
-texture = ExtResource("7_vtaks")
-centered = false
-
-[node name="IceTunnel" type="Sprite2D" parent="."]
-z_index = -1
-material = SubResource("CanvasItemMaterial_vtaks")
-texture = ExtResource("8_gee14")
-centered = false
-offset = Vector2(-480, -187)
-
-[node name="PointLight2D" type="PointLight2D" parent="IceTunnel"]
-texture = ExtResource("9_kvpfn")
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]
 

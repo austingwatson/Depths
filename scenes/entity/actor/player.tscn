@@ -35,6 +35,7 @@ region = Rect2(0, 0, 32, 16)
 radius = 8.0
 
 [node name="Player" type="Node2D"]
+z_index = 2
 script = ExtResource("1_in1sw")
 forward_texture = SubResource("AtlasTexture_8l8co")
 left_texture = SubResource("AtlasTexture_eybgf")
