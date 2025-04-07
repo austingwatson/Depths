@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=17 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
 [ext_resource type="AudioStream" uid="uid://dmgogwrt7rxdb" path="res://assets/sounds/shoot_torpedo.wav" id="2_01kix"]
@@ -48,6 +48,9 @@ alpha_curve = SubResource("CurveTexture_ka65a")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjd6s"]
+radius = 12.0
+
 [node name="Torpedo" type="Node2D"]
 script = ExtResource("1_v7qta")
 
@@ -85,6 +88,21 @@ one_shot = true
 explosiveness = 0.6
 process_material = SubResource("ParticleProcessMaterial_2320g")
 
+[node name="Homing" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Homing"]
+polygon = PackedVector2Array(0, 0, 50, -25, 50, 25)
+
+[node name="Explosion" parent="." instance=ExtResource("2_oaaup")]
+collision_layer = 2
+collision_mask = 12
+damage = 1
+shape = SubResource("CircleShape2D_kjd6s")
+
 [connection signal="finished" from="TorpedoExplosionSound" to="." method="_on_torpedo_explosion_sound_finished"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
 [connection signal="reached" from="MaxDistance" to="." method="_on_max_distance_reached"]
+[connection signal="area_entered" from="Homing" to="." method="_on_homing_area_entered"]
