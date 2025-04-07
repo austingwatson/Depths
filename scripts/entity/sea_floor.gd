@@ -1,7 +1,7 @@
 extends Area2D
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	global_position.x = get_viewport().get_camera_2d().global_position.x
 
 
