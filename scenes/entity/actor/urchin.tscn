@@ -138,7 +138,8 @@ max_speed = 25.0
 acceleration = 5.0
 deceleration = 500.0
 
-[node name="FishSprite" parent="." instance=ExtResource("3_qwgpp")]
+[node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_qwgpp")]
+entity = NodePath("..")
 base_animation = SubResource("SpriteFrames_2y608")
 outline_animation = SubResource("SpriteFrames_ijtj0")
 eye_animation = SubResource("SpriteFrames_stgjh")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://r21ikn6owpl5"]
+[gd_scene load_steps=16 format=3 uid="uid://r21ikn6owpl5"]
 
 [ext_resource type="Script" uid="uid://c4moyk1cjit1o" path="res://scripts/ui/shop.gd" id="1_ahsc1"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8v20v"]
@@ -35,6 +35,22 @@ region = Rect2(240, 368, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xk8hd"]
 atlas = ExtResource("2_8v20v")
 region = Rect2(224, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nbll"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(0, 352, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkr0s"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(32, 352, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovlah"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(16, 352, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48xco"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(48, 352, 16, 16)
 
 [node name="Shop" type="CenterContainer"]
 anchors_preset = 8
@@ -113,5 +129,27 @@ store_names = Array[String](["shock", "shock_range"])
 tool_tip_strings = Array[String](["shock", "shock_range"])
 icon_texture = SubResource("AtlasTexture_xk8hd")
 
-[node name="TestLabel" type="Label" parent="."]
-layout_mode = 2
+[node name="Close" type="TextureButton" parent="Background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -21.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 21.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_2nbll")
+texture_pressed = SubResource("AtlasTexture_lkr0s")
+texture_hover = SubResource("AtlasTexture_ovlah")
+
+[node name="Icon" type="TextureRect" parent="Background/Close"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_48xco")
+
+[connection signal="pressed" from="Background/Close" to="." method="_on_close_pressed"]

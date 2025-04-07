@@ -129,7 +129,8 @@ autostart = true
 [node name="Flicker" type="Timer" parent="."]
 wait_time = 0.25
 
-[node name="Sonar" parent="." instance=ExtResource("11_eybgf")]
+[node name="Sonar" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("11_eybgf")]
+entity = NodePath("..")
 max_radius = 1000.0
 duration = 5.0
 

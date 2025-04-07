@@ -74,7 +74,8 @@ acceleration = 50.0
 deceleration = 300.0
 rotation_speed = 1.0
 
-[node name="FishSprite" parent="." instance=ExtResource("3_mrtdc")]
+[node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_mrtdc")]
+entity = NodePath("..")
 base_animation = SubResource("SpriteFrames_fjt5v")
 outline_animation = SubResource("SpriteFrames_ymxha")
 eye_animation = SubResource("SpriteFrames_sdfgv")

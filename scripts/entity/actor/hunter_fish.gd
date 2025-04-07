@@ -54,8 +54,8 @@ func _on_hurt_box_dead() -> void:
 	queue_free()
 
 
-func _on_hurt_box_pinged() -> void:
-	fish_sprite.pinged()
+func _on_hurt_box_pinged(global_position: Vector2) -> void:
+	fish_sprite.pinged(global_position)
 
 
 func _on_detection_detected(entity: Node2D) -> void:

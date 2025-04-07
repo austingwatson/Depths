@@ -1,6 +1,7 @@
 class_name FishSprite
 extends Node2D
 
+@export var entity: Node2D
 @export var base_animation: SpriteFrames
 @export var outline_animation: SpriteFrames
 @export var eye_animation: SpriteFrames
@@ -34,11 +35,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	on_screen = false
 	
 
-func pinged() -> void:
+func pinged(global_position: Vector2) -> void:
 	if on_screen:
 		outline.visible = true
 	else:
-		print("show arrow")
+		ProjectileManager.add_arrow(global_position, entity.global_position)
 	pinged_timer.start()
 
 

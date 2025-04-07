@@ -4,7 +4,7 @@ extends Area2D
 signal hurt(max_health: int, health: int)
 signal healed(max_health: int, health: int)
 signal dead
-signal pinged
+signal pinged(global_position: Vector2)
 
 @export var entity: Node2D
 @export var infinite_health := false
@@ -32,5 +32,5 @@ func heal(heal: int) -> void:
 	healed.emit(max_health, health)
 	
 
-func ping() -> void:
-	pinged.emit()
+func ping(global_position: Vector2) -> void:
+	pinged.emit(global_position)

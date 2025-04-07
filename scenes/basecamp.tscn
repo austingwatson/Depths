@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=27 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
 [ext_resource type="Texture2D" uid="uid://c6jh7urx1kx6w" path="res://assets/textures/level/basecamp_landscape.png" id="2_e2wlb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c856mqgpegm55" path="res://assets/textures/level/repair_arm.png" id="4_nxq54"]
 [ext_resource type="Texture2D" uid="uid://cku7x63j1kd7m" path="res://assets/textures/level/dock_animation.png" id="5_cdnnk"]
 [ext_resource type="PackedScene" uid="uid://r21ikn6owpl5" path="res://scenes/ui/shop.tscn" id="8_cdnnk"]
+[ext_resource type="PackedScene" uid="uid://c1afp1kqvkk6j" path="res://scenes/ui/open_shop.tscn" id="9_f3dic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3dic"]
 atlas = ExtResource("4_nxq54")
@@ -217,7 +218,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_koy8h")
 }
 
+[node name="OpenShop" parent="." instance=ExtResource("9_f3dic")]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 41.0
+offset_bottom = 41.0
+
 [node name="Shop" parent="." instance=ExtResource("8_cdnnk")]
+visible = false
 anchors_preset = 4
 anchor_left = 0.0
 anchor_right = 0.0
@@ -227,3 +235,4 @@ grow_horizontal = 1
 
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="OpenShop" to="." method="_on_open_shop_pressed"]

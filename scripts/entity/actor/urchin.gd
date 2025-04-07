@@ -30,5 +30,5 @@ func _on_hit_box_hit(global_position: Vector2) -> void:
 		fish_sprite.show_eyes()
 
 
-func _on_hurt_box_pinged() -> void:
-	fish_sprite.pinged()
+func _on_hurt_box_pinged(global_position: Vector2) -> void:
+	fish_sprite.pinged(global_position)

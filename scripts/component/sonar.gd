@@ -1,6 +1,7 @@
 class_name Sonar
 extends Area2D
 
+@export var entity: Node2D
 @export var max_radius := 0.0
 @export var duration := 0.0
 @onready var collision_shape := $CollisionShape2D
@@ -17,4 +18,4 @@ func start_sonar() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtBox:
-		area.ping()
+		area.ping(entity.global_position)
