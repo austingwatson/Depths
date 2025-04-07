@@ -80,29 +80,39 @@ func _unhandled_input(_event: InputEvent) -> void:
 			Weapon.TORPEDO:
 				if player_stats.unlocked_weapons[1]:
 					weapon = Weapon.LASER
+					ProjectileManager.add_weapon_icon(global_position, 1)
 				elif player_stats.unlocked_weapons[2]:
 					weapon = Weapon.SHOCK
+					ProjectileManager.add_weapon_icon(global_position, 2)
 			Weapon.LASER:
 				if player_stats.unlocked_weapons[2]:
 					weapon = Weapon.SHOCK
+					ProjectileManager.add_weapon_icon(global_position, 2)
 				else:
 					weapon = Weapon.TORPEDO
+					ProjectileManager.add_weapon_icon(global_position, 0)
 			Weapon.SHOCK:
 				weapon = Weapon.TORPEDO
+				ProjectileManager.add_weapon_icon(global_position, 0)
 	elif Input.is_action_just_released("change_weapon_down"):
 		match weapon:
 			Weapon.TORPEDO:
 				if player_stats.unlocked_weapons[2]:
 					weapon = Weapon.SHOCK
+					ProjectileManager.add_weapon_icon(global_position, 2)
 				elif player_stats.unlocked_weapons[1]:
 					weapon = Weapon.LASER
+					ProjectileManager.add_weapon_icon(global_position, 1)
 			Weapon.LASER:
 				weapon = Weapon.TORPEDO
+				ProjectileManager.add_weapon_icon(global_position, 0)
 			Weapon.SHOCK:
 				if player_stats.unlocked_weapons[1]:
 					weapon = Weapon.LASER
+					ProjectileManager.add_weapon_icon(global_position, 1)
 				else:
 					weapon = Weapon.TORPEDO
+					ProjectileManager.add_weapon_icon(global_position, 0)
 
 
 func _physics_process(delta: float) -> void:
