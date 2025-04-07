@@ -85,6 +85,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					weapon = Weapon.SHOCK
 					ProjectileManager.add_weapon_icon(global_position, 2)
 			Weapon.LASER:
+				laser.is_casting = false
 				if player_stats.unlocked_weapons[2]:
 					weapon = Weapon.SHOCK
 					ProjectileManager.add_weapon_icon(global_position, 2)
@@ -104,6 +105,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					weapon = Weapon.LASER
 					ProjectileManager.add_weapon_icon(global_position, 1)
 			Weapon.LASER:
+				laser.is_casting = false
 				weapon = Weapon.TORPEDO
 				ProjectileManager.add_weapon_icon(global_position, 0)
 			Weapon.SHOCK:
