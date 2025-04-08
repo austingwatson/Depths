@@ -83,7 +83,7 @@ collision_mask = 12
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Homing"]
-polygon = PackedVector2Array(0, 0, 10, -25, 59, -25, 59, 25, 8, 25)
+polygon = PackedVector2Array(-8, 0, 0, -28, 59, -28, 59, 28, 0, 28)
 
 [node name="Explosion" parent="." instance=ExtResource("2_oaaup")]
 collision_layer = 2
