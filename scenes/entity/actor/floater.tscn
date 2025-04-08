@@ -63,8 +63,8 @@ heal = 1
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_11tjm")]
 entity = NodePath("..")
-max_speed = 20.0
-acceleration = 5.0
+max_speed = 10.0
+acceleration = 2.0
 deceleration = 100.0
 
 [node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_dt2mo")]

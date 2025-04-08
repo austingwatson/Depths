@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://xmsihfsj6imo"]
+[gd_scene load_steps=13 format=3 uid="uid://xmsihfsj6imo"]
 
+[ext_resource type="Script" uid="uid://bvhbf46c532pk" path="res://scripts/tutorial.gd" id="1_4kmhl"]
 [ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_c13y7"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8ho6b"]
+[ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="4_cq4me"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph3nu"]
 atlas = ExtResource("2_8ho6b")
@@ -36,21 +38,37 @@ atlas = ExtResource("2_8ho6b")
 region = Rect2(400, 96, 96, 16)
 
 [node name="Tutorial" type="Node"]
+script = ExtResource("1_4kmhl")
 
 [node name="BG" type="Sprite2D" parent="."]
 texture = ExtResource("1_c13y7")
 centered = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BG"]
-offset_left = 19.0
-offset_top = 48.0
-offset_right = 226.0
-offset_bottom = 229.0
-
 [node name="Panel1" type="Sprite2D" parent="BG"]
 position = Vector2(11, 11)
 texture = SubResource("AtlasTexture_ph3nu")
 centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG/Panel1"]
+offset_left = 8.0
+offset_top = 37.0
+offset_right = 215.0
+offset_bottom = 218.0
+text = "You will pilot a remote submersible below the ice shell of Enceladus, where no sunlight reaches. Scan the remains of alien organisms to gain data for upgrades on future dives. Use your sonar to avoid threats or hunt for specimens. Use your weaponry to eliminate them.
+
+Your mission is to reach the distant seafloor at 10,000m below the ice.
+
+"
+
+[node name="Panel2" type="Sprite2D" parent="BG"]
+position = Vector2(291, 58)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_ph3nu")
+centered = false
+
+[node name="Submersible" type="Sprite2D" parent="BG"]
+position = Vector2(347, 129)
+texture = ExtResource("4_cq4me")
 
 [node name="Uppertext" type="Sprite2D" parent="."]
 position = Vector2(11, 11)
@@ -99,3 +117,6 @@ offset_left = 46.0
 offset_right = 86.0
 offset_bottom = 13.0
 text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

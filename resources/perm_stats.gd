@@ -48,29 +48,29 @@ extends Resource
 @export var shock_range := 0.0
 
 var store := {
-	"energy1": 3,
-	"energy2": 1,
-	"energy3": 1,
+	"energy1": 2,
+	"energy2": 4,
+	"energy3": 6,
 	
-	"health1": 1,
-	"health2": 1,
-	"health3": 1,
+	"health1": 4,
+	"health2": 4,
+	"health3": 6,
 	
-	"cooldown1": 1,
-	"cooldown2": 1,
-	"cooldown3": 1,
+	"cooldown1": 2,
+	"cooldown2": 2,
+	"cooldown3": 2,
 	
-	"damage1": 1,
-	"damage2": 1,
-	"damage3": 1,
+	"damage1": 3,
+	"damage2": 4,
+	"damage3": 5,
 	
-	"homing": 1,
+	"homing": 8,
 	
-	"laser": 1,
-	"laser_cost": 1,
+	"laser": 10,
+	"laser_cost": 6,
 	
-	"shock": 1,
-	"shock_range": 1,
+	"shock": 8,
+	"shock_range": 6,
 }
 var upgrades := {
 	"energy1": 125.0,

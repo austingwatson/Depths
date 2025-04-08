@@ -1,0 +1,235 @@
+[gd_scene load_steps=27 format=3 uid="uid://b1boramnulqrr"]
+
+[ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_d42ma"]
+[ext_resource type="Script" uid="uid://44vbgi4q61e7" path="res://scripts/tutorial_3.gd" id="1_l806m"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_l806m"]
+[ext_resource type="Texture2D" uid="uid://crpnnm0l8ilj3" path="res://assets/textures/entity/floater_green.png" id="3_6i11h"]
+[ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="4_i2uht"]
+[ext_resource type="Texture2D" uid="uid://dx2aomunaop8x" path="res://assets/textures/effects/boom.png" id="5_n0cec"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="6_linoo"]
+[ext_resource type="Texture2D" uid="uid://cd63qn254h8wb" path="res://assets/textures/entity/urchin.png" id="7_jqb15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1gog"]
+atlas = ExtResource("2_l806m")
+region = Rect2(256, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gghlg"]
+atlas = ExtResource("2_l806m")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhaqj"]
+atlas = ExtResource("3_6i11h")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp2ol"]
+atlas = ExtResource("4_i2uht")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxbqr"]
+atlas = ExtResource("5_n0cec")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3b2m"]
+atlas = ExtResource("2_l806m")
+region = Rect2(96, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6kj3"]
+atlas = ExtResource("6_linoo")
+region = Rect2(16, 80, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw1jd"]
+atlas = ExtResource("2_l806m")
+region = Rect2(144, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khlrt"]
+atlas = ExtResource("7_jqb15")
+region = Rect2(136, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p264"]
+atlas = ExtResource("7_jqb15")
+region = Rect2(72, 72, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbajt"]
+atlas = ExtResource("2_l806m")
+region = Rect2(160, 376, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s7na"]
+atlas = ExtResource("2_l806m")
+region = Rect2(256, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0xn5"]
+atlas = ExtResource("2_l806m")
+region = Rect2(256, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuwgb"]
+atlas = ExtResource("2_l806m")
+region = Rect2(544, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eeq2"]
+atlas = ExtResource("2_l806m")
+region = Rect2(400, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdeyt"]
+atlas = ExtResource("2_l806m")
+region = Rect2(256, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeg7f"]
+atlas = ExtResource("2_l806m")
+region = Rect2(544, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0wtq"]
+atlas = ExtResource("2_l806m")
+region = Rect2(400, 96, 96, 16)
+
+[node name="Tutorial3" type="Node"]
+script = ExtResource("1_l806m")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_d42ma")
+centered = false
+
+[node name="ControlPanelTab" type="Sprite2D" parent="BG"]
+position = Vector2(237.4, 71.2)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("AtlasTexture_j1gog")
+flip_h = true
+
+[node name="ControlPanelTab2" type="Sprite2D" parent="BG"]
+position = Vector2(237.4, 109.2)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("AtlasTexture_j1gog")
+flip_h = true
+
+[node name="ControlPanelTab3" type="Sprite2D" parent="BG"]
+position = Vector2(237.4, 148.2)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("AtlasTexture_j1gog")
+flip_h = true
+
+[node name="ControlPanelTab4" type="Sprite2D" parent="BG"]
+position = Vector2(236.4, 188.2)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("AtlasTexture_j1gog")
+flip_h = true
+
+[node name="Panel1" type="Sprite2D" parent="BG"]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_gghlg")
+centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG/Panel1"]
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 215.0
+offset_bottom = 221.0
+text = "You must manage your sub's HULL and ENERGY while below the ice. ENERGY replenishes automatically while idle.
+
+To repair the HULL, hunt alien GASBAGS for their useful fluids-
+
+You'll need DATA for upgrades. SCAN alien remains by pointing your sub's scanner toward them long enough.
+
+Use your SONAR often to avoid dangerous aliens and upgrade your sub back at BASECAMP when you die."
+scroll_active = false
+
+[node name="Gasbags" type="Sprite2D" parent="BG"]
+position = Vector2(255, 93)
+texture = SubResource("AtlasTexture_nhaqj")
+centered = false
+
+[node name="Sub" type="Sprite2D" parent="BG"]
+position = Vector2(264, 72)
+texture = SubResource("AtlasTexture_fp2ol")
+
+[node name="AlienRemains" type="Sprite2D" parent="BG"]
+position = Vector2(269, 148)
+texture = SubResource("AtlasTexture_oxbqr")
+
+[node name="AlienRemains" type="Sprite2D" parent="BG/AlienRemains"]
+position = Vector2(-9, 8)
+texture = SubResource("AtlasTexture_oxbqr")
+
+[node name="AlienRemains" type="Sprite2D" parent="BG/AlienRemains/AlienRemains"]
+position = Vector2(-8, -16)
+texture = SubResource("AtlasTexture_oxbqr")
+
+[node name="Battery" type="Sprite2D" parent="BG"]
+position = Vector2(294, 69)
+texture = SubResource("AtlasTexture_m3b2m")
+
+[node name="HullPlus" type="Sprite2D" parent="BG"]
+position = Vector2(297, 114)
+texture = SubResource("AtlasTexture_b6kj3")
+
+[node name="HullPlus" type="Sprite2D" parent="BG/HullPlus"]
+position = Vector2(-7, -7)
+texture = SubResource("AtlasTexture_b6kj3")
+
+[node name="HullPlus2" type="Sprite2D" parent="BG/HullPlus"]
+position = Vector2(0, -14)
+texture = SubResource("AtlasTexture_b6kj3")
+
+[node name="Data" type="Sprite2D" parent="BG"]
+position = Vector2(294, 148)
+texture = SubResource("AtlasTexture_jw1jd")
+
+[node name="Urchin" type="Sprite2D" parent="BG"]
+position = Vector2(260, 186)
+texture = SubResource("AtlasTexture_khlrt")
+
+[node name="Eye" type="Sprite2D" parent="BG/Urchin"]
+texture = SubResource("AtlasTexture_1p264")
+
+[node name="Sonar" type="Sprite2D" parent="BG"]
+position = Vector2(294, 187)
+texture = SubResource("AtlasTexture_jbajt")
+
+[node name="Uppertext" type="Sprite2D" parent="."]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_3s7na")
+centered = false
+
+[node name="Label" type="Label" parent="Uppertext"]
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 97.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 32
+text = "Gameplay"
+
+[node name="BodyTextbox" type="Sprite2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 372.0
+offset_top = 218.0
+offset_right = 468.0
+offset_bottom = 258.0
+
+[node name="NextButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_i0xn5")
+texture_pressed = SubResource("AtlasTexture_wuwgb")
+texture_hover = SubResource("AtlasTexture_3eeq2")
+
+[node name="Next" type="Label" parent="VBoxContainer/NextButton"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 13.0
+text = "Play!"
+
+[node name="BackButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_sdeyt")
+texture_pressed = SubResource("AtlasTexture_qeg7f")
+texture_hover = SubResource("AtlasTexture_h0wtq")
+flip_h = true
+
+[node name="Back" type="Label" parent="VBoxContainer/BackButton"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 86.0
+offset_bottom = 13.0
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

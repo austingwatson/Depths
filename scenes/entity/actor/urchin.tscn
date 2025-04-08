@@ -141,8 +141,8 @@ script = ExtResource("1_rrpem")
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_qwgpp")]
 entity = NodePath("..")
-max_speed = 25.0
-acceleration = 5.0
+max_speed = 15.0
+acceleration = 2.0
 deceleration = 500.0
 
 [node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_qwgpp")]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://smbcyspbbf76"]
+[gd_scene load_steps=10 format=3 uid="uid://smbcyspbbf76"]
 
 [ext_resource type="Script" uid="uid://baxiwaedig7an" path="res://scripts/end_game_screen.gd" id="1_62ohe"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_7y8om"]
+[ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="2_ubscq"]
+[ext_resource type="Texture2D" uid="uid://dd60ahlecpedw" path="res://assets/textures/level/dark_currents_parallax.png" id="4_r6qnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70b0o"]
 atlas = ExtResource("2_7y8om")
@@ -13,10 +15,24 @@ region = Rect2(128, 432, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ubscq"]
 atlas = ExtResource("2_7y8om")
-region = Rect2(48, 64, 96, 48)
+region = Rect2(256, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouj7k"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(544, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mw7a"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(400, 48, 144, 32)
 
 [node name="EndGameScreen" type="Node"]
 script = ExtResource("1_62ohe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.521141, 0.521141, 0.521141, 1)
+position = Vector2(0, 17)
+texture = ExtResource("2_ubscq")
+centered = false
 
 [node name="DepthMeter" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -63,14 +79,33 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_ubscq")
+texture_pressed = SubResource("AtlasTexture_ouj7k")
+texture_hover = SubResource("AtlasTexture_4mw7a")
+flip_h = true
 
 [node name="Label" type="Label" parent="BaseCampButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Base Camp"
+
+[node name="DarkCurrentsBG0" type="Parallax2D" parent="."]
+z_index = -19
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(24, 12)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DarkCurrentsBG0"]
+modulate = Color(1, 1, 1, 0.698039)
+texture = ExtResource("4_r6qnx")
+centered = false
 
 [connection signal="pressed" from="BaseCampButton" to="." method="_on_base_camp_button_pressed"]

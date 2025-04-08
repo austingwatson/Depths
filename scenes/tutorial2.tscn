@@ -1,0 +1,193 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8c5jc1nuj2nj"]
+
+[ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_dxd6s"]
+[ext_resource type="Script" uid="uid://bsu5kqjf60do3" path="res://scripts/tutorial_2.gd" id="1_qv3dx"]
+[ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_qv3dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll3yt"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(256, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmu26"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ten"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(200, 400, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ju0u"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(288, 400, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlw4i"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(232, 400, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0yb2"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(264, 400, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxi7n"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(320, 400, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu7yn"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(256, 0, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfwxr"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(256, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw8yh"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(544, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g7ew"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(400, 128, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdyx8"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(256, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qesn"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(544, 96, 96, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe87k"]
+atlas = ExtResource("2_qv3dx")
+region = Rect2(400, 96, 96, 16)
+
+[node name="Tutorial2" type="Node"]
+script = ExtResource("1_qv3dx")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_dxd6s")
+centered = false
+
+[node name="ControlPanelTab" type="Sprite2D" parent="BG"]
+position = Vector2(243, 57)
+texture = SubResource("AtlasTexture_ll3yt")
+flip_h = true
+
+[node name="ControlPanelTab2" type="Sprite2D" parent="BG"]
+position = Vector2(243, 95)
+texture = SubResource("AtlasTexture_ll3yt")
+flip_h = true
+
+[node name="ControlPanelTab3" type="Sprite2D" parent="BG"]
+position = Vector2(243, 134)
+texture = SubResource("AtlasTexture_ll3yt")
+flip_h = true
+
+[node name="ControlPanelTab4" type="Sprite2D" parent="BG"]
+position = Vector2(242, 174)
+texture = SubResource("AtlasTexture_ll3yt")
+flip_h = true
+
+[node name="ControlPanelTab5" type="Sprite2D" parent="BG"]
+position = Vector2(243, 214)
+texture = SubResource("AtlasTexture_ll3yt")
+flip_h = true
+
+[node name="Panel1" type="Sprite2D" parent="BG"]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_vmu26")
+centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG/Panel1"]
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 215.0
+offset_bottom = 221.0
+text = "Hold RMB to orient toward the mouse-
+
+
+Hold SPACEBAR to engage thrust-
+
+
+Press LMB to fire current weaponry-
+
+
+SCROLLWHEEL swaps weapons-
+(Must unlock weapons at Basecamp)
+
+Press SHIFT to use SONAR PING-
+(Uses no energy, but must cooldown)
+
+"
+scroll_active = false
+
+[node name="RMB" type="Sprite2D" parent="BG"]
+position = Vector2(265, 41)
+texture = SubResource("AtlasTexture_n1ten")
+centered = false
+
+[node name="Spacebar" type="Sprite2D" parent="BG"]
+position = Vector2(274, 95)
+texture = SubResource("AtlasTexture_2ju0u")
+
+[node name="LMB" type="Sprite2D" parent="BG"]
+position = Vector2(273, 133)
+texture = SubResource("AtlasTexture_hlw4i")
+
+[node name="Scrollwheel" type="Sprite2D" parent="BG"]
+position = Vector2(273, 175)
+texture = SubResource("AtlasTexture_k0yb2")
+
+[node name="Shift" type="Sprite2D" parent="BG"]
+position = Vector2(273, 214)
+texture = SubResource("AtlasTexture_cxi7n")
+
+[node name="Uppertext" type="Sprite2D" parent="."]
+position = Vector2(11, 11)
+texture = SubResource("AtlasTexture_bu7yn")
+centered = false
+
+[node name="Label" type="Label" parent="Uppertext"]
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 97.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="BodyTextbox" type="Sprite2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 372.0
+offset_top = 218.0
+offset_right = 468.0
+offset_bottom = 258.0
+
+[node name="NextButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_jfwxr")
+texture_pressed = SubResource("AtlasTexture_iw8yh")
+texture_hover = SubResource("AtlasTexture_2g7ew")
+
+[node name="Next" type="Label" parent="VBoxContainer/NextButton"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 13.0
+text = "Next"
+
+[node name="BackButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_cdyx8")
+texture_pressed = SubResource("AtlasTexture_7qesn")
+texture_hover = SubResource("AtlasTexture_xe87k")
+flip_h = true
+
+[node name="Back" type="Label" parent="VBoxContainer/BackButton"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 86.0
+offset_bottom = 13.0
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
