@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4t4v3xeqcma2"]
+[gd_scene load_steps=8 format=3 uid="uid://4t4v3xeqcma2"]
 
 [ext_resource type="Script" uid="uid://dhniosaannv60" path="res://scripts/entity/projectile/shock.gd" id="1_jmcv3"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_0iv5t"]
+[ext_resource type="AudioStream" uid="uid://b83yyynj2lbc1" path="res://assets/sounds/microwave_gun.wav" id="2_1xao5"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="3_0iv5t"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0iv5t"]
@@ -19,6 +20,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 script = ExtResource("1_jmcv3")
 
 [node name="ShockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1xao5")
 
 [node name="HitBox" parent="." instance=ExtResource("2_0iv5t")]
 collision_layer = 2

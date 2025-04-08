@@ -62,14 +62,15 @@ func get_random_position() -> Vector2:
 	var spawn_pos := get_viewport().get_camera_2d().global_position
 	match dir:
 		"up":
-			spawn_pos += Vector2(randf_range(-screen_size.x - margin, screen_size.x + margin), -screen_size.y - margin)
+			spawn_pos += Vector2(randf_range(-screen_size.x - margin, screen_size.x + margin), -screen_size.y * 2 - margin)
 		"left":
-			spawn_pos += Vector2(-screen_size.x - margin, randf_range(-screen_size.y - margin, screen_size.y + margin))
+			spawn_pos += Vector2(-screen_size.x - margin, randf_range(-screen_size.y - margin, screen_size.y * 2 + margin))
 		"down":
-			spawn_pos += Vector2(randf_range(-screen_size.x - margin, screen_size.x + margin), screen_size.y + margin)
+			spawn_pos += Vector2(randf_range(-screen_size.x * 2 - margin, screen_size.x + margin), screen_size.y + margin)
 		"right":
-			spawn_pos += Vector2(screen_size.x + margin, randf_range(-screen_size.y - margin, screen_size.y + margin))
+			spawn_pos += Vector2(screen_size.x * 2 + margin, randf_range(-screen_size.y - margin, screen_size.y + margin))
 	
+	#spawn_pos = get_viewport().get_camera_2d().global_position
 	return spawn_pos
 
 
