@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=35 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dmy0i8hd43tcj" path="res://scenes/component/energy.tscn" id="3_v7w8l"]
 [ext_resource type="AudioStream" uid="uid://7gv0peu147eb" path="res://assets/sounds/thruster3.wav" id="4_ckmxu"]
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="5_f6cxi"]
+[ext_resource type="AudioStream" uid="uid://bvve5of0n3mvb" path="res://assets/sounds/Hit_Hurt.wav" id="5_mfv3l"]
 [ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="6_18kca"]
 [ext_resource type="PackedScene" uid="uid://lcn2s72e03xc" path="res://scenes/component/skill_cooldown.tscn" id="6_b81v7"]
 [ext_resource type="Texture2D" uid="uid://brrmjvq8w3jmh" path="res://assets/textures/effects/ies_lights_pack_3d_model2.png" id="6_owhjy"]
@@ -94,6 +95,9 @@ stream = ExtResource("3_psmt1")
 
 [node name="ThrusterSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ckmxu")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mfv3l")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("10_8l8co")
@@ -296,6 +300,7 @@ radial_accel_max = -16.0
 angle_max = 360.0
 color_ramp = SubResource("Gradient_xwbx1")
 
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]
 [connection signal="energy_changed" from="Energy" to="." method="_on_energy_energy_changed"]
 [connection signal="no_energy" from="Energy" to="." method="_on_energy_no_energy"]

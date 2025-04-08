@@ -35,6 +35,7 @@ const rotation_threshold := 0.1
 @onready var repair_particles := $RepairParticle
 @onready var research_particles := $ResearchParticle
 @onready var sonar_partciles := $SonarPulseParticles
+@onready var death_sound := $DeathSound
 var player_stats: PermStats = EntityManager.player_stats
 var no_power := false
 var initial_drop := true
@@ -239,9 +240,14 @@ func _on_hurt_box_healed(max_health: int, health: int) -> void:
 
 
 func _on_hurt_box_dead() -> void:
-	EntityManager.clear()
-	get_tree().change_scene_to_file("res://scenes/end_game_screen.tscn")
+	damaged_sound.stop()
+	death_sound.play()
 	
 
 func _on_research_added() -> void:
 	research_particles.emitting = true
+
+
+func _on_death_sound_finished() -> void:
+	EntityManager.clear()
+	get_tree().change_scene_to_file("res://scenes/end_game_screen.tscn")
