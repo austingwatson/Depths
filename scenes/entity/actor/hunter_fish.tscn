@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=25 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
@@ -9,64 +9,76 @@
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="7_fjt5v"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="8_fjt5v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4cvhp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjt5v"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(0, 0, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdfgv"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 32, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_irjld"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdghc"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 48, 32, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fjt5v"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0xpfh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4cvhp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sdfgv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_irjld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sdghc")
+"texture": SubResource("AtlasTexture_fjt5v")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xpfh"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(32, 0, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t877b"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(32, 32, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etqx8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymxha"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 16, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s1v5h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdfgv"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irjld"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 48, 32, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ymxha"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdghc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xpfh")
+"texture": SubResource("AtlasTexture_ymxha")
 }, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_512ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdfgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irjld")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t877b"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etqx8"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1v5h"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frqw2"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ui7n7"]
+animations = [{
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t877b")
 }, {
@@ -75,42 +87,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s1v5h")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjt5v"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ymxha"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 32, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_frqw2"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 48, 32, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sdfgv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjt5v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ymxha")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_frqw2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_512ls")
 }],
 "loop": true,
 "name": &"default",
@@ -122,10 +101,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cvhp"]
 radius = 200.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cvhp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjt5v"]
+size = Vector2(8, 4)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0xpfh"]
-radius = 50.0
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_fjt5v"]
+points = PackedVector2Array(10, 0, 30, -15, 30, 15)
 
 [node name="HunterFish" type="Node2D" groups=["Fish"]]
 script = ExtResource("1_snnp5")
@@ -135,13 +115,13 @@ entity = NodePath("..")
 max_speed = 220.0
 acceleration = 50.0
 deceleration = 100.0
-rotation_speed = 0.5
+rotation_speed = 5.0
 
 [node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_mrtdc")]
 entity = NodePath("..")
-base_animation = SubResource("SpriteFrames_fjt5v")
-outline_animation = SubResource("SpriteFrames_ymxha")
-eye_animation = SubResource("SpriteFrames_sdfgv")
+base_animation = SubResource("SpriteFrames_0xpfh")
+outline_animation = SubResource("SpriteFrames_sdghc")
+eye_animation = SubResource("SpriteFrames_ui7n7")
 show_time = 2.5
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_vbyxb")]
@@ -162,13 +142,13 @@ position = Vector2(20, 0)
 rotation = 1.5708
 collision_layer = 4
 collision_mask = 2
-shape = SubResource("CapsuleShape2D_4cvhp")
+shape = SubResource("RectangleShape2D_fjt5v")
 
 [node name="HitBox" parent="." instance=ExtResource("7_fjt5v")]
 collision_layer = 4
 collision_mask = 2
 damage = 1
-shape = SubResource("CircleShape2D_0xpfh")
+shape = SubResource("ConvexPolygonShape2D_fjt5v")
 
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_fjt5v")]
 entity = NodePath("..")

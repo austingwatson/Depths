@@ -1,16 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://djbrnjtvjpjmt"]
+[gd_scene load_steps=2 format=3 uid="uid://djbrnjtvjpjmt"]
 
 [ext_resource type="Script" uid="uid://bvfaerhhybryq" path="res://scripts/component/detection.gd" id="1_p46ta"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_y1fjw"]
-resource_local_to_scene = true
 
 [node name="Detection" type="Area2D"]
 monitorable = false
 script = ExtResource("1_p46ta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_y1fjw")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

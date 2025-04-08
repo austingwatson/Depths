@@ -13,6 +13,7 @@ enum State {
 @onready var idle_timer := $IdleTimer
 @onready var attack_timer := $AttackTimer
 @onready var hit_box := $HitBox
+@onready var detection := $Detection
 var player: Player = null
 var state := State.IDLE
 var direction := Vector2.ZERO
@@ -64,6 +65,7 @@ func _on_detection_detected(entity: Node2D) -> void:
 	if entity is Player and state != State.ATTACK:
 		player = entity
 		state = State.MOVE_SUB
+		fish_sprite.hide_base()
 		fish_sprite.show_eyes()
 
 
@@ -71,6 +73,8 @@ func _on_detection_lost(entity: Node2D) -> void:
 	if entity is Player and state != State.ATTACK:
 		player = null
 		state = State.IDLE
+		fish_sprite.show_base()
+		fish_sprite.hide_eyes()
 
 
 func _on_attack_detection_detected(entity: Node2D) -> void:
@@ -81,6 +85,9 @@ func _on_attack_detection_detected(entity: Node2D) -> void:
 func _on_idle_timer_timeout() -> void:
 	state = State.MOVE_RAND
 	rand_target = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))
+	fish_sprite.show_base()
+	fish_sprite.hide_eyes()
+	#hit_box.disable()
 
 
 func _on_attack_timer_timeout() -> void:

@@ -219,7 +219,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
 
 [node name="GlobalLight" type="PointLight2D" parent="."]
-visible = false
 texture = ExtResource("5_f6cxi")
 texture_scale = 10.0
 
