@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HunterFishMovement" load_steps=2 format=3 uid="uid://wsb55dgirstk"]
+
+[ext_resource type="Script" uid="uid://xwfqagtgp7g5" path="res://resources/hunter_fish_movement.gd" id="1_1yhbr"]
+
+[resource]
+script = ExtResource("1_1yhbr")
+max_speed = 450.0
+acceleration = 50.0
+deceleration = 300.0
+rotation_speed = 0.0
+metadata/_custom_type_script = "uid://xwfqagtgp7g5"

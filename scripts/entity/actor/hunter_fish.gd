@@ -4,96 +4,103 @@ extends Node2D
 enum State {
 	IDLE,
 	MOVE_RAND,
-	MOVE_SUB,
+	MOVE_TO_PLAYER,
 	ATTACK,
 }
 
-@onready var fish_sprite := $FishSprite
+@export var base: HunterFishMovement
+@export var move_to_player: HunterFishMovement
+@export var attack: HunterFishMovement
+@export var attack_range := 0.0
+@export var attack_fov_angle := 0.0
 @onready var movement := $Movement
+@onready var fish_sprite := $FishSprite
 @onready var idle_timer := $IdleTimer
-@onready var attack_timer := $AttackTimer
-@onready var hit_box := $HitBox
-@onready var detection := $Detection
-var player: Player = null
-var state := State.IDLE
 var direction := Vector2.ZERO
-var rand_target := Vector2.ZERO
+var state := State.IDLE
+var target_position := Vector2.ZERO
+var player: Node2D = null
 
 
 func _ready() -> void:
-	state = State.MOVE_RAND
-	rand_target = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))
-	hit_box.disable()
+	set_base_movement()
+	attack_fov_angle = deg_to_rad(attack_fov_angle)
 
 
 func _physics_process(delta: float) -> void:
-	idle_timer.paused = true
-	attack_timer.paused = true
-	
+	print(state)
 	match state:
 		State.IDLE:
 			movement.stop(direction, delta)
 			idle_timer.paused = false
 		State.MOVE_RAND:
-			direction = global_position.direction_to(rand_target)
 			movement.move(direction, delta)
-			movement.turn(rand_target, delta)
-			if global_position.distance_to(rand_target) <= 10.0:
+			movement.turn(target_position, delta)
+			if global_position.distance_to(target_position) <= 10.0:
 				state = State.IDLE
-		State.MOVE_SUB:
-			direction = global_position.direction_to(player.global_position)
+		State.MOVE_TO_PLAYER:
+			target_position = player.global_position
+			direction = global_position.direction_to(target_position)
 			movement.move(direction, delta)
-			movement.turn(player.global_position, delta)
+			movement.turn(target_position, delta)
+			
+			if global_position.distance_to(target_position) < attack_range:
+				var facing_direction := transform.x.normalized()
+				var is_looking_at_player := facing_direction.dot(direction.normalized()) > cos(attack_fov_angle / 2)
+				if is_looking_at_player:
+					set_attack_movement()
+					state = State.ATTACK
 		State.ATTACK:
-			attack_timer.paused = false
+			movement.move(direction, delta)
+
+
+func set_base_movement() -> void:
+	movement.max_speed = base.max_speed
+	movement.acceleration = base.acceleration
+	movement.deceleration = base.deceleration
+	movement.rotation_speed = base.rotation_speed
 	
-	if global_position.y <= 20:
-		global_position.y = 20
+
+func set_move_player_movement() -> void:
+	movement.max_speed = move_to_player.max_speed
+	movement.acceleration = move_to_player.acceleration
+	movement.deceleration = move_to_player.deceleration
+	movement.rotation_speed = move_to_player.rotation_speed
+	
+
+func set_attack_movement() -> void:
+	movement.max_speed = attack.max_speed
+	movement.acceleration = attack.acceleration
+	movement.deceleration = attack.deceleration
+	movement.rotation_speed = attack.rotation_speed
 
 
 func _on_hurt_box_dead() -> void:
-	for i in range(randi_range(1, 2)):
-		EntityManager.add_research(global_position)
+	EntityManager.add_research(global_position)
+	EntityManager.add_research(global_position)
 	queue_free()
+
+
+func _on_hurt_box_hurt(max_health: int, health: int) -> void:
+	pass # Replace with function body.
 
 
 func _on_hurt_box_pinged(global_position: Vector2) -> void:
 	fish_sprite.pinged(global_position)
 
 
-func _on_detection_detected(entity: Node2D) -> void:
-	if entity is Player and state != State.ATTACK:
-		player = entity
-		state = State.MOVE_SUB
-		fish_sprite.hide_base()
-		fish_sprite.show_eyes()
-
-
-func _on_detection_lost(entity: Node2D) -> void:
-	if entity is Player and state != State.ATTACK:
-		player = null
-		state = State.IDLE
-		fish_sprite.show_base()
-		fish_sprite.hide_eyes()
-
-
-func _on_attack_detection_detected(entity: Node2D) -> void:
+func _on_player_detection_detected(entity: Node2D) -> void:
 	if entity is Player:
-		state = State.ATTACK
+		player = entity
+		target_position = player.global_position
+		direction = global_position.direction_to(target_position)
+		state = State.MOVE_TO_PLAYER
+		set_move_player_movement()
 
 
 func _on_idle_timer_timeout() -> void:
-	state = State.MOVE_RAND
-	rand_target = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))
-	fish_sprite.show_base()
-	fish_sprite.hide_eyes()
-	#hit_box.disable()
-
-
-func _on_attack_timer_timeout() -> void:
-	state = State.IDLE
-	hit_box.enable()
-
-
-func _on_hit_box_hit(_global_position: Vector2) -> void:
-	hit_box.disable()
+	idle_timer.paused = true
+	if state == State.IDLE:
+		target_position = global_position + Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
+		direction = global_position.direction_to(target_position)
+		state = State.MOVE_RAND

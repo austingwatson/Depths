@@ -8,5 +8,5 @@ func _ready() -> void:
 	player.initial_drop = false
 	
 	var hunter_fish := preload("res://scenes/entity/actor/hunter_fish.tscn").instantiate()
-	hunter_fish.global_position = Vector2(100, 100)
+	hunter_fish.global_position = Vector2(100, 300)
 	EntityManager.add_entity(hunter_fish, true)

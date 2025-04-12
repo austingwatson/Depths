@@ -1,51 +1,85 @@
-[gd_scene load_steps=25 format=3 uid="uid://daxpl8wgwrd7w"]
+[gd_scene load_steps=24 format=3 uid="uid://daxpl8wgwrd7w"]
 
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="1_p6sfq"]
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_snnp5"]
+[ext_resource type="Resource" uid="uid://bvpbr8b48lctj" path="res://resources/move_rand.tres" id="2_0xpfh"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_vbyxb"]
 [ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_mrtdc"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="3_vbyxb"]
-[ext_resource type="PackedScene" uid="uid://djbrnjtvjpjmt" path="res://scenes/component/detection.tscn" id="7_4cvhp"]
-[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="7_fjt5v"]
-[ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="8_fjt5v"]
+[ext_resource type="Resource" uid="uid://5etm0anracyi" path="res://resources/move_player.tres" id="3_ymxha"]
+[ext_resource type="Resource" uid="uid://wsb55dgirstk" path="res://resources/attack.tres" id="4_512ls"]
+[ext_resource type="PackedScene" uid="uid://djbrnjtvjpjmt" path="res://scenes/component/detection.tscn" id="6_ce58k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjt5v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbyxb"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(0, 0, 32, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0xpfh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrtdc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fjt5v")
+"texture": SubResource("AtlasTexture_vbyxb")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ymxha"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce58k"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 16, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cvhp"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 32, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdfgv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjt5v"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 16, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_irjld"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xpfh"]
 atlas = ExtResource("1_p6sfq")
 region = Rect2(32, 48, 32, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sdghc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymxha"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ymxha")
+"texture": SubResource("AtlasTexture_ce58k")
 }, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cvhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjt5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xpfh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_512ls"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdfgv"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irjld"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdghc"]
+atlas = ExtResource("1_p6sfq")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t877b"]
+animations = [{
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_512ls")
 }, {
@@ -54,119 +88,64 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_irjld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdghc")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t877b"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etqx8"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 32, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s1v5h"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_frqw2"]
-atlas = ExtResource("1_p6sfq")
-region = Rect2(0, 48, 32, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ui7n7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t877b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etqx8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s1v5h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_frqw2")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_snnp5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrtdc"]
+size = Vector2(32, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cvhp"]
-radius = 200.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjt5v"]
-size = Vector2(8, 4)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_fjt5v"]
-points = PackedVector2Array(10, 0, 30, -15, 30, 15)
+radius = 150.0
 
 [node name="HunterFish" type="Node2D" groups=["Fish"]]
 script = ExtResource("1_snnp5")
+base = ExtResource("2_0xpfh")
+move_to_player = ExtResource("3_ymxha")
+attack = ExtResource("4_512ls")
+attack_range = 75.0
+attack_fov_angle = 15.0
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_vbyxb")]
 entity = NodePath("..")
-max_speed = 220.0
-acceleration = 50.0
-deceleration = 100.0
-rotation_speed = 5.0
+max_speed = 300.0
+acceleration = 150.0
+deceleration = 300.0
+rotation_speed = 10.0
 
 [node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_mrtdc")]
 entity = NodePath("..")
-base_animation = SubResource("SpriteFrames_0xpfh")
-outline_animation = SubResource("SpriteFrames_sdghc")
-eye_animation = SubResource("SpriteFrames_ui7n7")
-show_time = 2.5
+base_animation = SubResource("SpriteFrames_mrtdc")
+outline_animation = SubResource("SpriteFrames_ymxha")
+eye_animation = SubResource("SpriteFrames_t877b")
+visible_rect = Rect2(-16, -8, 32, 16)
+show_time = 1.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_vbyxb")]
-collision_layer = 36
-collision_mask = 2
+collision_layer = 4
+collision_mask = 34
 entity = NodePath("..")
-max_health = 12
-health = 12
-shape = SubResource("CircleShape2D_snnp5")
+max_health = 6
+health = 6
+shape = SubResource("RectangleShape2D_mrtdc")
 
-[node name="Detection" parent="." instance=ExtResource("7_4cvhp")]
+[node name="PlayerDetection" parent="." instance=ExtResource("6_ce58k")]
+visible = false
 collision_layer = 4
 collision_mask = 2
 shape = SubResource("CircleShape2D_4cvhp")
 
-[node name="AttackDetection" parent="." instance=ExtResource("7_4cvhp")]
-position = Vector2(20, 0)
-rotation = 1.5708
-collision_layer = 4
-collision_mask = 2
-shape = SubResource("RectangleShape2D_fjt5v")
-
-[node name="HitBox" parent="." instance=ExtResource("7_fjt5v")]
-collision_layer = 4
-collision_mask = 2
-damage = 1
-shape = SubResource("ConvexPolygonShape2D_fjt5v")
-
-[node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_fjt5v")]
-entity = NodePath("..")
-distance = 500.0
-
 [node name="IdleTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
-[connection signal="detected" from="Detection" to="." method="_on_detection_detected"]
-[connection signal="lost" from="Detection" to="." method="_on_detection_lost"]
-[connection signal="detected" from="AttackDetection" to="." method="_on_attack_detection_detected"]
-[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
+[connection signal="detected" from="PlayerDetection" to="." method="_on_player_detection_detected"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -19,8 +19,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func _on_hurt_box_dead() -> void:
-	for i in range(randi_range(1, 2)):
-		EntityManager.add_research(global_position)
+	EntityManager.add_research(global_position)
 	queue_free()
 
 
