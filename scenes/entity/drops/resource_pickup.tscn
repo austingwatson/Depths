@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6yylqny5blw1"]
+[gd_scene load_steps=19 format=3 uid="uid://c6yylqny5blw1"]
 
 [ext_resource type="Script" uid="uid://ce6v4pggr6vbl" path="res://scripts/entity/drops/resource_pickup.gd" id="1_t50uq"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="2_15y04"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="2_cr552"]
 [ext_resource type="AudioStream" uid="uid://c0vpn33j18e87" path="res://assets/sounds/research_pickup.wav" id="2_j15wr"]
 [ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_vcixg"]
+[ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="5_p1itl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15y04"]
 atlas = ExtResource("2_15y04")
@@ -109,10 +110,15 @@ acceleration = 100.0
 deceleration = 300.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_ogvc0")
-animation = &"pop"
-frame = 5
-frame_progress = 1.0
+frame_progress = 0.0687218
+
+[node name="aura" type="Sprite2D" parent="AnimatedSprite2D"]
+modulate = Color(0.993785, 0.884046, 0.633804, 1)
+z_index = -1
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_p1itl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ofgt")

@@ -219,6 +219,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
 
 [node name="GlobalLight" type="PointLight2D" parent="."]
+visible = false
 texture = ExtResource("5_f6cxi")
 texture_scale = 10.0
 
@@ -247,7 +248,7 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="SonarPulseParticles" type="CPUParticles2D" parent="."]
-z_index = -1
+z_index = 10
 emitting = false
 amount = 24
 texture = SubResource("AtlasTexture_mfv3l")
