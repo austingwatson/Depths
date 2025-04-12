@@ -10,3 +10,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/intro.tscn")
+
+
+func _on_test_level_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/test_level.tscn")
