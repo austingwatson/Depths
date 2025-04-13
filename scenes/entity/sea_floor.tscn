@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://3efyhd6vkgla"]
+[gd_scene load_steps=6 format=3 uid="uid://3efyhd6vkgla"]
 
 [ext_resource type="Texture2D" uid="uid://bjy5na53effsw" path="res://assets/textures/level/seabed_playarea.png" id="1_aa4b8"]
 [ext_resource type="Script" uid="uid://btkj06c3aqdrm" path="res://scripts/entity/sea_floor.gd" id="1_uvcf2"]
+[ext_resource type="Texture2D" uid="uid://br8fltx8mhio" path="res://assets/textures/level/seabed_bg.png" id="3_uri8p"]
+[ext_resource type="Texture2D" uid="uid://c121oas5df1vs" path="res://assets/textures/level/seabed_fg.png" id="4_tcsn0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvcf2"]
 size = Vector2(480, 270)
@@ -15,11 +17,29 @@ script = ExtResource("1_uvcf2")
 position = Vector2(0, 139)
 shape = SubResource("RectangleShape2D_uvcf2")
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Seabed_play_area" type="Parallax2D" parent="."]
 repeat_size = Vector2(480, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Seabed_play_area"]
 texture = ExtResource("1_aa4b8")
+
+[node name="Seabed_bg" type="Parallax2D" parent="."]
+z_index = -18
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(480, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Seabed_bg"]
+texture = ExtResource("3_uri8p")
+
+[node name="Seabed_fg" type="Parallax2D" parent="."]
+z_index = 3
+scroll_scale = Vector2(1.4, 1.4)
+repeat_size = Vector2(480, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Seabed_fg"]
+texture = ExtResource("4_tcsn0")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
