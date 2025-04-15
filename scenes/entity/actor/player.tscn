@@ -196,10 +196,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
 
 [node name="ForwardLight" type="PointLight2D" parent="."]
-position = Vector2(93, 0)
+position = Vector2(109, 0)
 rotation = -1.5708
+energy = 1.5
 texture = ExtResource("8_8l8co")
-texture_scale = 0.5
+texture_scale = 0.6
 
 [node name="Test" type="Sprite2D" parent="ForwardLight"]
 visible = false
@@ -219,6 +220,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
 
 [node name="GlobalLight" type="PointLight2D" parent="."]
+visible = false
 texture = ExtResource("5_f6cxi")
 texture_scale = 10.0
 
@@ -247,7 +249,7 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="SonarPulseParticles" type="CPUParticles2D" parent="."]
-z_index = -1
+z_index = 10
 emitting = false
 amount = 24
 texture = SubResource("AtlasTexture_mfv3l")

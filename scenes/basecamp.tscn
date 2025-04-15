@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=31 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
 [ext_resource type="AudioStream" uid="uid://gsk3ansyxj8c" path="res://assets/sounds/launch_sub.wav" id="2_2vkts"]
@@ -177,6 +177,10 @@ _data = {
 &"launch": SubResource("Animation_o8cly")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7nge"]
+atlas = ExtResource("2_saea2")
+region = Rect2(256, 48, 144, 32)
+
 [node name="Basecamp" type="Node"]
 script = ExtResource("1_saea2")
 sky_speed = 5.0
@@ -256,14 +260,23 @@ offset_bottom = 130.0
 grow_horizontal = 1
 
 [node name="ResearchCount" parent="." instance=ExtResource("10_7hapb")]
-offset_right = 64.0
+offset_right = 96.0
+
+[node name="MaxDepthBG" type="Sprite2D" parent="."]
+position = Vector2(336, 0)
+texture = SubResource("AtlasTexture_q7nge")
+centered = false
+flip_h = true
+flip_v = true
 
 [node name="MaxDepth" parent="." instance=ExtResource("12_bhldm")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+offset_left = 137.0
+offset_top = 3.0
+offset_right = 177.0
+offset_bottom = 43.0
 grow_horizontal = 2
 
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
