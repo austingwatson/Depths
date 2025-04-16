@@ -4,6 +4,7 @@ extends Node2D
 @export var heal: int
 @onready var movement := $Movement
 @onready var fish_sprite := $FishSprite
+@onready var death_pop := $DeathPop
 var direction := Vector2.ZERO
 
 

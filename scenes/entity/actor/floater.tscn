@@ -105,7 +105,9 @@ entity = NodePath("..")
 distance = 500.0
 
 [node name="DeathPop" type="CPUParticles2D" parent="."]
+emitting = false
 texture = SubResource("AtlasTexture_bhvvh")
+one_shot = true
 explosiveness = 0.9
 randomness = 0.36
 emission_shape = 2

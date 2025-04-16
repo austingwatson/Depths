@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4t4v3xeqcma2"]
+[gd_scene load_steps=15 format=3 uid="uid://4t4v3xeqcma2"]
 
 [ext_resource type="Script" uid="uid://dhniosaannv60" path="res://scripts/entity/projectile/shock.gd" id="1_jmcv3"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_0iv5t"]
 [ext_resource type="AudioStream" uid="uid://b83yyynj2lbc1" path="res://assets/sounds/microwave_gun.wav" id="2_1xao5"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="3_0iv5t"]
+[ext_resource type="Texture2D" uid="uid://b6ykgro6grd11" path="res://assets/textures/effects/shock_cannon_blast.png" id="5_qy4gw"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0iv5t"]
 points = PackedVector2Array(0, 0, 60, -50, 60, 50)
@@ -15,6 +16,49 @@ region = Rect2(56, 64, 8, 8)
 [sub_resource type="Gradient" id="Gradient_0iv5t"]
 offsets = PackedFloat32Array(0, 0.0590406, 0.420664, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sonjk"]
+atlas = ExtResource("5_qy4gw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwy2e"]
+atlas = ExtResource("5_qy4gw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a15p7"]
+atlas = ExtResource("5_qy4gw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia1f6"]
+atlas = ExtResource("5_qy4gw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2b0u"]
+atlas = ExtResource("5_qy4gw")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1lesg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sonjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwy2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a15p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia1f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2b0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Shock" type="Node2D"]
 script = ExtResource("1_jmcv3")
@@ -55,5 +99,10 @@ damping_min = 80.0
 damping_max = 160.0
 angle_max = 360.0
 color_ramp = SubResource("Gradient_0iv5t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(73, 0)
+sprite_frames = SubResource("SpriteFrames_1lesg")
+frame_progress = 0.542686
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
