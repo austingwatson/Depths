@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8oxdyj66sd4m"]
+[gd_scene load_steps=19 format=3 uid="uid://8oxdyj66sd4m"]
 
 [ext_resource type="Texture2D" uid="uid://crpnnm0l8ilj3" path="res://assets/textures/entity/floater_green.png" id="1_4c47e"]
 [ext_resource type="Script" uid="uid://brrrtutax8xnp" path="res://scripts/entity/actor/floater.gd" id="1_ty7i7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="2_ty7i7"]
 [ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_dt2mo"]
 [ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="6_dt2mo"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="8_hcpx5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nkbgl"]
 atlas = ExtResource("1_4c47e")
@@ -57,6 +58,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_11tjm"]
 radius = 8.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhvvh"]
+atlas = ExtResource("8_hcpx5")
+region = Rect2(48, 24, 8, 8)
+
+[sub_resource type="Gradient" id="Gradient_qctdj"]
+offsets = PackedFloat32Array(0, 0.723247, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Floater" type="Node2D" groups=["Floater"]]
 script = ExtResource("1_ty7i7")
 heal = 1
@@ -94,6 +103,23 @@ texture_scale = 0.15
 [node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("6_dt2mo")]
 entity = NodePath("..")
 distance = 500.0
+
+[node name="DeathPop" type="CPUParticles2D" parent="."]
+texture = SubResource("AtlasTexture_bhvvh")
+explosiveness = 0.9
+randomness = 0.36
+emission_shape = 2
+emission_sphere_radius = 6.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 15.0
+initial_velocity_max = 45.0
+radial_accel_min = 32.0
+radial_accel_max = 32.0
+damping_min = 60.0
+damping_max = 60.0
+color_ramp = SubResource("Gradient_qctdj")
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]

@@ -121,10 +121,10 @@ passive_refill = 1.0
 cooldown = 5.0
 
 [node name="TorpedoCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
-cooldown = 0.5
+cooldown = 0.3
 
 [node name="ShockCooldown" parent="SkillCooldowns" instance=ExtResource("6_b81v7")]
-cooldown = 1.0
+cooldown = 0.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_18kca")

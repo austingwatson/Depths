@@ -11,4 +11,4 @@ script = ExtResource("1_noplg")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 13.0
-text = "Max Depth: 0"
+text = "Depth Record: 0"

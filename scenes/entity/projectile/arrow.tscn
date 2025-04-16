@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6qsh1ogj6skj"]
 
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="1_cum7k"]
-[ext_resource type="Script" uid="uid://c26nuo4laqaod" path="res://scripts/entity/projectile/arrow.gd" id="2_5q7jp"]
+[ext_resource type="Script" path="res://scripts/entity/projectile/arrow.gd" id="2_5q7jp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5q7jp"]
 light_mode = 1

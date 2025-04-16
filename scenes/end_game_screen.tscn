@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://smbcyspbbf76"]
+[gd_scene load_steps=12 format=3 uid="uid://smbcyspbbf76"]
 
 [ext_resource type="Script" uid="uid://baxiwaedig7an" path="res://scripts/end_game_screen.gd" id="1_62ohe"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_7y8om"]
 [ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="2_ubscq"]
 [ext_resource type="Texture2D" uid="uid://dd60ahlecpedw" path="res://assets/textures/level/dark_currents_parallax.png" id="4_r6qnx"]
+[ext_resource type="PackedScene" uid="uid://cw2rldqj3fo56" path="res://scenes/ui/max_depth.tscn" id="5_r6qnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70b0o"]
 atlas = ExtResource("2_7y8om")
@@ -24,6 +25,10 @@ region = Rect2(544, 48, 144, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mw7a"]
 atlas = ExtResource("2_7y8om")
 region = Rect2(400, 48, 144, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x1mo"]
+atlas = ExtResource("2_7y8om")
+region = Rect2(16, 224, 192, 32)
 
 [node name="EndGameScreen" type="Node"]
 script = ExtResource("1_62ohe")
@@ -107,5 +112,18 @@ repeat_times = 2
 modulate = Color(1, 1, 1, 0.698039)
 texture = ExtResource("4_r6qnx")
 centered = false
+
+[node name="MaxDepthBG" type="Sprite2D" parent="."]
+position = Vector2(146, 0)
+texture = SubResource("AtlasTexture_0x1mo")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="MaxDepth" parent="." instance=ExtResource("5_r6qnx")]
+offset_left = 188.0
+offset_top = 8.0
+offset_right = 228.0
+offset_bottom = 48.0
 
 [connection signal="pressed" from="BaseCampButton" to="." method="_on_base_camp_button_pressed"]

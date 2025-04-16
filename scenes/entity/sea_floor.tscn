@@ -14,7 +14,7 @@ monitorable = false
 script = ExtResource("1_uvcf2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 139)
+position = Vector2(0, 166)
 shape = SubResource("RectangleShape2D_uvcf2")
 
 [node name="Seabed_play_area" type="Parallax2D" parent="."]
