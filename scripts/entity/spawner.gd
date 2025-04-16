@@ -6,6 +6,8 @@ enum Type {
 	URCHIN,
 	FLOATER,
 	RESEARCH,
+	BIG_FLOATER,
+	DEEP_FISH,
 }
 
 @export var disable := false

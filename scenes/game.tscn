@@ -1,13 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=47 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://12ua2mse0rn8" path="res://assets/textures/level/deep_background.png" id="2_ir15t"]
 [ext_resource type="PackedScene" uid="uid://bcobtgraohaxm" path="res://scenes/entity/spawner.tscn" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cihdw6creftsj" path="res://assets/textures/level/ice_background_parallax.png" id="3_ca42v"]
-[ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="4_iywne"]
-[ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cajt7vppy4c1h" path="res://assets/textures/level/ice_middleground_parallax.png" id="4_rysoc"]
 [ext_resource type="Texture2D" uid="uid://ioy6p73a7v1l" path="res://assets/textures/level/ice_shelf.png" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://yqvus5wdpfom" path="res://assets/textures/level/currents_parallax.png" id="7_ca42v"]
@@ -16,55 +13,112 @@
 [ext_resource type="Texture2D" uid="uid://dokvvrp78f7cn" path="res://assets/textures/level/ice_tunnel.png" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bcfvhcan1b35c" path="res://assets/textures/effects/ies_lights_model2.png" id="8_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cnnmg6jwxpv4p" path="res://scenes/entity/ice_shelf.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://ckn07253t3ahu" path="res://scenes/entity/actor/urchin.tscn" id="12_ir15t"]
 [ext_resource type="PackedScene" uid="uid://c6yylqny5blw1" path="res://scenes/entity/drops/resource_pickup.tscn" id="12_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="13_ca42v"]
+[ext_resource type="PackedScene" uid="uid://0nd5b0b486jy" path="res://scenes/entity/actor/deep_fish.tscn" id="15_1kice"]
+[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="16_5newe"]
+[ext_resource type="PackedScene" uid="uid://clmenjb7bo3fd" path="res://scenes/entity/actor/big_floater.tscn" id="17_37s47"]
 [ext_resource type="PackedScene" uid="uid://3efyhd6vkgla" path="res://scenes/entity/sea_floor.tscn" id="17_rysoc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtaks"]
 light_mode = 1
 
-[sub_resource type="Curve" id="Curve_264po"]
-_limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10000, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_1kice"]
+[sub_resource type="Curve" id="Curve_e1j6l"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
 
-[sub_resource type="Curve" id="Curve_5newe"]
+[sub_resource type="Curve" id="Curve_pl11u"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
 
-[sub_resource type="Curve" id="Curve_37s47"]
+[sub_resource type="Curve" id="Curve_bhx41"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
 
-[sub_resource type="Curve" id="Curve_gee14"]
-_limits = [1.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(550.162, 1), 0.0, 0.000203532, 0, 0, Vector2(809.062, 2.13381), 0.0, 0.0, 0, 0, Vector2(4919.09, 4.65405), 0.000572086, 0.000572086, 0, 0, Vector2(8640.78, 8.31984), 0.0, 0.0, 0, 0, Vector2(10000, 6.02872), -0.00235986, 0.0, 0, 0]
-point_count = 5
+[sub_resource type="Curve" id="Curve_qnb83"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
 
-[sub_resource type="Curve" id="Curve_iywne"]
+[sub_resource type="Curve" id="Curve_ca42v"]
 _limits = [0.0, 25.0, 0.0, 10000.0]
-_data = [Vector2(0, 5.05875), 0.0, 0.0, 0, 0, Vector2(2491.91, 5.27089), 0.000304891, 0.000304891, 0, 0, Vector2(5113.27, 13.1201), 0.0, 0.0, 0, 0, Vector2(10000, 8.66514), -0.00446061, 0.0, 0, 0]
+_data = [Vector2(0, 3.5), 0.0, 0.0, 0, 0, Vector2(6634, 14), 0.0, 0.0, 0, 0, Vector2(8090, 25), 0.0, 0.0, 0, 0, Vector2(10000, 25), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Curve" id="Curve_p57ef"]
+[sub_resource type="Curve" id="Curve_rysoc"]
+_limits = [0.0, 25.0, 0.0, 10000.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(2491, 5), 0.0, 0.0, 0, 0, Vector2(5113, 13), 0.0, 0.0, 0, 0, Vector2(10000, 8), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_ssvqc"]
 _limits = [0.0, 50.0, 0.0, 10000.0]
-_data = [Vector2(0, 25.3916), 0.0, -0.000319764, 0, 0, Vector2(2621.36, 23.6945), 0.00138003, 0.00138003, 0, 0, Vector2(5113.27, 26.2402), 0.0, 0.0, 0, 0, Vector2(10000, 44.9086), 0.00694076, 0.0, 0, 0]
+_data = [Vector2(0, 25), 0.0, 0.0, 0, 0, Vector2(2621, 23), 0.0, 0.0, 0, 0, Vector2(5113, 26), 0.0, 0.0, 0, 0, Vector2(10000, 44), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Curve" id="Curve_u5sy4"]
+[sub_resource type="Curve" id="Curve_264po"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(10000, 3.27937), 0.0, 0.0, 0, 0]
+_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
 point_count = 1
 
-[sub_resource type="Curve" id="Curve_0tnpc"]
+[sub_resource type="Curve" id="Curve_1kice"]
+_limits = [1.0, 10.0, 0.0, 10000.0]
+_data = [Vector2(550, 1), 0.0, 0.0, 0, 0, Vector2(809, 2), 0.0, 0.0, 0, 0, Vector2(4919, 5), 0.0, 0.0, 0, 0, Vector2(8640, 8), 0.0, 0.0, 0, 0, Vector2(10000, 6), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_5newe"]
 _limits = [0.0, 25.0, 0.0, 10000.0]
-_data = [Vector2(0, 3.57376), 0.0, 0.000198641, 0, 0, Vector2(6634.3, 13.7565), 0.00476739, 0.00476739, 0, 0, Vector2(8090.62, 25), -0.000297962, -0.000297962, 0, 0, Vector2(10000, 25), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(2491, 5), 0.0, 0.0, 0, 0, Vector2(5113, 13), 0.0, 0.0, 0, 0, Vector2(10000, 9), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Curve" id="Curve_vtaks"]
+[sub_resource type="Curve" id="Curve_37s47"]
+_limits = [0.0, 50.0, 0.0, 10000.0]
+_data = [Vector2(0, 25), 0.0, 0.0, 0, 0, Vector2(2621, 23), 0.0, 0.0, 0, 0, Vector2(5113, 26), 0.0, 0.0, 0, 0, Vector2(10000, 45), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_bt5mj"]
+_limits = [1.0, 10.0, 0.0, 10000.0]
+_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_sww3w"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_suyxu"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_sgl2t"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_qouja"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_wljb1"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(0, 8.54115), 0.0, -0.000141732, 0, 0, Vector2(2362.46, 4.40773), 0.0, 0.0, 0, 0, Vector2(10000, 7.00125), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 8), 0.0, 0.0, 0, 0, Vector2(2362, 4), 0.0, 0.0, 0, 0, Vector2(10000, 7), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_v2yb1"]
+_limits = [0.0, 25.0, 0.0, 10000.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(2491, 5), 0.0, 0.0, 0, 0, Vector2(5113, 13), 0.0, 0.0, 0, 0, Vector2(10000, 8), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_js0lu"]
+_limits = [0.0, 50.0, 0.0, 10000.0]
+_data = [Vector2(0, 25), 0.0, 0.0, 0, 0, Vector2(2621, 23), 0.0, 0.0, 0, 0, Vector2(5113, 26), 0.0, 0.0, 0, 0, Vector2(10000, 44), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_gxtfn"]
+_limits = [0.0, 10.0, 0.0, 10000.0]
+_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_twgab"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_02fa5"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_nepv3"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
+
+[sub_resource type="Curve" id="Curve_7025r"]
+_limits = [0.0, 1.0, 0.0, 10000.0]
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3
@@ -154,19 +208,33 @@ position = Vector2(0, -27)
 energy = 2.0
 texture = ExtResource("8_kvuet")
 
-[node name="ResearchSpawner" parent="." instance=ExtResource("2_lbhrr")]
-enemy_scene = ExtResource("12_ssvqc")
-max_amount = SubResource("Curve_264po")
-lower_spawn_curve = SubResource("Curve_1kice")
-upper_spawn_curve = SubResource("Curve_5newe")
-timer_curve = SubResource("Curve_37s47")
+[node name="Spawners" type="Node2D" parent="."]
 
-[node name="HunterFishSpawner" parent="." instance=ExtResource("2_lbhrr")]
-enemy_scene = ExtResource("3_lnu2h")
-max_amount = SubResource("Curve_gee14")
-lower_spawn_curve = SubResource("Curve_iywne")
-upper_spawn_curve = SubResource("Curve_p57ef")
-timer_curve = SubResource("Curve_u5sy4")
+[node name="ResearchSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+disable = true
+type = 3
+enemy_scene = ExtResource("12_ssvqc")
+max_amount = SubResource("Curve_e1j6l")
+lower_spawn_curve = SubResource("Curve_pl11u")
+upper_spawn_curve = SubResource("Curve_bhx41")
+timer_curve = SubResource("Curve_qnb83")
+margin = 25.0
+
+[node name="UrchinSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+type = 1
+enemy_scene = ExtResource("12_ir15t")
+max_amount = SubResource("Curve_ca42v")
+lower_spawn_curve = SubResource("Curve_rysoc")
+upper_spawn_curve = SubResource("Curve_ssvqc")
+timer_curve = SubResource("Curve_264po")
+margin = 25.0
+
+[node name="FishSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+enemy_scene = ExtResource("13_ca42v")
+max_amount = SubResource("Curve_1kice")
+lower_spawn_curve = SubResource("Curve_5newe")
+upper_spawn_curve = SubResource("Curve_37s47")
+timer_curve = SubResource("Curve_bt5mj")
 spawn_locations = [{
 "value": "up",
 "weight": 0
@@ -182,20 +250,46 @@ spawn_locations = [{
 }]
 margin = 25.0
 
-[node name="UrchinSpawner" parent="." instance=ExtResource("2_lbhrr")]
-enemy_scene = ExtResource("4_lbhrr")
-max_amount = SubResource("Curve_0tnpc")
-lower_spawn_curve = SubResource("Curve_iywne")
-upper_spawn_curve = SubResource("Curve_p57ef")
-timer_curve = SubResource("Curve_u5sy4")
+[node name="DeepFishSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+disable = true
+type = 5
+enemy_scene = ExtResource("15_1kice")
+max_amount = SubResource("Curve_sww3w")
+lower_spawn_curve = SubResource("Curve_suyxu")
+upper_spawn_curve = SubResource("Curve_sgl2t")
+timer_curve = SubResource("Curve_qouja")
+spawn_locations = [{
+"value": "up",
+"weight": 0
+}, {
+"value": "left",
+"weight": 0
+}, {
+"value": "down",
+"weight": 100
+}, {
+"value": "right",
+"weight": 0
+}]
 margin = 25.0
 
-[node name="FloaterSpawner" parent="." instance=ExtResource("2_lbhrr")]
-enemy_scene = ExtResource("4_iywne")
-max_amount = SubResource("Curve_vtaks")
-lower_spawn_curve = SubResource("Curve_iywne")
-upper_spawn_curve = SubResource("Curve_p57ef")
-timer_curve = SubResource("Curve_u5sy4")
+[node name="FloaterSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+type = 2
+enemy_scene = ExtResource("16_5newe")
+max_amount = SubResource("Curve_wljb1")
+lower_spawn_curve = SubResource("Curve_v2yb1")
+upper_spawn_curve = SubResource("Curve_js0lu")
+timer_curve = SubResource("Curve_gxtfn")
+margin = 25.0
+
+[node name="BigFloaterSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
+disable = true
+type = 4
+enemy_scene = ExtResource("17_37s47")
+max_amount = SubResource("Curve_twgab")
+lower_spawn_curve = SubResource("Curve_02fa5")
+upper_spawn_curve = SubResource("Curve_nepv3")
+timer_curve = SubResource("Curve_7025r")
 margin = 25.0
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]
