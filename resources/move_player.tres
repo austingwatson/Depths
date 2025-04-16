@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_1v6vs")
-max_speed = 350.0
+max_speed = 400.0
 acceleration = 50.0
 deceleration = 300.0
 rotation_speed = 2.5
