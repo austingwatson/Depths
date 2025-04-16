@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciuquonjnfqut"]
+[gd_scene load_steps=8 format=3 uid="uid://ciuquonjnfqut"]
 
 [ext_resource type="Script" uid="uid://b6flsdq003wgt" path="res://scripts/ui/hud.gd" id="1_0mwgc"]
 [ext_resource type="FontFile" uid="uid://dbwh2vnpvxyt" path="res://assets/textures/ui/m5x7.ttf" id="2_hqnrr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mhtanoyy4a82" path="res://scenes/ui/depth_meter.tscn" id="4_8qguk"]
 [ext_resource type="PackedScene" uid="uid://dj7af3l3qtcva" path="res://scenes/ui/research_count.tscn" id="5_136eg"]
 [ext_resource type="PackedScene" uid="uid://bi7380u82ffh0" path="res://scenes/ui/sonar_cooldown.tscn" id="6_oj5la"]
+[ext_resource type="PackedScene" uid="uid://dijovwxg0sd6p" path="res://scenes/ui/scuttle.tscn" id="7_gss2c"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_0mwgc")
@@ -40,3 +41,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 
 [node name="ResearchCount" parent="." instance=ExtResource("5_136eg")]
+
+[node name="Scuttle" parent="." instance=ExtResource("7_gss2c")]
+offset_left = 95.0
+offset_right = 143.0
