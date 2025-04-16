@@ -20,9 +20,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hurt_box_dead() -> void:
-	GlobalSignals.on_heal_player(heal)
-	queue_free()
+	death_pop.emitting = true
 
 
 func _on_hurt_box_pinged(global_position: Vector2) -> void:
 	fish_sprite.pinged(global_position)
+
+
+func _on_death_pop_finished() -> void:
+	GlobalSignals.on_heal_player(heal)
+	queue_free()

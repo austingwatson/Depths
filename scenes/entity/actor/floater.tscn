@@ -125,3 +125,4 @@ color_ramp = SubResource("Gradient_qctdj")
 
 [connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
 [connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
+[connection signal="finished" from="DeathPop" to="." method="_on_death_pop_finished"]
