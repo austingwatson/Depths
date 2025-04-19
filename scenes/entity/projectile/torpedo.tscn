@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx7o0wwwkfa4t"]
+[gd_scene load_steps=19 format=3 uid="uid://cx7o0wwwkfa4t"]
 
 [ext_resource type="Script" uid="uid://cims7evy1pj8i" path="res://scripts/entity/projectile/torpedo.gd" id="1_v7qta"]
 [ext_resource type="AudioStream" uid="uid://dmgogwrt7rxdb" path="res://assets/sounds/shoot_torpedo.wav" id="2_01kix"]
@@ -8,6 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://7012mtb2g3dr" path="res://assets/textures/entity/player_sub.png" id="4_vdd5x"]
 [ext_resource type="PackedScene" uid="uid://x2wdvhrvr26y" path="res://scenes/component/max_distance.tscn" id="5_tvse7"]
 [ext_resource type="Texture2D" uid="uid://dx2aomunaop8x" path="res://assets/textures/effects/boom.png" id="8_kjd6s"]
+[ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="9_pnwd1"]
+
+[sub_resource type="Curve" id="Curve_0ebku"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 30.548), 0.0, -193.932, 0, 0, Vector2(0.037037, 0), 8.23385, 8.23385, 0, 0, Vector2(0.760943, 18.0822), 76.7764, 76.7764, 0, 0, Vector2(1, 100), 513.348, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_hut4i"]
+offsets = PackedFloat32Array(0, 0.446494, 0.870849)
+colors = PackedColorArray(1, 1, 1, 1, 0.980392, 0.980392, 0.980392, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_bg0n2"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.451178, 32.6027), 219.302, 219.302, 0, 0, Vector2(1, 123.425), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tvse7"]
 atlas = ExtResource("4_vdd5x")
@@ -35,6 +50,28 @@ radius = 24.0
 
 [node name="Torpedo" type="Node2D"]
 script = ExtResource("1_v7qta")
+
+[node name="ThrusterTrail" type="CPUParticles2D" parent="."]
+position = Vector2(-3, 0)
+amount = 24
+lifetime = 1.4
+randomness = 0.2
+lifetime_randomness = 0.16
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 20.0
+gravity = Vector2(0, -2)
+linear_accel_min = 14.0
+linear_accel_max = 18.0
+damping_max = 12.0
+damping_curve = SubResource("Curve_0ebku")
+angle_max = 360.0
+color = Color(0.831373, 0.866667, 0.988235, 1)
+color_ramp = SubResource("Gradient_hut4i")
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("Curve_bg0n2")
+anim_offset_max = 0.3
 
 [node name="ShootTorpedoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_01kix")
@@ -85,13 +122,20 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Homing"]
 visible = false
-polygon = PackedVector2Array(-8, 0, 0, -28, 59, -28, 59, 28, 0, 28)
+polygon = PackedVector2Array(-8, 0, 0, -44, 101, -79, 101, 84, 0, 42)
 
 [node name="Explosion" parent="." instance=ExtResource("2_oaaup")]
 collision_layer = 2
 collision_mask = 12
 damage = 2
 shape = SubResource("CircleShape2D_kjd6s")
+
+[node name="EmergencyLight" type="PointLight2D" parent="."]
+position = Vector2(3, 0)
+color = Color(0.984314, 0.682353, 0.141176, 1)
+energy = 0.4
+texture = ExtResource("9_pnwd1")
+texture_scale = 0.08
 
 [connection signal="finished" from="TorpedoExplosionSound" to="." method="_on_torpedo_explosion_sound_finished"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

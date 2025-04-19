@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://biaimvygk8r3f"]
+[gd_scene load_steps=34 format=3 uid="uid://biaimvygk8r3f"]
 
 [ext_resource type="Texture2D" uid="uid://br8fltx8mhio" path="res://assets/textures/level/seabed_bg.png" id="1_aeqvq"]
 [ext_resource type="Texture2D" uid="uid://yqvus5wdpfom" path="res://assets/textures/level/currents_parallax.png" id="2_rlw0o"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="8_bqyga"]
 [ext_resource type="Texture2D" uid="uid://v8q4auewvljj" path="res://assets/textures/effects/ies_lights_model1.png" id="9_fgp87"]
 [ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="10_c0tw7"]
+[ext_resource type="Texture2D" uid="uid://b52loa0ba8u2j" path="res://assets/textures/entity/big_floater.png" id="11_m35g4"]
+[ext_resource type="Texture2D" uid="uid://crpnnm0l8ilj3" path="res://assets/textures/entity/floater_green.png" id="12_wdhy8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qunh1"]
 atlas = ExtResource("4_wdhy8")
@@ -45,6 +47,21 @@ _limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.451178, 32.6027), 219.302, 219.302, 0, 0, Vector2(1, 123.425), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Animation" id="Animation_filmp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/submersible:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(381, -45)]
+}
+
 [sub_resource type="Animation" id="Animation_twbv7"]
 resource_name = "sub_float"
 length = 16.0
@@ -63,21 +80,6 @@ tracks/0/keys = {
 "values": [Vector2(381, -27), Vector2(381, -27), Vector2(381, -48), Vector2(381, -48)]
 }
 
-[sub_resource type="Animation" id="Animation_filmp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/submersible:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(381, -45)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2sdhq"]
 _data = {
 &"RESET": SubResource("Animation_filmp"),
@@ -89,6 +91,142 @@ background_mode = 3
 glow_enabled = true
 glow_intensity = 1.0
 glow_hdr_threshold = 1.5
+
+[sub_resource type="Animation" id="Animation_0ya2q"]
+resource_name = "float"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("big_floater_anim/big_floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 57), Vector2(38, 65)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("big_floater_anim/big_floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 128, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_w13b5"]
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("big_floater_anim/big_floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 57), Vector2(38, 65)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("big_floater_anim/big_floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 128, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_0iwmx"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqyga"]
+_data = {
+&"RESET": SubResource("Animation_w13b5"),
+&"float": SubResource("Animation_0ya2q"),
+&"idle": SubResource("Animation_0iwmx")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgp87"]
+atlas = ExtResource("11_m35g4")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="Animation" id="Animation_c0tw7"]
+resource_name = "float"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("floater_anim/floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(450, 51), Vector2(450, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("floater_anim/floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_qunh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("floater_anim/floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(450, 51)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("floater_anim/floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ts1t5"]
+_data = {
+&"RESET": SubResource("Animation_qunh1"),
+&"float": SubResource("Animation_c0tw7")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpjcc"]
+atlas = ExtResource("12_wdhy8")
+region = Rect2(0, 0, 16, 32)
 
 [node name="Victory" type="Node"]
 
@@ -400,3 +538,38 @@ environment = SubResource("Environment_0quce")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.00784314, 0.00784314, 0.0509804, 1)
+
+[node name="big_floater_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bqyga")
+}
+
+[node name="big_floater" type="Sprite2D" parent="big_floater_anim"]
+position = Vector2(38, 57)
+texture = SubResource("AtlasTexture_fgp87")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="big_floater_anim/big_floater"]
+position = Vector2(19, 23)
+color = Color(0.722702, 0.999442, 0.675061, 1)
+energy = 0.8
+texture = ExtResource("5_0ya2q")
+offset = Vector2(0, 4)
+texture_scale = 0.35
+
+[node name="floater_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ts1t5")
+}
+
+[node name="floater" type="Sprite2D" parent="floater_anim"]
+position = Vector2(450, 51)
+texture = SubResource("AtlasTexture_wpjcc")
+
+[node name="Light" type="PointLight2D" parent="floater_anim/floater"]
+position = Vector2(0, -9)
+color = Color(0.722702, 0.999442, 0.675061, 1)
+energy = 0.6
+texture = ExtResource("5_0ya2q")
+offset = Vector2(0, 4)
+texture_scale = 0.2
