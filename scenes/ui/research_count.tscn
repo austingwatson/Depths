@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7fjf"]
 atlas = ExtResource("1_mi5aa")
-region = Rect2(304, 0, 96, 32)
+region = Rect2(288, 0, 112, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h512u"]
 atlas = ExtResource("1_mi5aa")
@@ -15,6 +15,7 @@ region = Rect2(144, 368, 16, 32)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("AtlasTexture_s7fjf")
+stretch_mode = 3
 script = ExtResource("1_8kwjf")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -22,13 +23,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_h512u")
+stretch_mode = 3
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
