@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dijovwxg0sd6p"]
+[gd_scene load_steps=7 format=3 uid="uid://dijovwxg0sd6p"]
 
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="1_icx52"]
 [ext_resource type="Script" uid="uid://dh0k5sn4p4vqj" path="res://scripts/ui/scuttle.gd" id="2_tjaus"]
+[ext_resource type="AudioStream" uid="uid://dpfywfd3ilogs" path="res://assets/sounds/button_click_on.wav" id="3_fvn8o"]
+[ext_resource type="AudioStream" uid="uid://b4bq733feokvy" path="res://assets/sounds/repair_ping.wav" id="4_dvggf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjaus"]
 atlas = ExtResource("1_icx52")
@@ -34,6 +36,14 @@ grow_vertical = 2
 text = "Scuttle"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fvn8o")
+
+[node name="ButtonReady" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dvggf")
+volume_db = -10.0
+pitch_scale = 0.81
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

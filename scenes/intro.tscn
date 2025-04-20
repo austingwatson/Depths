@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8svyilqx4yuk"]
+[gd_scene load_steps=20 format=3 uid="uid://b8svyilqx4yuk"]
 
 [ext_resource type="Script" uid="uid://bbbel4cvrw8hg" path="res://scripts/intro.gd" id="1_i2l1n"]
 [ext_resource type="Texture2D" uid="uid://cjnytxbxf7m31" path="res://assets/textures/level/space_background.png" id="2_wfs7u"]
 [ext_resource type="Texture2D" uid="uid://ptihoidbwul1" path="res://assets/textures/level/Enceladus_planet.png" id="3_es01l"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="4_0naf5"]
+[ext_resource type="AudioStream" uid="uid://w8haihg82vm3" path="res://assets/sounds/button_off.wav" id="5_es01l"]
+[ext_resource type="AudioStream" uid="uid://dpfywfd3ilogs" path="res://assets/sounds/button_click_on.wav" id="6_0naf5"]
 
 [sub_resource type="Animation" id="Animation_3yumr"]
 length = 0.001
@@ -191,5 +193,13 @@ scroll_active = false
 visible_characters = 23
 visible_ratio = 0.05
 
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_es01l")
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0naf5")
+
+[connection signal="mouse_entered" from="VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/SkipTutorialButton" to="." method="_on_skip_tutorial_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/SkipTutorialButton" to="." method="_on_skip_tutorial_button_pressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8c5jc1nuj2nj"]
+[gd_scene load_steps=20 format=3 uid="uid://b8c5jc1nuj2nj"]
 
 [ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_dxd6s"]
 [ext_resource type="Script" uid="uid://bsu5kqjf60do3" path="res://scripts/tutorial_2.gd" id="1_qv3dx"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_qv3dx"]
+[ext_resource type="AudioStream" uid="uid://w8haihg82vm3" path="res://assets/sounds/button_off.wav" id="4_vmu26"]
+[ext_resource type="AudioStream" uid="uid://dpfywfd3ilogs" path="res://assets/sounds/button_click_on.wav" id="5_n1ten"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ll3yt"]
 atlas = ExtResource("2_qv3dx")
@@ -189,5 +191,13 @@ offset_right = 86.0
 offset_bottom = 13.0
 text = "Back"
 
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vmu26")
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_n1ten")
+
+[connection signal="mouse_entered" from="VBoxContainer/NextButton" to="." method="_on_next_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -28,5 +28,5 @@ func _on_hurt_box_pinged(global_position: Vector2) -> void:
 
 
 func _on_death_pop_finished() -> void:
-	GlobalSignals.on_heal_player(heal)
+	GlobalSignals.on_heal_player(4)
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyrye5ioh3apg"]
+[gd_scene load_steps=35 format=3 uid="uid://cyrye5ioh3apg"]
 
 [ext_resource type="Script" uid="uid://bayslq4t0gjpo" path="res://scripts/basecamp.gd" id="1_saea2"]
 [ext_resource type="AudioStream" uid="uid://gsk3ansyxj8c" path="res://assets/sounds/launch_sub.wav" id="2_2vkts"]
@@ -6,12 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://bh7ivwy1m7hpj" path="res://assets/textures/level/sky_scrollable.png" id="2_nxq54"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_saea2"]
 [ext_resource type="Texture2D" uid="uid://c1vsexbykefwl" path="res://assets/textures/level/big_sub.png" id="3_cltb7"]
+[ext_resource type="AudioStream" uid="uid://w8haihg82vm3" path="res://assets/sounds/button_off.wav" id="3_elj4d"]
+[ext_resource type="AudioStream" uid="uid://dpfywfd3ilogs" path="res://assets/sounds/button_click_on.wav" id="4_4jwo6"]
 [ext_resource type="Texture2D" uid="uid://c856mqgpegm55" path="res://assets/textures/level/repair_arm.png" id="4_nxq54"]
+[ext_resource type="AudioStream" uid="uid://l2dxly1ijbbh" path="res://assets/sounds/electrical_arc.wav" id="5_4jwo6"]
 [ext_resource type="Texture2D" uid="uid://cku7x63j1kd7m" path="res://assets/textures/level/dock_animation.png" id="5_cdnnk"]
 [ext_resource type="PackedScene" uid="uid://r21ikn6owpl5" path="res://scenes/ui/shop.tscn" id="8_cdnnk"]
 [ext_resource type="PackedScene" uid="uid://c1afp1kqvkk6j" path="res://scenes/ui/open_shop.tscn" id="9_f3dic"]
 [ext_resource type="PackedScene" uid="uid://dj7af3l3qtcva" path="res://scenes/ui/research_count.tscn" id="10_7hapb"]
 [ext_resource type="PackedScene" uid="uid://cw2rldqj3fo56" path="res://scenes/ui/max_depth.tscn" id="12_bhldm"]
+
+[sub_resource type="Gradient" id="Gradient_bhldm"]
+offsets = PackedFloat32Array(0, 0.797048, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3dic"]
 atlas = ExtResource("4_nxq54")
@@ -90,10 +97,6 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
-
-[sub_resource type="Gradient" id="Gradient_bhldm"]
-offsets = PackedFloat32Array(0, 0.797048, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8b0y"]
 atlas = ExtResource("2_saea2")
@@ -192,6 +195,40 @@ sky_speed = 5.0
 [node name="LaunchSubSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_2vkts")
 
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_elj4d")
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4jwo6")
+
+[node name="Upgraded" type="Node" parent="."]
+
+[node name="ElectricUpgrade" type="AudioStreamPlayer" parent="Upgraded"]
+stream = ExtResource("5_4jwo6")
+pitch_scale = 1.4
+
+[node name="UpgradeSparks" type="CPUParticles2D" parent="Upgraded"]
+position = Vector2(240, 96)
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.55
+randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector2(0, -1)
+spread = 140.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+radial_accel_min = 45.0
+radial_accel_max = 45.0
+tangential_accel_min = 10.0
+tangential_accel_max = 10.0
+color = Color(0.960784, 0.964706, 0.988235, 1)
+color_ramp = SubResource("Gradient_bhldm")
+
 [node name="Sky" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
@@ -212,28 +249,6 @@ centered = false
 sprite_frames = SubResource("SpriteFrames_q7nge")
 frame_progress = 0.346248
 centered = false
-
-[node name="UpgradeSparks" type="CPUParticles2D" parent="Arm"]
-position = Vector2(262, 98)
-emitting = false
-amount = 20
-lifetime = 0.6
-one_shot = true
-explosiveness = 0.55
-randomness = 0.3
-emission_shape = 1
-emission_sphere_radius = 0.5
-direction = Vector2(0, -1)
-spread = 140.0
-gravity = Vector2(0, 300)
-initial_velocity_min = 70.0
-initial_velocity_max = 70.0
-radial_accel_min = 45.0
-radial_accel_max = 45.0
-tangential_accel_min = 10.0
-tangential_accel_max = 10.0
-color = Color(0.960784, 0.964706, 0.988235, 1)
-color_ramp = SubResource("Gradient_bhldm")
 
 [node name="Dock" type="Sprite2D" parent="."]
 texture = ExtResource("5_cdnnk")
@@ -305,6 +320,8 @@ offset_right = -5.0
 offset_bottom = 41.0
 grow_horizontal = 2
 
+[connection signal="mouse_entered" from="VBoxContainer/Launch" to="." method="_on_launch_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Launch" to="." method="_on_launch_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="mouse_entered" from="OpenShop" to="." method="_on_open_shop_mouse_entered"]
 [connection signal="pressed" from="OpenShop" to="." method="_on_open_shop_pressed"]

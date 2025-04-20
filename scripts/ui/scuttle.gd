@@ -15,6 +15,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_mouse_entered() -> void:
+	$ButtonHover.play()
 	timer.start()
 	hovered = true
 
@@ -28,3 +29,4 @@ func _on_mouse_exited() -> void:
 
 func _on_timer_timeout() -> void:
 	can_press = true
+	$ButtonReady.play()

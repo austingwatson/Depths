@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cma2ufjony3xm"]
+[gd_scene load_steps=6 format=3 uid="uid://cma2ufjony3xm"]
 
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="1_n8g5b"]
 [ext_resource type="Script" uid="uid://bf04rau50eus3" path="res://scripts/ui/player_health.gd" id="2_ktjlq"]
+[ext_resource type="AudioStream" uid="uid://bsi6ceko8x3bx" path="res://assets/sounds/button_boop.wav" id="3_ktjlq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3bxjp"]
 atlas = ExtResource("1_n8g5b")
@@ -24,3 +25,13 @@ texture_under = SubResource("AtlasTexture_3bxjp")
 texture_progress = SubResource("AtlasTexture_2tkdw")
 script = ExtResource("2_ktjlq")
 colors = Array[Color]([Color(0.501961, 0.929412, 0.901961, 1), Color(0.968627, 0.960784, 0.321569, 1), Color(0.8, 0.192157, 0.211765, 1)])
+
+[node name="LowHP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ktjlq")
+volume_db = -8.0
+pitch_scale = 0.33
+
+[node name="CriticalHP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ktjlq")
+volume_db = -4.0
+pitch_scale = 0.4

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwfmk3hcaog1x"]
+[gd_scene load_steps=5 format=3 uid="uid://dwfmk3hcaog1x"]
 
 [ext_resource type="Script" uid="uid://cpt7lapl1j3hj" path="res://scripts/component/sonar.gd" id="1_1dghd"]
 [ext_resource type="AudioStream" uid="uid://cqjlrj8je0dqo" path="res://assets/sounds/sonar_pulse.wav" id="2_8mfa6"]
+[ext_resource type="AudioStream" uid="uid://b4bq733feokvy" path="res://assets/sounds/repair_ping.wav" id="3_nokio"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_71oby"]
 radius = 0.01
@@ -14,9 +15,15 @@ script = ExtResource("1_1dghd")
 
 [node name="SonarPulseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_8mfa6")
+volume_db = -22.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_71oby")
 disabled = true
+
+[node name="SonarReady" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nokio")
+volume_db = -28.0
+pitch_scale = 0.9
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

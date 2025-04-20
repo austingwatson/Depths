@@ -32,14 +32,18 @@ func reinit() -> void:
 
 
 func _on_mouse_entered() -> void:
+	$ButtonHover.play()
 	tool_tip.visible = true
+
 
 
 func _on_mouse_exited() -> void:
 	tool_tip.visible = false
 
 
+
 func _on_pressed() -> void:
+	$ButtonClick.play()
 	var success := player_stats.buy(store_names[current_upgrade])
 	if success:
 		tool_tip.visible = false

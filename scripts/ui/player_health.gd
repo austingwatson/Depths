@@ -14,7 +14,12 @@ func _on_player_health_changed(max_health: int, health: int) -> void:
 	
 	if percent >= 0.5:
 		tint_progress = colors[0]
+		$LowHP.stop()
 	elif percent > 0.1:
 		tint_progress = colors[1]
+		$LowHP.play()
+		$CriticalHP.stop()
 	else:
 		tint_progress = colors[2]
+		$CriticalHP.play()
+		$LowHP.stop()

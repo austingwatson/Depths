@@ -10,5 +10,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is HurtBox:
 		GlobalSignals.victory = true
 		EntityManager.clear()
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/end_game_screen.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/victory.tscn")
 		#get_tree().change_scene_to_file("res://scenes/title_screen.tscn")

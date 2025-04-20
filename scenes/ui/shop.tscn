@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://r21ikn6owpl5"]
+[gd_scene load_steps=18 format=3 uid="uid://r21ikn6owpl5"]
 
 [ext_resource type="Script" uid="uid://c4moyk1cjit1o" path="res://scripts/ui/shop.gd" id="1_ahsc1"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8v20v"]
 [ext_resource type="PackedScene" uid="uid://bl2twktninjbm" path="res://scenes/ui/upgrade.tscn" id="3_2i61c"]
+[ext_resource type="AudioStream" uid="uid://w8haihg82vm3" path="res://assets/sounds/button_off.wav" id="4_kdvrj"]
+[ext_resource type="AudioStream" uid="uid://dpfywfd3ilogs" path="res://assets/sounds/button_click_on.wav" id="5_atewb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8v20v"]
 atlas = ExtResource("2_8v20v")
@@ -152,4 +154,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_48xco")
 
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kdvrj")
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_atewb")
+
+[connection signal="mouse_entered" from="Background/Close" to="." method="_on_close_mouse_entered"]
 [connection signal="pressed" from="Background/Close" to="." method="_on_close_pressed"]

@@ -1,8 +1,118 @@
-[gd_scene load_steps=2 format=3 uid="uid://0nd5b0b486jy"]
+[gd_scene load_steps=17 format=3 uid="uid://0nd5b0b486jy"]
 
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="1_vgwbg"]
+[ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="2_v83lt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g46fr"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3aj3"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(192, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y1ce"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(192, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivqch"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(192, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_503ws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g46fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3aj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y1ce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivqch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iop7q"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(256, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od8fv"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(256, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blg7w"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(256, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiufe"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(256, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2g0x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iop7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od8fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blg7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiufe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7ixe"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(224, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g64t7"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(224, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj1v8"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(224, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmn6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ixe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g64t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ixe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj1v8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="DeepFish" instance=ExtResource("1_vgwbg")]
+
+[node name="FishSprite" parent="." index="1"]
+base_animation = SubResource("SpriteFrames_503ws")
+outline_animation = SubResource("SpriteFrames_c2g0x")
+eye_animation = SubResource("SpriteFrames_dmn6m")
 
 [node name="HurtBox" parent="." index="2"]
 max_health = 15

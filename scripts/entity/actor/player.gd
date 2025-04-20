@@ -32,6 +32,7 @@ const rotation_threshold := 0.1
 @onready var thruster_sound := $ThrusterSound
 @onready var thruster_particle_1 := $ThrusterTrail
 @onready var thruster_particle_2 := $ThrusterTrail2
+@onready var thrust_puff := $ThrustPuff
 @onready var repair_particles := $RepairParticle
 @onready var research_particles := $ResearchParticle
 @onready var sonar_partciles := $SonarPulseParticles
@@ -149,6 +150,7 @@ func _physics_process(delta: float) -> void:
 		thruster_sound.play()
 		thruster_particle_1.emitting = true
 		thruster_particle_2.emitting = true
+		thrust_puff.emitting = true
 	elif Input.is_action_just_released("thrust"):
 		thruster_sound.stop()
 		thruster_particle_1.emitting = false

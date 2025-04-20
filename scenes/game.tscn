@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c2s5gjmj8y12a"]
+[gd_scene load_steps=48 format=3 uid="uid://c2s5gjmj8y12a"]
 
 [ext_resource type="PackedScene" uid="uid://ciuquonjnfqut" path="res://scenes/ui/hud.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://o83brxwooeeu" path="res://scripts/game.gd" id="1_yqjtg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cihdw6creftsj" path="res://assets/textures/level/ice_background_parallax.png" id="3_ca42v"]
 [ext_resource type="Texture2D" uid="uid://cajt7vppy4c1h" path="res://assets/textures/level/ice_middleground_parallax.png" id="4_rysoc"]
 [ext_resource type="Texture2D" uid="uid://ioy6p73a7v1l" path="res://assets/textures/level/ice_shelf.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dlwiri1gm7xoa" path="res://assets/textures/level/drifting_specks.png" id="7_5newe"]
 [ext_resource type="Texture2D" uid="uid://yqvus5wdpfom" path="res://assets/textures/level/currents_parallax.png" id="7_ca42v"]
 [ext_resource type="Texture2D" uid="uid://v8q4auewvljj" path="res://assets/textures/effects/ies_lights_model1.png" id="7_dinhu"]
 [ext_resource type="Texture2D" uid="uid://dd60ahlecpedw" path="res://assets/textures/level/dark_currents_parallax.png" id="7_vtaks"]
@@ -123,7 +124,7 @@ point_count = 4
 
 [sub_resource type="Curve" id="Curve_02fa5"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(2394.82, 0), 0.0, 0.0, 0, 0, Vector2(5048.54, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(2394.82, 0), 0.0, 0.0, 0, 0, Vector2(4886.73, 0.185379), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_nepv3"]
@@ -133,7 +134,7 @@ point_count = 1
 
 [sub_resource type="Curve" id="Curve_7025r"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(5533.98, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(5501.62, 0.584204), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
@@ -196,6 +197,18 @@ repeat_times = 2
 texture = ExtResource("6_u5sy4")
 centered = false
 offset = Vector2(0, -187)
+
+[node name="DriftingSpecksFG" type="Parallax2D" parent="."]
+z_index = 5
+scroll_scale = Vector2(2, 2)
+repeat_size = Vector2(480, 270)
+autoscroll = Vector2(-7, 3)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="DriftingSpecksFG"]
+modulate = Color(1, 1, 1, 0.168627)
+texture = ExtResource("7_5newe")
+centered = false
 
 [node name="BrightCurrentsFG1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.5, 1.5)
@@ -267,7 +280,6 @@ spawn_locations = [{
 margin = 25.0
 
 [node name="DeepFishSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
-disable = true
 type = 5
 enemy_scene = ExtResource("15_1kice")
 max_amount = SubResource("Curve_sww3w")
@@ -299,14 +311,13 @@ timer_curve = SubResource("Curve_gxtfn")
 margin = 25.0
 
 [node name="BigFloaterSpawner" parent="Spawners" instance=ExtResource("2_lbhrr")]
-disable = true
 type = 4
 enemy_scene = ExtResource("17_37s47")
 max_amount = SubResource("Curve_twgab")
 lower_spawn_curve = SubResource("Curve_02fa5")
 upper_spawn_curve = SubResource("Curve_nepv3")
 timer_curve = SubResource("Curve_7025r")
-margin = 25.0
+margin = 4.0
 
 [node name="HUD" parent="." instance=ExtResource("1_uwrxv")]
 
