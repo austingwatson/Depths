@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_wld0n")
-research = 2
+research = 20
 max_depth = 0
 max_speed = 200.0
 acceleration = 100.0
@@ -14,7 +14,7 @@ thrust_energy = 2.5
 max_energy = 100.0
 passive_refill = 2.0
 max_health = 10.0
-max_radius = 1400.0
+max_radius = 2800.0
 duration = 10.0
 sonar_cooldown = 6.0
 unlocked_weapons = [true, false, false]
@@ -22,7 +22,7 @@ damage = 0
 range = 1000.0
 weapon_cooldown = 1.0
 torpedo_damage = 1
-torpedo_energy = 45.0
+torpedo_energy = 50.0
 torpedo_cooldown = 0.2
 torpedo_homing = 0.0
 laser_damage = 1
@@ -30,7 +30,7 @@ laser_energy = 1.0
 laser_cooldown = 1.0
 laser_tick_speed = 1.0
 shock_damage = 1
-shock_energy = 25.0
+shock_energy = 70.0
 shock_cooldown = 0.5
 shock_range = 100.0
 metadata/_custom_type_script = "uid://ddq5cculcmren"

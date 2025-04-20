@@ -5,7 +5,7 @@ extends Node2D
 func _ready() -> void:
 	$ShockBlastParticles.emitting = true
 	$ShockSound.play()
-	$AnimatedSprite2D.play("default")
+	$Shock_visual_rank1.play("default")
 
 
 func _on_timer_timeout() -> void:

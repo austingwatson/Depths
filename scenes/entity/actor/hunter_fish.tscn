@@ -165,7 +165,7 @@ shape = SubResource("CircleShape2D_ymxha")
 position = Vector2(15, 0)
 collision_layer = 4
 collision_mask = 2
-damage = 1
+damage = 2
 shape = SubResource("ConvexPolygonShape2D_ymxha")
 
 [node name="IdleTimer" type="Timer" parent="."]

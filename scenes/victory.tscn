@@ -92,6 +92,33 @@ glow_enabled = true
 glow_intensity = 1.0
 glow_hdr_threshold = 1.5
 
+[sub_resource type="Animation" id="Animation_w13b5"]
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("big_floater_anim/big_floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 57), Vector2(38, 65)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("big_floater_anim/big_floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 128, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64)]
+}
+
 [sub_resource type="Animation" id="Animation_0ya2q"]
 resource_name = "float"
 length = 6.0
@@ -121,33 +148,6 @@ tracks/1/keys = {
 "values": [Rect2(0, 128, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64)]
 }
 
-[sub_resource type="Animation" id="Animation_w13b5"]
-length = 6.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("big_floater_anim/big_floater:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(38, 57), Vector2(38, 65)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("big_floater_anim/big_floater:texture:region")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(0, 128, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64), Rect2(0, 0, 32, 64), Rect2(0, 64, 32, 64), Rect2(0, 128, 32, 64), Rect2(0, 192, 32, 64)]
-}
-
 [sub_resource type="Animation" id="Animation_0iwmx"]
 resource_name = "idle"
 
@@ -161,6 +161,33 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgp87"]
 atlas = ExtResource("11_m35g4")
 region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="Animation" id="Animation_qunh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("floater_anim/floater:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(450, 51)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("floater_anim/floater:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 32)]
+}
 
 [sub_resource type="Animation" id="Animation_c0tw7"]
 resource_name = "float"
@@ -189,33 +216,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32), Rect2(0, 0, 16, 32), Rect2(16, 0, 16, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_qunh1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("floater_anim/floater:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(450, 51)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("floater_anim/floater:texture:region")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 16, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ts1t5"]

@@ -3,3 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="1_vgwbg"]
 
 [node name="DeepFish" instance=ExtResource("1_vgwbg")]
+
+[node name="HurtBox" parent="." index="2"]
+max_health = 15
+health = 15
+
+[node name="HitBox" parent="." index="4"]
+damage = 4
