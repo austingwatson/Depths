@@ -124,7 +124,7 @@ point_count = 4
 
 [sub_resource type="Curve" id="Curve_02fa5"]
 _limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(2394.82, 0), 0.0, 0.0, 0, 0, Vector2(4886.73, 0.185379), 0.0, 0.0, 0, 0]
+_data = [Vector2(2394.82, 0), 0.0, 0.0, 0, 0, Vector2(5145.63, 0.0920366), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_nepv3"]

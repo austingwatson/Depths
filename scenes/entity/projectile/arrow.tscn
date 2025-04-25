@@ -16,6 +16,7 @@ texture = SubResource("AtlasTexture_5q7jp")
 script = ExtResource("2_5q7jp")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 autostart = true
 

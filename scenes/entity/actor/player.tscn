@@ -221,6 +221,17 @@ visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_f6cxi")
 
+[node name="RadiusLightRank2" type="PointLight2D" parent="."]
+visible = false
+energy = 0.65
+texture = ExtResource("6_18kca")
+texture_scale = 0.5
+
+[node name="Test" type="Sprite2D" parent="RadiusLightRank2"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_f6cxi")
+
 [node name="ForwardLight" type="PointLight2D" parent="."]
 position = Vector2(109, 0)
 rotation = -1.5708
