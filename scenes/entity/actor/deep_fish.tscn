@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0nd5b0b486jy"]
+[gd_scene load_steps=29 format=3 uid="uid://0nd5b0b486jy"]
 
 [ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_blg7w"]
 [ext_resource type="Resource" uid="uid://bvpbr8b48lctj" path="res://resources/move_rand.tres" id="2_jiufe"]
@@ -27,6 +27,10 @@ region = Rect2(192, 32, 32, 16)
 atlas = ExtResource("2_v83lt")
 region = Rect2(192, 48, 32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2g0x"]
+atlas = ExtResource("2_v83lt")
+region = Rect2(192, 64, 32, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_503ws"]
 animations = [{
 "frames": [{
@@ -44,6 +48,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2g0x")
+}],
+"loop": true,
+"name": &"prepare",
 "speed": 5.0
 }]
 

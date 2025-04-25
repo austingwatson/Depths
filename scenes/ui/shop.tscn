@@ -92,43 +92,43 @@ columns = 3
 [node name="MaxEnergy" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["energy1", "energy2", "energy3"])
-tool_tip_strings = Array[String](["energy1", "energy2", "energy3"])
+tool_tip_strings = Array[String](["Increase Max Energy I", "Increase Max Energy II", "Increase Max Energy III"])
 icon_texture = SubResource("AtlasTexture_2i61c")
 
 [node name="MaxHealth" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["health1", "health2", "health3"])
-tool_tip_strings = Array[String](["health1", "health2", "health3"])
+tool_tip_strings = Array[String](["Reinforce Hull I", "Reinforce Hull II", "Reinforce Hull III"])
 icon_texture = SubResource("AtlasTexture_85p0y")
 
 [node name="SonarCooldown" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["cooldown1", "cooldown2", "cooldown3"])
-tool_tip_strings = Array[String](["cooldown1", "cooldown2", "cooldown3"])
+tool_tip_strings = Array[String](["Decrease Sonar Cooldown I", "Decrease Sonar Cooldown II", "Decrease Sonar Cooldown III"])
 icon_texture = SubResource("AtlasTexture_kdvrj")
 
 [node name="WeaponDamage" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["damage1", "damage2", "damage3"])
-tool_tip_strings = Array[String](["damage1", "damage2", "damage3"])
+tool_tip_strings = Array[String](["Weapon Damage I", "Weapon Damage II", "Weapon Damage III"])
 icon_texture = SubResource("AtlasTexture_atewb")
 
 [node name="Torpedo" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["homing"])
-tool_tip_strings = Array[String](["homing"])
+tool_tip_strings = Array[String](["Homing Torpedoes"])
 icon_texture = SubResource("AtlasTexture_mk32u")
 
 [node name="Laser" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["laser", "laser_cost"])
-tool_tip_strings = Array[String](["laser", "laser_cost"])
+tool_tip_strings = Array[String](["Laser Drill", "Energy Efficient Laser"])
 icon_texture = SubResource("AtlasTexture_quulj")
 
 [node name="Shock" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
 layout_mode = 2
 store_names = Array[String](["shock", "shock_range"])
-tool_tip_strings = Array[String](["shock", "shock_range"])
+tool_tip_strings = Array[String](["Shock Cannon", "Improved Shock Range"])
 icon_texture = SubResource("AtlasTexture_xk8hd")
 
 [node name="Close" type="TextureButton" parent="Background"]
