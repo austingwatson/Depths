@@ -169,21 +169,38 @@ func _physics_process(delta: float) -> void:
 		global_position.y = 20
 		GlobalSignals.on_player_moved(global_position)
 		
-	if Input.is_action_just_pressed("shoot"):
-		match weapon:
-			Weapon.TORPEDO:
-				if not torpedo_cooldown.on_cooldown:
-					torpedo_cooldown.use()
-					ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, player_stats.torpedo_damage + player_stats.damage)
-					energy.use_energy(player_stats.torpedo_energy)
-			Weapon.LASER:
-				laser.is_casting = not laser.is_casting
-			Weapon.SHOCK:
-				if not shock_cooldown.on_cooldown:
-					shock_cooldown.use()
-					var shock := shock_scene.instantiate()
-					add_child(shock)
-					energy.use_energy(player_stats.shock_energy)
+	match weapon:
+		Weapon.TORPEDO:
+			if Input.is_action_just_pressed("shoot") and not torpedo_cooldown.on_cooldown:
+				torpedo_cooldown.use()
+				ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, player_stats.torpedo_damage + player_stats.damage)
+				energy.use_energy(player_stats.torpedo_energy)
+		Weapon.LASER:
+			if Input.is_action_just_pressed("shoot"):
+				laser.is_casting = true
+			elif Input.is_action_just_released("shoot"):
+				laser.is_casting = false
+		Weapon.SHOCK:
+			if Input.is_action_just_pressed("shoot") and not shock_cooldown.on_cooldown:
+				shock_cooldown.use()
+				var shock := shock_scene.instantiate()
+				add_child(shock)
+				energy.use_energy(player_stats.shock_energy)
+	#if Input.is_action_just_pressed("shoot"):
+	#	match weapon:
+	#		Weapon.TORPEDO:
+	#			if not torpedo_cooldown.on_cooldown:
+	#				torpedo_cooldown.use()
+	#				ProjectileManager.add_friendly_torpedo(global_position, direction, rotation, player_stats.torpedo_damage + player_stats.damage)
+	#				energy.use_energy(player_stats.torpedo_energy)
+	#		Weapon.LASER:
+	#			laser.is_casting = not laser.is_casting
+	#		Weapon.SHOCK:
+	#			if not shock_cooldown.on_cooldown:
+	#				shock_cooldown.use()
+	#				var shock := shock_scene.instantiate()
+	#				add_child(shock)
+	#				energy.use_energy(player_stats.shock_energy)
 	if Input.is_action_just_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()
 		sonar.start_sonar(global_position)

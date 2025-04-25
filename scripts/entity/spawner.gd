@@ -88,7 +88,6 @@ func _on_spawn_timer_timeout() -> void:
 			current_amount = get_tree().get_node_count_in_group("Research")
 		Type.BIG_FLOATER:
 			current_amount = get_tree().get_node_count_in_group("BigFloater")
-			print(current_amount)
 		Type.DEEP_FISH:
 			current_amount = get_tree().get_node_count_in_group("DeepFish")
 	

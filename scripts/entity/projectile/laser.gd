@@ -17,6 +17,7 @@ var is_casting := false: set = set_is_casting
 
 @onready var fill : Line2D = $FillLine2D
 var tween : Tween
+var player_stats: PermStats = EntityManager.player_stats
 @onready var casting_particles := $CastingParticles2D
 @onready var collision_particles := $CollisionParticles2D
 @onready var beam_particles := $BeamParticles2D
@@ -31,6 +32,7 @@ var can_hit := true
 func _ready() -> void:
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
+	damage = player_stats.damage + player_stats.laser_damage
 
 
 func _physics_process(delta: float) -> void:

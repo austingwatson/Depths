@@ -16,7 +16,7 @@ var on_screen := false
 
 func _ready() -> void:
 	$VisibleOnScreenNotifier2D.rect = visible_rect
-	pinged_timer.wait_time = show_time
+	#pinged_timer.wait_time = show_time
 	base.sprite_frames = base_animation
 	base.play("default")
 	outline.sprite_frames = outline_animation
