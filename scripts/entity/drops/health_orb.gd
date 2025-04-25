@@ -10,3 +10,7 @@ func _ready() -> void:
 func _on_area_entered(_area: Area2D) -> void:
 	GlobalSignals.on_heal_player(heal)
 	queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
