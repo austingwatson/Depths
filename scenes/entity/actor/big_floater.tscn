@@ -97,7 +97,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="BigFloater" type="Node2D" groups=["BigFloater"]]
 script = ExtResource("1_oslxi")
-heal = 4
+heal = 3
 
 [node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_2ldnu")]
 entity = NodePath("..")
@@ -117,8 +117,8 @@ show_time = 1.0
 collision_layer = 40
 collision_mask = 2
 entity = NodePath("..")
-max_health = 4
-health = 4
+max_health = 5
+health = 5
 shape = SubResource("CapsuleShape2D_gqlh0")
 
 [node name="Light" type="PointLight2D" parent="."]
