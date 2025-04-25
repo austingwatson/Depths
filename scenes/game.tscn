@@ -54,8 +54,8 @@ point_count = 4
 
 [sub_resource type="Curve" id="Curve_264po"]
 _limits = [1.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
-point_count = 1
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1585.76, 5.41776), 0.0, 0.0, 0, 0, Vector2(10000, 5.41776), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_1kice"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
@@ -73,9 +73,9 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1067.96, 35.5744), 0.0, 0.0, 0, 
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_bt5mj"]
-_limits = [1.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
-point_count = 1
+_limits = [1.0, 20.0, 0.0, 10000.0]
+_data = [Vector2(1618.12, 20), 0.0, 0.0, 0, 0, Vector2(3106.8, 10.4876), 0.0, 0.0, 0, 0, Vector2(9935.28, 10.3264), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_sww3w"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
@@ -93,9 +93,9 @@ _data = [Vector2(6375.4, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_qouja"]
-_limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(6828.48, 1), 0.0, 0.0, 0, 0]
-point_count = 1
+_limits = [0.0, 20.0, 0.0, 10000.0]
+_data = [Vector2(5436.89, 20), 0.0, 0.0, 0, 0, Vector2(9644.01, 9.13838), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_wljb1"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
@@ -114,8 +114,8 @@ point_count = 4
 
 [sub_resource type="Curve" id="Curve_gxtfn"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
-_data = [Vector2(10000, 3), 0.0, 0.0, 0, 0]
-point_count = 1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(485.437, 4.99347), 0.0, 0.0, 0, 0, Vector2(1423.95, 5.3329), 0.00196655, 0.00196655, 0, 0, Vector2(6569.58, 10), 0.0, 0.0, 0, 0, Vector2(10000, 6.18146), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Curve" id="Curve_twgab"]
 _limits = [0.0, 10.0, 0.0, 10000.0]
@@ -133,9 +133,9 @@ _data = [Vector2(8252.43, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_7025r"]
-_limits = [0.0, 1.0, 0.0, 10000.0]
-_data = [Vector2(5501.62, 0.584204), 0.0, 0.0, 0, 0]
-point_count = 1
+_limits = [0.0, 20.0, 0.0, 10000.0]
+_data = [Vector2(2589, 20), 0.0, 0.0, 0, 0, Vector2(5016.18, 14.5692), 0.0, 0.0, 0, 0, Vector2(8996.76, 10.1567), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_mode = 3
