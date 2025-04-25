@@ -1,31 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnqxvu63aco63"]
+[gd_scene load_steps=9 format=3 uid="uid://bnqxvu63aco63"]
 
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="1_n83ln"]
 [ext_resource type="Script" uid="uid://drem033rldge5" path="res://scripts/entity/drops/health_orb.gd" id="1_q5daa"]
 [ext_resource type="Texture2D" uid="uid://ccn0ikslju12v" path="res://assets/textures/effects/2d_point_light.png" id="2_q5daa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdylo"]
+radius = 12.0416
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdylo"]
+atlas = ExtResource("1_n83ln")
+region = Rect2(16, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyqrf"]
 atlas = ExtResource("1_n83ln")
-region = Rect2(8, 16, 8, 8)
+region = Rect2(72, 16, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pqn6a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5daa"]
 atlas = ExtResource("1_n83ln")
-region = Rect2(40, 16, 8, 8)
+region = Rect2(8, 16, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kafr3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gdylo")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tyqrf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pqn6a")
+"texture": SubResource("AtlasTexture_gdylo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5daa")
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.0
+"speed": 3.0
 }]
 
 [node name="HealthOrb" type="Area2D"]
@@ -38,10 +49,11 @@ shape = SubResource("CircleShape2D_gdylo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kafr3")
-frame_progress = 0.656716
+frame_progress = 0.0757048
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.2
 texture = ExtResource("2_q5daa")
-texture_scale = 0.1
+texture_scale = 0.03
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
