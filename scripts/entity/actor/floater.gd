@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 func _on_hurt_box_dead() -> void:
 	death_pop.emitting = true
 	fish_sprite.visible = false
+	ProjectileManager.call_deferred("add_health_orb", global_position, heal)
 
 
 func _on_hurt_box_pinged(global_position: Vector2) -> void:
@@ -30,5 +31,4 @@ func _on_hurt_box_pinged(global_position: Vector2) -> void:
 
 func _on_death_pop_finished() -> void:
 	#GlobalSignals.on_heal_player(4)
-	ProjectileManager.add_health_orb(global_position, heal)
 	queue_free()

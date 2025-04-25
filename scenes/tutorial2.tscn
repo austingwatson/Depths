@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8c5jc1nuj2nj"]
+[gd_scene load_steps=19 format=3 uid="uid://b8c5jc1nuj2nj"]
 
 [ext_resource type="Texture2D" uid="uid://yok12uq7huj2" path="res://assets/textures/ui/menu_background.png" id="1_dxd6s"]
 [ext_resource type="Script" uid="uid://bsu5kqjf60do3" path="res://scripts/tutorial_2.gd" id="1_qv3dx"]
@@ -13,10 +13,6 @@ region = Rect2(256, 48, 144, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmu26"]
 atlas = ExtResource("2_qv3dx")
 region = Rect2(0, 0, 224, 224)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1ten"]
-atlas = ExtResource("2_qv3dx")
-region = Rect2(200, 400, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ju0u"]
 atlas = ExtResource("2_qv3dx")
@@ -69,28 +65,23 @@ script = ExtResource("1_qv3dx")
 texture = ExtResource("1_dxd6s")
 centered = false
 
-[node name="ControlPanelTab" type="Sprite2D" parent="BG"]
+[node name="ControlPanelTab2" type="Sprite2D" parent="BG"]
 position = Vector2(243, 57)
 texture = SubResource("AtlasTexture_ll3yt")
 flip_h = true
 
-[node name="ControlPanelTab2" type="Sprite2D" parent="BG"]
-position = Vector2(243, 95)
-texture = SubResource("AtlasTexture_ll3yt")
-flip_h = true
-
 [node name="ControlPanelTab3" type="Sprite2D" parent="BG"]
-position = Vector2(243, 134)
+position = Vector2(243, 104)
 texture = SubResource("AtlasTexture_ll3yt")
 flip_h = true
 
 [node name="ControlPanelTab4" type="Sprite2D" parent="BG"]
-position = Vector2(242, 174)
+position = Vector2(242, 149)
 texture = SubResource("AtlasTexture_ll3yt")
 flip_h = true
 
 [node name="ControlPanelTab5" type="Sprite2D" parent="BG"]
-position = Vector2(243, 214)
+position = Vector2(243, 188)
 texture = SubResource("AtlasTexture_ll3yt")
 flip_h = true
 
@@ -104,10 +95,7 @@ offset_left = 8.0
 offset_top = 32.0
 offset_right = 215.0
 offset_bottom = 221.0
-text = "Hold RMB to orient toward the mouse-
-
-
-Hold SPACEBAR to engage thrust-
+text = "Hold SPACEBAR or RMB to engage thrust-
 
 
 Press LMB to fire current weaponry-
@@ -121,26 +109,22 @@ Press SHIFT to use SONAR PING-
 
 "
 scroll_active = false
-
-[node name="RMB" type="Sprite2D" parent="BG"]
-position = Vector2(265, 41)
-texture = SubResource("AtlasTexture_n1ten")
-centered = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Spacebar" type="Sprite2D" parent="BG"]
-position = Vector2(274, 95)
+position = Vector2(274, 57)
 texture = SubResource("AtlasTexture_2ju0u")
 
 [node name="LMB" type="Sprite2D" parent="BG"]
-position = Vector2(273, 133)
+position = Vector2(273, 103)
 texture = SubResource("AtlasTexture_hlw4i")
 
 [node name="Scrollwheel" type="Sprite2D" parent="BG"]
-position = Vector2(273, 175)
+position = Vector2(273, 150)
 texture = SubResource("AtlasTexture_k0yb2")
 
 [node name="Shift" type="Sprite2D" parent="BG"]
-position = Vector2(273, 214)
+position = Vector2(273, 188)
 texture = SubResource("AtlasTexture_cxi7n")
 
 [node name="Uppertext" type="Sprite2D" parent="."]

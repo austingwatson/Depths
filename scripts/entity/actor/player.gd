@@ -135,22 +135,35 @@ func _physics_process(delta: float) -> void:
 	elif laser.is_casting:
 		energy.use_energy(player_stats.laser_energy)
 	
-	if Input.is_action_pressed("rotate"):
-		var dir: float = movement.turn(get_global_mouse_position(), delta)
-		if dir < -1.0 || dir > 1.0:
-			dir *= -1
-		if dir < -rotation_threshold:
-			sprite.texture = right_texture
-			energy_amount.position = Vector2(0.0, 1.0)
-		elif dir > rotation_threshold:
-			sprite.texture = left_texture
-			energy_amount.position = Vector2(0.0, -1.0)
-		else:
-			sprite.texture = forward_texture
-			energy_amount.position = Vector2(0.0, 0.0)
+	var dir: float = movement.turn(get_global_mouse_position(), delta)
+	if dir < -1.0 || dir > 1.0:
+		dir *= -1
+	if dir < -rotation_threshold:
+		sprite.texture = right_texture
+		energy_amount.position = Vector2(0.0, 1.0)
+	elif dir > rotation_threshold:
+		sprite.texture = left_texture
+		energy_amount.position = Vector2(0.0, -1.0)
 	else:
 		sprite.texture = forward_texture
 		energy_amount.position = Vector2(0.0, 0.0)
+	
+	#if Input.is_action_pressed("rotate"):
+	#	var dir: float = movement.turn(get_global_mouse_position(), delta)
+	#	if dir < -1.0 || dir > 1.0:
+	#		dir *= -1
+	#	if dir < -rotation_threshold:
+	#		sprite.texture = right_texture
+	#		energy_amount.position = Vector2(0.0, 1.0)
+	#	elif dir > rotation_threshold:
+	#		sprite.texture = left_texture
+	#		energy_amount.position = Vector2(0.0, -1.0)
+	#	else:
+	#		sprite.texture = forward_texture
+	#		energy_amount.position = Vector2(0.0, 0.0)
+	#else:
+	#	sprite.texture = forward_texture
+	#	energy_amount.position = Vector2(0.0, 0.0)
 	
 	if Input.is_action_just_pressed("thrust"):
 		thruster_sound.play()
