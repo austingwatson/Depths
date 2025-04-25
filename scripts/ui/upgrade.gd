@@ -27,7 +27,7 @@ func reinit() -> void:
 			queue_free()
 			return
 	
-	cost.text = str(player_stats.store[tool_tip_strings[current_upgrade]])
+	cost.text = str(player_stats.store[store_names[current_upgrade]])
 	tool_tip_label.text = tool_tip_strings[current_upgrade]
 
 

@@ -86,6 +86,11 @@ func _on_spawn_timer_timeout() -> void:
 			current_amount = get_tree().get_node_count_in_group("Floater")
 		Type.RESEARCH:
 			current_amount = get_tree().get_node_count_in_group("Research")
+		Type.BIG_FLOATER:
+			current_amount = get_tree().get_node_count_in_group("BigFloater")
+			print(current_amount)
+		Type.DEEP_FISH:
+			current_amount = get_tree().get_node_count_in_group("DeepFish")
 	
 	var amount := get_enemy_amount()
 	var max: int = round(max_amount.sample(player_y))

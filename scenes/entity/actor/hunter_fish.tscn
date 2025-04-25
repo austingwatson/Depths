@@ -148,8 +148,8 @@ visible_rect = Rect2(-16, -8, 32, 16)
 show_time = 1.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_vbyxb")]
-collision_layer = 4
-collision_mask = 34
+collision_layer = 36
+collision_mask = 2
 entity = NodePath("..")
 max_health = 6
 health = 6

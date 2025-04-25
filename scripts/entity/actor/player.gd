@@ -186,7 +186,7 @@ func _physics_process(delta: float) -> void:
 					energy.use_energy(player_stats.shock_energy)
 	if Input.is_action_just_pressed("sonar") and not sonar_cooldown.on_cooldown:
 		sonar_cooldown.use()
-		sonar.start_sonar()
+		sonar.start_sonar(global_position)
 		GlobalSignals.on_use_sonar()
 		sonar_partciles.emitting = true
 	

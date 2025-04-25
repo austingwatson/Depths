@@ -1,7 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://0nd5b0b486jy"]
+[gd_scene load_steps=28 format=3 uid="uid://0nd5b0b486jy"]
 
-[ext_resource type="PackedScene" uid="uid://daxpl8wgwrd7w" path="res://scenes/entity/actor/hunter_fish.tscn" id="1_vgwbg"]
+[ext_resource type="Script" uid="uid://b8wcqwldkw4th" path="res://scripts/entity/actor/hunter_fish.gd" id="1_blg7w"]
+[ext_resource type="Resource" uid="uid://bvpbr8b48lctj" path="res://resources/move_rand.tres" id="2_jiufe"]
 [ext_resource type="Texture2D" uid="uid://cc2bgbvc2jubk" path="res://assets/textures/entity/hunter_fish.png" id="2_v83lt"]
+[ext_resource type="Resource" uid="uid://5etm0anracyi" path="res://resources/move_player.tres" id="3_c2g0x"]
+[ext_resource type="Resource" uid="uid://wsb55dgirstk" path="res://resources/attack.tres" id="4_o7ixe"]
+[ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="5_g64t7"]
+[ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="6_dj1v8"]
+[ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="8_dmn6m"]
+[ext_resource type="PackedScene" uid="uid://djbrnjtvjpjmt" path="res://scenes/component/detection.tscn" id="9_yxil0"]
+[ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="10_lknrq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g46fr"]
 atlas = ExtResource("2_v83lt")
@@ -107,16 +115,75 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DeepFish" instance=ExtResource("1_vgwbg")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrtdc"]
+size = Vector2(32, 16)
 
-[node name="FishSprite" parent="." index="1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ymxha"]
+radius = 150.0
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ymxha"]
+points = PackedVector2Array(0, 0, 15, -15, 15, 15)
+
+[node name="DeepFish" type="Node2D" groups=["DeepFish"]]
+script = ExtResource("1_blg7w")
+base = ExtResource("2_jiufe")
+move_to_player = ExtResource("3_c2g0x")
+attack = ExtResource("4_o7ixe")
+attack_range = 100.0
+attack_fov_angle = 25.0
+
+[node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("5_g64t7")]
+entity = NodePath("..")
+max_speed = 300.0
+acceleration = 150.0
+deceleration = 300.0
+rotation_speed = 10.0
+
+[node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("6_dj1v8")]
+entity = NodePath("..")
 base_animation = SubResource("SpriteFrames_503ws")
 outline_animation = SubResource("SpriteFrames_c2g0x")
 eye_animation = SubResource("SpriteFrames_dmn6m")
+visible_rect = Rect2(-16, -8, 32, 16)
+show_time = 1.0
 
-[node name="HurtBox" parent="." index="2"]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("8_dmn6m")]
+collision_layer = 36
+collision_mask = 2
+entity = NodePath("..")
 max_health = 15
 health = 15
+shape = SubResource("RectangleShape2D_mrtdc")
 
-[node name="HitBox" parent="." index="4"]
+[node name="PlayerDetection" parent="." instance=ExtResource("9_yxil0")]
+visible = false
+collision_layer = 4
+collision_mask = 2
+shape = SubResource("CircleShape2D_ymxha")
+
+[node name="HitBox" parent="." instance=ExtResource("10_lknrq")]
+position = Vector2(15, 0)
+collision_layer = 4
+collision_mask = 2
 damage = 4
+shape = SubResource("ConvexPolygonShape2D_ymxha")
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackMoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
+[connection signal="detected" from="PlayerDetection" to="." method="_on_player_detection_detected"]
+[connection signal="lost" from="PlayerDetection" to="." method="_on_player_detection_lost"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackMoveTimer" to="." method="_on_attack_move_timer_timeout"]

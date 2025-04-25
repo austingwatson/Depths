@@ -8,7 +8,8 @@ extends Area2D
 @onready var shape: Shape2D = collision_shape.shape
 
 
-func start_sonar() -> void:
+func start_sonar(global_position: Vector2) -> void:
+	self.global_position = global_position
 	$SonarPulseSound.play()
 	collision_shape.set_deferred("disabled", false)
 	var tween := create_tween()

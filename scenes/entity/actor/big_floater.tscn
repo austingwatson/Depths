@@ -1,7 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://clmenjb7bo3fd"]
+[gd_scene load_steps=23 format=3 uid="uid://clmenjb7bo3fd"]
 
-[ext_resource type="PackedScene" uid="uid://8oxdyj66sd4m" path="res://scenes/entity/actor/floater.tscn" id="1_yyiyj"]
+[ext_resource type="Script" uid="uid://brrrtutax8xnp" path="res://scripts/entity/actor/floater.gd" id="1_oslxi"]
+[ext_resource type="PackedScene" uid="uid://dgefqrqeh3evl" path="res://scenes/component/movement.tscn" id="2_2ldnu"]
 [ext_resource type="Texture2D" uid="uid://b52loa0ba8u2j" path="res://assets/textures/entity/big_floater.png" id="3_uoj4v"]
+[ext_resource type="PackedScene" uid="uid://yr7unnis4qow" path="res://scenes/component/fish_sprite.tscn" id="3_wu100"]
+[ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="5_oualg"]
+[ext_resource type="Texture2D" uid="uid://dgb36hfijxjf1" path="res://assets/textures/effects/2d_lights_and_shadows_neutral_point_light.png" id="6_07jvc"]
+[ext_resource type="PackedScene" uid="uid://bbcnk1lc1bia3" path="res://scenes/component/player_distance.tscn" id="7_uc4en"]
+[ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="8_u2fdv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqlh0"]
 atlas = ExtResource("3_uoj4v")
@@ -75,27 +81,77 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dvyh"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gqlh0"]
 radius = 16.0
 height = 64.0
 
-[node name="BigFloater" instance=ExtResource("1_yyiyj")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhvvh"]
+atlas = ExtResource("8_u2fdv")
+region = Rect2(48, 24, 8, 8)
+
+[sub_resource type="Gradient" id="Gradient_qctdj"]
+offsets = PackedFloat32Array(0, 0.723247, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="BigFloater" type="Node2D" groups=["BigFloater"]]
+script = ExtResource("1_oslxi")
 heal = 4
 
-[node name="Movement" parent="." index="0"]
+[node name="Movement" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_2ldnu")]
+entity = NodePath("..")
 max_speed = 20.0
 acceleration = 4.0
+deceleration = 100.0
 
-[node name="FishSprite" parent="." index="1"]
+[node name="FishSprite" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_wu100")]
+entity = NodePath("..")
 base_animation = SubResource("SpriteFrames_yrexu")
 outline_animation = SubResource("SpriteFrames_wu100")
+eye_animation = SubResource("SpriteFrames_7dvyh")
+visible_rect = Rect2(-8, -16, 16, 32)
+show_time = 1.0
 
-[node name="HurtBox" parent="." index="2"]
+[node name="HurtBox" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("5_oualg")]
+collision_layer = 40
+collision_mask = 2
+entity = NodePath("..")
 max_health = 4
 health = 4
 shape = SubResource("CapsuleShape2D_gqlh0")
 
-[node name="Light" parent="." index="3"]
+[node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, -3)
+color = Color(0.722702, 0.999442, 0.675061, 1)
 energy = 0.8
+texture = ExtResource("6_07jvc")
+offset = Vector2(0, 4)
 texture_scale = 0.35
+
+[node name="PlayerDistance" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("7_uc4en")]
+entity = NodePath("..")
+distance = 500.0
+
+[node name="DeathPop" type="CPUParticles2D" parent="."]
+emitting = false
+texture = SubResource("AtlasTexture_bhvvh")
+one_shot = true
+explosiveness = 0.9
+randomness = 0.36
+emission_shape = 2
+emission_sphere_radius = 6.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 15.0
+initial_velocity_max = 45.0
+radial_accel_min = 32.0
+radial_accel_max = 32.0
+damping_min = 60.0
+damping_max = 60.0
+color_ramp = SubResource("Gradient_qctdj")
+
+[connection signal="dead" from="HurtBox" to="." method="_on_hurt_box_dead"]
+[connection signal="pinged" from="HurtBox" to="." method="_on_hurt_box_pinged"]
+[connection signal="finished" from="DeathPop" to="." method="_on_death_pop_finished"]

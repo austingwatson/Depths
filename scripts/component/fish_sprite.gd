@@ -53,6 +53,7 @@ func pinged(global_position: Vector2) -> void:
 	if on_screen:
 		outline.visible = true
 	else:
+		outline.visible = true
 		ProjectileManager.add_arrow(global_position, entity.global_position)
 	pinged_timer.start()
 

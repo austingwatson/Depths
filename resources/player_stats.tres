@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_wld0n")
-research = 2
+research = 20
 max_depth = 0
 max_speed = 200.0
 acceleration = 100.0
