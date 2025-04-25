@@ -75,6 +75,12 @@ func _ready() -> void:
 	shock_cooldown.cooldown = player_stats.weapon_cooldown + player_stats.shock_cooldown
 	shock_cooldown.timer.wait_time = player_stats.weapon_cooldown + player_stats.shock_cooldown
 	
+	if player_stats.light:
+		var radius_light2 := $RadiusLightRank2
+		radius_light.texture_scale = radius_light2.texture_scale
+		radius_light.energy = radius_light2.energy
+		radius_light2.queue_free()
+	
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("change_weapon_up"):
@@ -212,6 +218,7 @@ func _on_hurt_box_hurt(max_health: int, health: int) -> void:
 	GlobalSignals.on_player_health_changed(max_health, health)
 	camera.apply_shake()
 	damaged_sound.play()
+	movement.speed /= 2.0
 
 
 func _on_energy_energy_changed(max_energy: float, energy: float) -> void:

@@ -103,6 +103,8 @@ func _on_spawn_timer_timeout() -> void:
 		enemy.global_position = get_random_position()
 		EntityManager.add_entity(enemy, true)
 	
+	spawn_timer.start(timer_curve.sample(player_y))
+	
 
 func _on_player_moved(global_position: Vector2) -> void:
 	player_y = global_position.y

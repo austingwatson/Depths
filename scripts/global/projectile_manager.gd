@@ -3,6 +3,7 @@ extends Node
 const torpedo_scene := preload("res://scenes/entity/projectile/torpedo.tscn")
 const arrow_scene := preload("res://scenes/entity/projectile/arrow.tscn")
 const weapon_icon_scene := preload("res://scenes/entity/projectile/weapon_icon.tscn")
+const health_orb_scene := preload("res://scenes/entity/drops/health_orb.tscn")
 @export_flags_2d_physics var friendly_layer: int
 @export_flags_2d_physics var friendly_mask: int
 
@@ -26,3 +27,10 @@ func add_weapon_icon(global_position: Vector2, weapon: int) -> void:
 	add_child(weapon_icon)
 	weapon_icon.global_position = global_position + (Vector2.UP * 32)
 	weapon_icon.init(weapon)
+	
+
+func add_health_orb(global_position: Vector2, heal: int) -> void:
+	var health_orb := health_orb_scene.instantiate()
+	add_child(health_orb)
+	health_orb.global_position = global_position
+	health_orb.heal = heal

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://r21ikn6owpl5"]
+[gd_scene load_steps=20 format=3 uid="uid://r21ikn6owpl5"]
 
 [ext_resource type="Script" uid="uid://c4moyk1cjit1o" path="res://scripts/ui/shop.gd" id="1_ahsc1"]
 [ext_resource type="Texture2D" uid="uid://qq6n2y0wj6b4" path="res://assets/textures/ui/ui_sheet.png" id="2_8v20v"]
@@ -37,6 +37,14 @@ region = Rect2(240, 368, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xk8hd"]
 atlas = ExtResource("2_8v20v")
 region = Rect2(224, 368, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y214k"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(48, 400, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0onq"]
+atlas = ExtResource("2_8v20v")
+region = Rect2(48, 352, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nbll"]
 atlas = ExtResource("2_8v20v")
@@ -130,6 +138,18 @@ layout_mode = 2
 store_names = Array[String](["shock", "shock_range"])
 tool_tip_strings = Array[String](["Shock Cannon", "Improved Shock Range"])
 icon_texture = SubResource("AtlasTexture_xk8hd")
+
+[node name="Depth" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["depth"])
+tool_tip_strings = Array[String](["Max Crush Depth"])
+icon_texture = SubResource("AtlasTexture_y214k")
+
+[node name="Light" parent="Background/MarginContainer/GridContainer" instance=ExtResource("3_2i61c")]
+layout_mode = 2
+store_names = Array[String](["light"])
+tool_tip_strings = Array[String](["Stronger Light"])
+icon_texture = SubResource("AtlasTexture_w0onq")
 
 [node name="Close" type="TextureButton" parent="Background"]
 layout_mode = 1

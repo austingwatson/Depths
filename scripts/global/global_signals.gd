@@ -5,6 +5,7 @@ signal player_moved(global_position: Vector2)
 signal heal_player(heal: int)
 signal use_sonar
 signal research_added
+signal show_depth_tooltip
 
 var victory := false
 
@@ -27,3 +28,7 @@ func on_use_sonar() -> void:
 
 func on_research_added() -> void:
 	research_added.emit()
+	
+
+func on_show_depth_tooltip() -> void:
+	show_depth_tooltip.emit()

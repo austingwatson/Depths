@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bw4vq0sx2pd5s"]
+[gd_scene load_steps=37 format=3 uid="uid://bw4vq0sx2pd5s"]
 
 [ext_resource type="Script" uid="uid://7r1o4qx4n4r0" path="res://scripts/entity/actor/player.gd" id="1_in1sw"]
 [ext_resource type="PackedScene" uid="uid://b0rymrbfbbdhr" path="res://scenes/component/hurt_box.tscn" id="2_8pk7n"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cfg0up4nynxx6" path="res://scenes/component/research_beam.tscn" id="13_qxtqe"]
 [ext_resource type="PackedScene" uid="uid://cb1jy3pa1b4tk" path="res://scenes/entity/projectile/laser.tscn" id="14_726y4"]
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="16_vrjrw"]
+[ext_resource type="PackedScene" uid="uid://c1b7xwwrw45v2" path="res://scenes/component/crush_depth.tscn" id="20_1sbqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8co"]
 atlas = ExtResource("3_v1h6o")
@@ -337,6 +338,12 @@ radial_accel_min = -24.0
 radial_accel_max = -16.0
 angle_max = 360.0
 color_ramp = SubResource("Gradient_xwbx1")
+
+[node name="CrushDepth" parent="." node_paths=PackedStringArray("player", "hurtBox") instance=ExtResource("20_1sbqw")]
+player = NodePath("..")
+hurtBox = NodePath("../HurtBox")
+first_crush_depth = 7000.0
+second_crush_depth = 11000.0
 
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
 [connection signal="charging" from="Energy" to="." method="_on_energy_charging"]

@@ -47,6 +47,12 @@ extends Resource
 @export var shock_cooldown := 0.0
 @export var shock_range := 0.0
 
+@export_category("Depth")
+@export var depth := false
+
+@export_category("Light")
+@export var light := false
+
 var store := {
 	"energy1": 2,
 	"energy2": 4,
@@ -71,6 +77,10 @@ var store := {
 	
 	"shock": 8,
 	"shock_range": 6,
+	
+	"depth": 20,
+	
+	"light": 5,
 }
 var upgrades := {
 	"energy1": 125.0,
@@ -81,9 +91,9 @@ var upgrades := {
 	"health2": 20,
 	"health3": 25,
 	
-	"cooldown1": 4.0,
-	"cooldown2": 3.0,
-	"cooldown3": 2.0,
+	"cooldown1": 10.0,
+	"cooldown2": 8.0,
+	"cooldown3": 6.0,
 	
 	"damage1": 2,
 	"damage2": 3,
@@ -96,6 +106,10 @@ var upgrades := {
 	
 	"shock": true,
 	"shock_range": 200.0,
+	
+	"depth": true,
+	
+	"light": true,
 }
 
 
@@ -159,3 +173,9 @@ func upgrade(unlock: String) -> void:
 			unlocked_weapons[2] = upgrades[unlock]
 		"shock_range":
 			shock_range = upgrades[unlock]
+			
+		"depth":
+			depth = upgrades[unlock]
+			
+		"light":
+			light = upgrades[unlock]

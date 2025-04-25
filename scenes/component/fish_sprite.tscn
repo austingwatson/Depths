@@ -28,7 +28,7 @@ material = SubResource("CanvasItemMaterial_udha5")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="PingedTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
