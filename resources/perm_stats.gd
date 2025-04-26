@@ -45,7 +45,7 @@ extends Resource
 @export var shock_damage := 0
 @export var shock_energy := 0.0
 @export var shock_cooldown := 0.0
-@export var shock_range := 0.0
+@export var shock_range := false
 
 @export_category("Depth")
 @export var depth := false
@@ -105,7 +105,7 @@ var upgrades := {
 	"laser_cost": 0.5,
 	
 	"shock": true,
-	"shock_range": 200.0,
+	"shock_range": true,
 	
 	"depth": true,
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4t4v3xeqcma2"]
+[gd_scene load_steps=17 format=3 uid="uid://4t4v3xeqcma2"]
 
 [ext_resource type="Script" uid="uid://dhniosaannv60" path="res://scripts/entity/projectile/shock.gd" id="1_jmcv3"]
 [ext_resource type="PackedScene" uid="uid://b0foxywnu3rrx" path="res://scenes/component/hit_box.tscn" id="2_0iv5t"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://i6plrgcblxll" path="res://assets/textures/effects/effect_sheet.png" id="3_0iv5t"]
 [ext_resource type="Texture2D" uid="uid://b6ykgro6grd11" path="res://assets/textures/effects/shock_cannon_blast.png" id="5_qy4gw"]
 [ext_resource type="Texture2D" uid="uid://v8q4auewvljj" path="res://assets/textures/effects/ies_lights_model1.png" id="6_sonjk"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sonjk"]
+points = PackedVector2Array(0, 0, 30, -60, 120, -35, 120, 35, 30, 60)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0iv5t"]
 points = PackedVector2Array(0, 0, 60, -50, 60, 50)
@@ -63,6 +66,7 @@ animations = [{
 
 [node name="Shock" type="Node2D"]
 script = ExtResource("1_jmcv3")
+upgrade_shape = SubResource("ConvexPolygonShape2D_sonjk")
 
 [node name="ShockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1xao5")
@@ -101,14 +105,17 @@ angle_max = 360.0
 color_ramp = SubResource("Gradient_0iv5t")
 
 [node name="Shock_visual_rank1" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(42, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1lesg")
+frame_progress = 0.104313
 
 [node name="Shock_visual_rank2" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(74, 0)
 sprite_frames = SubResource("SpriteFrames_1lesg")
+frame_progress = 0.434024
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 modulate = Color(0.812436, 0.998995, 1, 0.568627)
